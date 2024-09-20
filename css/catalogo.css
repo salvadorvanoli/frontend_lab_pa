@@ -37,3 +37,134 @@ a.nav-link{
 #carrito-button:hover{
     background-color: #c84383;
 }
+
+.select-1 {
+    float: right;
+	width: 180px;
+    height: 32px;
+    padding: 4px 8px 4px 8px;
+    background: #C8709A;
+    color: #232323;
+    border-color: #000000;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px 4px 4px 4px;
+    font-family: "Helvetica";
+    font-weight: 400;
+    font-size: 14px;
+    text-align: left
+}
+
+.header-1 {
+    margin: auto;
+    width: auto;
+    height: 32px;
+}
+
+.div-1 {
+    margin-top: 30px;
+    width: 26%;
+    height: auto;
+    float: left;
+    
+}
+
+.div-2 {   
+    margin-top: 30px;
+    width: 74%;
+    height: auto;
+    float: right;
+}
+
+.rectangle-1 {
+    width: 870px;
+    height: 270px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 8px 8px 8px 8px;
+    background: #F7F6F6;
+    border-color: #929292;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.aside-1 {
+    background: #ff5252;
+    width: 225px;
+    height: 530px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 25px;
+    margin-right: 25px;
+    background: #E6E6E6;
+    color: #7A7A7A;
+    border-color: #000000;
+    border-width: 1px;
+    border-style: solid;
+    font-family: "Helvetica";
+    font-weight: bold;
+    font-size: 14px;
+    text-align: left;
+}
+
+.scrollbar-1 {
+    width: 18px;
+    height: 530px;
+    background: #E6E6E6;
+    border-color: #000000;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 12px 12px 12px 12px;
+}
+
+.item-1 {
+    width: 470px;
+    height: 54px;
+    color: #A45D7F;
+    font-family: "Open Sans";
+    font-weight: bold;
+    font-size: 50px;
+    text-align: left;
+    float:left;
+}
+
+.image-1 {
+    width: 168px;
+    height: 221px;
+    background: #FFFFFF;
+    border-color: #AAAAAA;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 4px 4px 4px 4px;
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.tienda-x {
+    width: 77px;
+    height: 28px;
+    color: #444444;
+    font-family: "Open Sans";
+    font-weight: 600;
+    font-size: 18px;
+    text-align: left;
+    float:left;
+}
+
+.estrellas {
+    width: 178px;
+    height: 32px;
+    float:left;
+    margin-right: 10px;
+    margin-bottom: 22px;
+    color : #c0c0c0;
+    .checked {
+        color: #6b6b6b;
+    }
+}
