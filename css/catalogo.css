@@ -43,7 +43,7 @@ a.nav-link{
 	width: 180px;
     height: 32px;
     padding: 4px 8px 4px 8px;
-    background: #C8709A;
+    background: #F7F6F6;
     color: #232323;
     border-color: #000000;
     border-width: 1px;
@@ -52,11 +52,29 @@ a.nav-link{
     font-family: "Helvetica";
     font-weight: 400;
     font-size: 14px;
-    text-align: left
+    text-align: left;
+    margin-right: 35px;    
+}
+
+.select-2 {
+    width: 210px;
+    height: 25px;
+    padding: 4px 8px 4px 8px;
+    background: #E6E6E6;
+    color: #232323;
+    border-color: #000000;
+    border-width: 1px;
+    border-style: solid;
+    font-family: "Helvetica";
+    font-weight: 400;
+    font-size: 14px;
+    text-align: left;
+
 }
 
 .header-1 {
     margin: auto;
+    margin-bottom: 30px;
     width: auto;
     height: 32px;
 }
@@ -129,6 +147,7 @@ a.nav-link{
     font-size: 50px;
     text-align: left;
     float:left;
+    padding: 0px;
 }
 
 .image-1 {
@@ -157,14 +176,44 @@ a.nav-link{
     float:left;
 }
 
-.estrellas {
+.conjunto_estrellas {
     width: 178px;
     height: 32px;
     float:left;
-    margin-right: 10px;
+    margin-left: 10px;
     margin-bottom: 22px;
     color : #c0c0c0;
     .checked {
         color: #6b6b6b;
     }
+    padding: 0px;
+    font-size: larger;
+    text-align: right;
+}
+
+.precio{
+    width: 152px;
+    height: 71px;
+    color: #A45D7F;
+    font-family: "DM Sans";
+    font-weight: 400;
+    font-size: 60px;
+    text-align: left;
+    padding: 0;
+}
+
+.carrito{
+    width: 70px;
+    height: 70px;
+    color: #B8635F;
+    padding: 0px;
+    margin: 0px;
+    margin-top: 25px;
+    margin-right: 5px;
+    font-size: 300%;
+    text-align: right;
+}
+
+.precio-carrito{
+    margin-top: 120px;
 }
