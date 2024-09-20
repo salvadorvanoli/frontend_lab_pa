@@ -12,11 +12,6 @@ h1 {
     height: 200px;
 }
 
-input {
-    margin-top: 20px;
-    margin-right: 20px;
-}
-
 .centro {
     text-align: center;
 }
@@ -54,12 +49,12 @@ input {
     text-align: center;
 }
 
-.btn-primary {
+.botonRosado {
     background-color: #C8709A;
     border: 1px solid #C8709A;
 }
 
-.btn-primary:hover {
+.botonRosado:hover {
     background-color: #be618e;
     border: 1px solid #be618e;
 }
