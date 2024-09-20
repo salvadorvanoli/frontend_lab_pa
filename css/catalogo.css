@@ -217,3 +217,15 @@ a.nav-link{
 .precio-carrito{
     margin-top: 120px;
 }
+
+.navegador {
+    justify-content: center;
+}
+
+.opcion-navegador {
+
+    .current{
+        background: #A45D7F;
+    }
+    
+}
