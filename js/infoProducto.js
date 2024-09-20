@@ -143,8 +143,7 @@ function cargarComentarios() {
                     <div class="respuestas-comentario">
                         ${respuestasComentarios}
                     </div>
-
-                </div>
+            </div>
         `;
     }
 
