@@ -43,7 +43,7 @@
     </nav>
 
     <!-- ENCABEZADO DE FASES -->
-    <div class="container-fluid p-0">
+    <div class="container-fluid p-0" id="encabezado1">
         <div id="rectangulo-fase-estetica">
             <div class="container-lg">
             <div class="row rectangulo-fase align-items-end">
@@ -65,7 +65,7 @@
         </div>
     </div>
     
-    <div class="container-md container-fluid">
+    <div class="container-md container-fluid" id="seccion1">
         <div class="row d-flex justify-content-center">
 
             <form class="row g-3 needs-validation" novalidate id="formCarrito"> <!-- DUDOSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO -->
@@ -210,7 +210,7 @@
     </div>
     -->
 
-    <div class="container-fluid p-0 d-none">
+    <div class="container-fluid p-0 d-none" id="encabezado2">
         <div id="rectangulo-fase-estetica">
             <div class="container-lg">
                 <div class="row rectangulo-fase align-items-end">
@@ -234,37 +234,51 @@
     </div>
 
     
-    <div class="container-md container-fluid">
+    <div class="container-md container-fluid d-none" id="seccion2">
         <div class="row d-flex justify-content-center">
+
+            <form class="row g-3 needs-validation" novalidate id="formEnvio"> <!-- DUDOSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO -->
+
             <div class="col-md-8 col-12 mt-5">
 
                 <h1 class="titulo-resumen">Detalles del envío</h1>
                 
                     <div class="row mb-md-4">
                         <div class="form-floating col-md-6 mb-md-0 mb-4">
-                            <input type="text" class="form-control estetica-input" id="nombre" placeholder="Nombre" required>
+                            <input type="text" class="form-control estetica-input" id="nombre" placeholder="Nombre" required pattern="[A-Za-z]+(( ?([A-Za-z]+))?)+">
                             <label for="nombre" class="ms-2 label-input">Nombre</label>
+                            <div class="invalid-feedback">
+                                <i class="fa-solid fa-triangle-exclamation"></i> "Nombre" no puede estar vacío (solo se aceptan letras y espacios).
+                            </div>
                         </div>
                         <div class="form-floating col-md-6 mb-md-0 mb-4">
-                            <input type="text" class="form-control estetica-input" id="apellido" placeholder="Apellido" required>
+                            <input type="text" class="form-control estetica-input" id="apellido" placeholder="Apellido" required pattern="[A-Za-z]+(( ?([A-Za-z]+))?)+">
                             <label for="apellido" class="ms-2 label-input">Apellido</label>
+                            <div class="invalid-feedback">
+                                <i class="fa-solid fa-triangle-exclamation"></i> "Apellido" no puede estar vacío (solo se aceptan letras).
+                            </div>
                         </div>
                     </div>
 
                     
-                    <div class="form-floating">
-                        <input type="text" class="form-control mb-4 estetica-input" id="direccion1" placeholder="Dirección" required>
+                    <div class="form-floating mb-4">
+                        <input type="text" class="form-control estetica-input" id="direccion1" placeholder="Dirección" required pattern="[A-Za-z0-9]+(( ?([A-Za-z0-9]+))?)+ [0-9]+">
                         <label for="direccion" class="label-input">Dirección</label>
+                        <div class="invalid-feedback">
+                            <i class="fa-solid fa-triangle-exclamation"></i> "Dirección" no puede estar vacío (calle seguido de un número).
+                        </div>
                     </div>
-                    <div class="form-floating">
-                        <input type="text" class="form-control mb-4 estetica-input" id="direccion2" placeholder="Dirección 2">
+
+
+                    <div class="form-floating mb-4">
+                        <input type="text" class="form-control estetica-input" id="direccion2" placeholder="Dirección 2">
                         <label for="direccion2" class="label-input">Dirección 2</label>
                     </div>
 
                     <div class="row direcciones mb-md-4">
                         <div class="col-md-6 mb-md-0 mb-4">
                             <select class="form-select estetica-input" aria-label="Selecciona un departamento" id="departamento" required>
-                                <option value="0" selected>Elige un departamento</option>
+                                <option value="" selected>Elige un departamento</option>
                                 <option value="Artigas">Artigas</option>
                                 <option value="Canelones">Canelones</option>
                                 <option value="Cerro Largo">Cerro Largo</option>
@@ -275,31 +289,44 @@
                                 <option value="Lavalleja">Lavalleja</option>
                                 <option value="Maldonado">Maldonado</option>
                                 <option value="Montevideo">Montevideo</option>
+                                <option value="Paysandú">Paysandú</option>
                                 <option value="Río Negro">Río Negro</option>
                                 <option value="Rivera">Rivera</option>
                                 <option value="Rocha">Rocha</option>
                                 <option value="Salto">Salto</option>
                                 <option value="San José">San José</option>
                                 <option value="Soriano">Soriano</option>
-                                <option value="Tacuarembo">Tacuarembo</option>
-                                <option value="Treinta y Tres">Treinta y Tres</option>
+                                <option value="Tacuarembó">Tacuarembó</option>
+                                <option value="Treinta Y Tres">Treinta Y Tres</option>
                             </select>
+                            <div class="invalid-feedback">
+                                <i class="fa-solid fa-triangle-exclamation"></i> Se debe seleccionar un departamento.
+                            </div>
                         </div>
                         <div class="col-md-6 mb-md-0 mb-4">
                             <select class="form-select estetica-input" aria-label="Selecciona una ciudad" id="ciudad" disabled required>
-                                <option value="0" selected>Elige una ciudad</option>
+                                <option value="" selected>Elige una ciudad</option>
+                                <div class="invalid-feedback">
+                                    <i class="fa-solid fa-triangle-exclamation"></i> Se debe seleccionar una ciudad.
+                                </div>
                             </select>
                         </div>
                     </div>
 
                     <div class="row mb-md-4">
                         <div class="form-floating col-md-6 mb-md-0 mb-4">
-                            <input type="text" class="form-control estetica-input" id="codPostal" placeholder="Código Postal" required>
+                            <input type="text" class="form-control estetica-input" id="codPostal" placeholder="Código Postal" required pattern="[0-9]{5}">
                             <label for="codPostal" class="ms-2 label-input">Código Postal</label>
+                            <div class="invalid-feedback">
+                                <i class="fa-solid fa-triangle-exclamation"></i> "Código Postal" no puede estar vacío (5 dígitos).
+                            </div>
                         </div>
                         <div class="form-floating col-md-6 mb-md-0 mb-4">
-                            <input type="text" class="form-control estetica-input" id="numTelefono" placeholder="Número de teléfono" required>
+                            <input type="text" class="form-control estetica-input" id="numTelefono" placeholder="Número de teléfono" required pattern="09[1-9][0-9]{6}">
                             <label for="numTelefono" class="ms-2 label-input">Número de teléfono</label>
+                            <div class="invalid-feedback">
+                                <i class="fa-solid fa-triangle-exclamation"></i> "Número de teléfono" no puede estar vacío (ejemplo: 091234567).
+                            </div>
                         </div>
                     </div>
 
@@ -406,8 +433,8 @@
             <div class="row">
                 <div class="col-12">
                     
-                    <button type="button" class="btn siguiente-button my-4 me-4">Siguiente</button>
-                    <button type="button" class="btn cancelar-button my-4">Atrás</button>
+                    <input type="submit" class="btn siguiente-button my-4 me-4" value="Siguiente" id="botonSiguiente2">
+                    <input type="button" class="btn cancelar-button my-4" value="Atrás" id="botonAtras1">
                     
                     <!--
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Open modal for @mdo</button>
@@ -415,11 +442,12 @@
                     -->
                 </div>
             </div>
+            </form>
         </div>
     </div>
 
 
-    <div class="container-fluid p-0 d-none">
+    <div class="container-fluid p-0 d-none" id="encabezado3">
         <div id="rectangulo-fase-estetica">
             <div class="container-lg">
                 <div class="row rectangulo-fase align-items-end">
@@ -442,7 +470,7 @@
     </div>
 
 
-    <div class="container-md container-fluid d-none">
+    <div class="container-md container-fluid d-none" id="seccion3">
         <div class="row d-flex justify-content-center">
             <div class="col-md-8 col-12 mt-5">
 
@@ -571,8 +599,8 @@
             <div class="row">
                 <div class="col-12">
                     
-                    <button type="button" class="btn siguiente-button my-4 me-4">Pagar ahora</button>
-                    <button type="button" class="btn cancelar-button my-4">Atrás</button>
+                    <input type="submit" class="btn siguiente-button my-4 me-4" value="Pagar ahora" id="botonPagar">
+                    <input type="button" class="btn cancelar-button my-4" value="Atrás" id="botonAtras2">
                     
                     <!--
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Open modal for @mdo</button>
@@ -584,6 +612,11 @@
     </div>
 
 
+    <div class="d-none">
+        <form class="row g-3 needs-validation" novalidate id="formEnvio"> <!-- DUDOSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO -->
+
+        </form>
+    </div>
 
 
 </body>
