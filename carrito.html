@@ -32,7 +32,7 @@
                         <a class="nav-link" href="#">Catálogo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa-solid fa-circle-user" id="icono-usuario"></i></a>
+                        <a class="nav-link" href="infoUsuario.html"><i class="fa-solid fa-circle-user" id="icono-usuario"></i></a>
                     </li>
                     <li class="nav-item text-nowrap">
                         <a class="nav-link px-3 text-nowrap" id="carrito-button" href="#"><i class="fa-solid fa-cart-shopping"></i>&nbsp;&nbsp;Carrito</a> <!-- aria-disabled="true" para desactivar -->
@@ -75,7 +75,7 @@
                 <h1 id="titulo-carrito">Carrito de Compra</h1>
 
                 <!-- CONTENEDOR DE LOS PRODUCTOS DEL CARRITO -->
-                <div class="contenedor-productos">
+                <div class="contenedor-productos" id="carrito">
 
                     <!-- PRODUCTO 1 -->
                     <div class="row my-3 d-flex align-items-center">
@@ -95,37 +95,7 @@
                         <div class="col-3">
                             <div class="col-12">
                                 <label for="cantidad">Cantidad</label>
-                                <input type="number" name="cantidad" class="cantidad-producto" min="1" required>
-                                <div class="invalid-feedback">
-                                    <i class="fa-solid fa-triangle-exclamation"></i> Valor inválido.
-                                </div>
-                            </div>
-                            <br>
-                            <div class="col-12">    
-                                <button type="button" class="btn btn-danger text-nowrap"><i class="fa-solid fa-trash-can"></i></button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- PRODUCTO 2 -->
-                    <div class="row my-3 d-flex align-items-center">
-                        <img class="col-sm-3 col-4" src="img/Zucaritas.webp" alt="Zucaritas">
-                        <div class="col-sm-6 col-4">
-                            <div class="row titulo-producto">
-                                <p class="col-sm-6 col-12">Zucaritas</p>
-                                <p class="col-sm-6 col-12">Nro. 12</p>
-                            </div>
-                            <div class="row descripcion-producto d-none d-sm-block">
-                                <p>Son muy ricos!</p>
-                            </div>
-                            <div class="row precio-producto">
-                                <p>$5000</p>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="col-12">
-                                <label for="cantidad">Cantidad</label>
-                                <input type="number" name="cantidad" class="cantidad-producto" value="1" min="1" required>
+                                <input type="number" name="cantidad" class="cantidad-producto" min="1" value="1" required>
                                 <div class="invalid-feedback">
                                     <i class="fa-solid fa-triangle-exclamation"></i> Valor inválido.
                                 </div>
@@ -146,20 +116,20 @@
                 <div class="linea-resumen my-2"></div>
                 <div class="row texto-resumen mt-3">
                     <p class="col-6">SUBTOTAL</p>
-                    <p class="col-6 text-end">$10000</p>
+                    <p class="col-6 text-end precio-subtotal">$0</p>
                 </div>
                 <div class="row texto-resumen">
                     <p class="col-6">ENVÍO</p>
-                    <p class="col-6 text-end">GRATIS</p>
+                    <p class="col-6 text-end precio-envio">GRATIS</p>
                 </div>
                 <div class="row texto-resumen">
                     <p class="col-6">IMPUESTOS</p>
-                    <p class="col-6 text-end">$42</p>
+                    <p class="col-6 text-end precio-impuestos">$0</p>
                 </div>
                 <div class="linea-resumen mb-3"></div>
                 <div class="row texto-total">
                     <p class="col-6">TOTAL</p>
-                    <p class="col-6 text-end">$10042</p>
+                    <p class="col-6 text-end precio-total">$0</p>
                 </div>
             </div>
 
@@ -388,43 +358,25 @@
                         </div>
                     </div>
 
-                    <!-- PRODUCTO 2 -->
-                    <div class="row my-3 d-flex align-items-center">
-                        <img class="col-4" src="img/Zucaritas.webp" alt="Zucaritas">
-                        <div class="col-4">
-                            <div class="row titulo-producto">
-                                <p class="col-12">Zucaritas</p>
-                            </div>
-                            <div class="row precio-producto">
-                                <p>$5000</p>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="col-12">
-                                <label for="cantidad">Cant.</label>
-                                <input type="number" name="cantidad" class="cantidad-producto" disabled value="1">
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="linea-resumen my-2 mt-4"></div>
                 <div class="row texto-resumen mt-3">
                     <p class="col-6">SUBTOTAL</p>
-                    <p class="col-6 text-end">$10000</p>
+                    <p class="col-6 text-end precio-subtotal">$0</p>
                 </div>
                 <div class="row texto-resumen">
                     <p class="col-6">ENVÍO</p>
-                    <p class="col-6 text-end">GRATIS</p>
+                    <p class="col-6 text-end precio-envio">GRATIS</p>
                 </div>
                 <div class="row texto-resumen">
                     <p class="col-6">IMPUESTOS</p>
-                    <p class="col-6 text-end">$42</p>
+                    <p class="col-6 text-end precio-impuestos">$0</p>
                 </div>
                 <div class="linea-resumen mb-3"></div>
                 <div class="row texto-total">
                     <p class="col-6">TOTAL</p>
-                    <p class="col-6 text-end">$10042</p>
+                    <p class="col-6 text-end precio-total">$0</p>
                 </div>
 
             </div>
@@ -554,43 +506,25 @@
                         </div>
                     </div>
 
-                    <!-- PRODUCTO 2 -->
-                    <div class="row my-3 d-flex align-items-center">
-                        <img class="col-4" src="img/Zucaritas.webp" alt="Zucaritas">
-                        <div class="col-4">
-                            <div class="row titulo-producto">
-                                <p class="col-12">Zucaritas</p>
-                            </div>
-                            <div class="row precio-producto">
-                                <p>$5000</p>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="col-12">
-                                <label for="cantidad">Cant.</label>
-                                <input type="number" name="cantidad" class="cantidad-producto" disabled value="1">
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="linea-resumen my-2 mt-4"></div>
                 <div class="row texto-resumen mt-3">
                     <p class="col-6">SUBTOTAL</p>
-                    <p class="col-6 text-end">$10000</p>
+                    <p class="col-6 text-end precio-subtotal">$0</p>
                 </div>
                 <div class="row texto-resumen">
                     <p class="col-6">ENVÍO</p>
-                    <p class="col-6 text-end">GRATIS</p>
+                    <p class="col-6 text-end precio-envio">GRATIS</p>
                 </div>
                 <div class="row texto-resumen">
                     <p class="col-6">IMPUESTOS</p>
-                    <p class="col-6 text-end">$42</p>
+                    <p class="col-6 text-end precio-impuestos">$0</p>
                 </div>
                 <div class="linea-resumen mb-3"></div>
                 <div class="row texto-total">
                     <p class="col-6">TOTAL</p>
-                    <p class="col-6 text-end">$10042</p>
+                    <p class="col-6 text-end precio-total">$0</p>
                 </div>
 
             </div>
@@ -620,7 +554,8 @@
 
 
 </body>
+<script src="js/init.js"></script>
 <script src="https://kit.fontawesome.com/d795c6c237.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script src="carrito.js"></script>
+<script src="js/carrito.js"></script>
 </html>

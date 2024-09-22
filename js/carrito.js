@@ -104,17 +104,75 @@ document.addEventListener("DOMContentLoaded", async function(e) {
 
 
 
-    // form2 = document.querySelector("#formEnvio");
+    const carrito = document.querySelector("#carrito");
 
     function cargarElementosCarrito(array){
         if (array.length === 0){
             return;
         } else {
+            let subtotal = 0;
             array.forEach(element => {
-                
+                let itemCarrito = document.createElement("div");
+                itemCarrito.innerHTML = 
+                    `<div class="row my-3 d-flex align-items-center">
+                        <img class="col-sm-3 col-4" src="${element.imagenes[0]}" alt="${element.nombre}">
+                        <div class="col-sm-6 col-4">
+                            <div class="row titulo-producto">
+                                <p class="col-sm-6 col-12">${element.nombre}</p>
+                                <p class="col-sm-6 col-12">Nro. ${element.id}</p>
+                            </div>
+                            <div class="row descripcion-producto d-none d-sm-block">
+                                <p>${element.descripcion}</p>
+                            </div>
+                            <div class="row precio-producto">
+                                <p>$${element.precio}</p>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="col-12">
+                                <label for="cantidad">Cantidad</label>
+                                <input type="number" name="cantidad" class="cantidad-producto" min="1" required value="${element.cantidad}">
+                                <div class="invalid-feedback">
+                                    <i class="fa-solid fa-triangle-exclamation"></i> Valor inválido.
+                                </div>
+                            </div>
+                            <br>
+                            <div class="col-12">    
+                                <button type="button" class="btn btn-danger text-nowrap"><i class="fa-solid fa-trash-can"></i></button>
+                            </div>
+                        </div>
+                    </div>`;
+
+                carrito.appendChild(itemCarrito);
+
+                subtotal += element.precio * element.cantidad;
+
             });
+
+            const subtotales = document.querySelectorAll(".precio-subtotal");
+            const envios = document.querySelectorAll(".precio-envio");
+            const impuestos = document.querySelectorAll(".precio-impuestos");
+            const totales = document.querySelectorAll(".precio-total");
+
+            modificarTextos(subtotales, "$" + subtotal);
+            modificarTextos(envios, "GRATIS");
+            modificarTextos(impuestos, "$" + subtotal * 0.02);
+            modificarTextos(totales, "$" + subtotal * 1.02);
+
         }
     }
+
+    function modificarTextos(array, text){
+        array.forEach(item => {
+            item.textContent = text;
+        });
+    }
+
+    let carritoActual = JSON.parse(localStorage.getItem('carritoActual'));
+
+    console.log(carritoActual);
+
+    cargarElementosCarrito(carritoActual);
 
     departamentos.addEventListener("change", function(e){
         if (departamentos.value != ""){
