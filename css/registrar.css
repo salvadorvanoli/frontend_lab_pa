@@ -71,7 +71,7 @@ a.nav-link{
 	border-radius: 6px 6px 6px 6px;
 }
 
-.textoiniciarSesion {
+.textoRegistrar {
 	width: 298px;
 	height: 74px;
 	color: #A45D7F;
@@ -95,7 +95,7 @@ a.nav-link{
 	text-align: center;
 }
 
-.button-iniciarSesion {
+.button-registrar {
 	width: 182px;
 	height: 41px;
 	padding: 0px 10px 0px 10px;
