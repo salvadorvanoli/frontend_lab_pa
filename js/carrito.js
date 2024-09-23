@@ -1,3 +1,159 @@
+const subtotales = document.querySelectorAll(".precio-subtotal");
+const envios = document.querySelectorAll(".precio-envio");
+const impuestos = document.querySelectorAll(".precio-impuestos");
+const totales = document.querySelectorAll(".precio-total");
+
+const envioGratis = document.querySelector("#envioGratis");
+const envioVip = document.querySelector("#envioVip");
+
+
+function modificarTextos(array, text){
+    array.forEach(item => {
+        item.textContent = text;
+    });
+}
+
+
+const carrito = document.querySelector("#carrito");
+
+
+function cargarElementosCarrito(array){
+    if (array.length === 0){
+        return;
+    } else {
+        let subtotal = 0;
+        array.forEach(element => {
+            let itemCarrito = document.createElement("div");
+            itemCarrito.innerHTML = 
+                `<div class="row my-3 d-flex align-items-center" id="producto${element.id}">
+                    <div class="col-sm-3 col-4 d-flex align-items-center justify-content-center">
+                        <img class="w-75" src="${element.imagenes[0]}" alt="${element.nombre}">
+                    </div>
+                    <div class="col-sm-6 col-4">
+                        <div class="row titulo-producto">
+                            <p class="col-sm-6 col-12">${element.nombre}</p>
+                            <p class="col-sm-6 col-12">Nro. ${element.id}</p>
+                        </div>
+                        <div class="row descripcion-producto d-none d-sm-block">
+                            <p>${element.descripcion}</p>
+                        </div>
+                        <div class="row precio-producto">
+                            <p>$${element.precio}</p>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="col-12">
+                            <label for="cantidad">Cantidad</label>
+                            <input type="number" name="cantidad" class="cantidad-producto" min="1" required value="${element.cantidad}" onchange="manejarCantidad(this, ${element.id})">
+                            <div class="invalid-feedback">
+                                <i class="fa-solid fa-triangle-exclamation"></i> Valor inválido.
+                            </div>
+                        </div>
+                        <br>
+                        <div class="col-12">    
+                            <button type="button" class="btn btn-danger text-nowrap" onclick="eliminarItem(${element.id})"><i class="fa-solid fa-trash-can"></i></button>
+                        </div>
+                    </div>
+                </div>`;
+
+            carrito.appendChild(itemCarrito);
+
+            subtotal += element.precio * element.cantidad;
+
+        });
+
+        modificarTextos(subtotales, "$" + subtotal);
+        modificarTextos(envios, "GRATIS");
+        modificarTextos(impuestos, "$" + subtotal * 0.02);
+        modificarTextos(totales, "$" + subtotal * 1.02);
+
+    }
+}
+
+
+function modificarAllTextos(array){
+    let subtotal = 0;
+
+    array.forEach(item => {
+        subtotal += item.precio * item.cantidad;
+    });
+
+    modificarTextos(subtotales, "$" + subtotal);
+    if (envioGratis.checked){
+        modificarTextos(envios, "GRATIS");
+    } else {
+        modificarTextos(envios, "$20");
+        subtotal += 20;
+    }
+    modificarTextos(impuestos, "$" + subtotal * 0.02);
+    modificarTextos(totales, "$" + subtotal * 1.02);
+}
+
+
+function manejarCantidad(input, id){
+    cantidad = Number.parseInt(input.value);
+    if ( !(Number.isInteger(cantidad)) || cantidad < 1){
+        input.value = 1;
+    }
+
+    const carritoActual = JSON.parse(localStorage.getItem('carritoActual'));
+
+    for (let i = 0; i < carritoActual.length; i++){
+        if (carritoActual[i].id == id){
+            carritoActual[i].cantidad = Number.parseInt(input.value);
+            break;
+        }
+    }
+
+    localStorage.setItem("carritoActual", JSON.stringify(carritoActual));
+
+    modificarAllTextos(carritoActual);
+
+}
+
+
+function eliminarItem(id){
+
+    const carritoActual = JSON.parse(localStorage.getItem("carritoActual"));
+    
+    for (let i = 0; i < carritoActual.length; i++){
+        if (carritoActual[i].id == id){
+            carritoActual.splice(i, 1);
+            break;
+        }
+    }
+
+    localStorage.setItem("carritoActual", JSON.stringify(carritoActual));
+
+    modificarAllTextos(carritoActual);
+
+    const item = document.querySelector("#producto" + id);
+    item.remove();
+
+}
+
+
+function modificarEnvio(){
+    const carritoActual = JSON.parse(localStorage.getItem("carritoActual"));
+    let subtotal = 0;
+    carritoActual.forEach(element => {
+        subtotal += element.precio * element.cantidad;
+    });
+
+    console.log(envioGratis.checked);
+
+    if (envioGratis.checked){
+        modificarTextos(envios, "GRATIS");
+        modificarTextos(impuestos, "$" + (subtotal) * 0.02)
+        modificarTextos(totales, "$" + ((subtotal) + (subtotal) * 0.02));
+    } else {
+        modificarTextos(envios, "$20");
+        modificarTextos(impuestos, "$" + (subtotal + 20) * 0.02)
+        modificarTextos(totales, "$" + ((subtotal + 20) + (subtotal + 20) * 0.02));
+    }
+}
+
+
 document.addEventListener("DOMContentLoaded", async function(e) {
 
     const encabezado1 = document.querySelector("#encabezado1");
@@ -102,71 +258,7 @@ document.addEventListener("DOMContentLoaded", async function(e) {
     }
 
 
-
-
-    const carrito = document.querySelector("#carrito");
-
-    function cargarElementosCarrito(array){
-        if (array.length === 0){
-            return;
-        } else {
-            let subtotal = 0;
-            array.forEach(element => {
-                let itemCarrito = document.createElement("div");
-                itemCarrito.innerHTML = 
-                    `<div class="row my-3 d-flex align-items-center">
-                        <img class="col-sm-3 col-4" src="${element.imagenes[0]}" alt="${element.nombre}">
-                        <div class="col-sm-6 col-4">
-                            <div class="row titulo-producto">
-                                <p class="col-sm-6 col-12">${element.nombre}</p>
-                                <p class="col-sm-6 col-12">Nro. ${element.id}</p>
-                            </div>
-                            <div class="row descripcion-producto d-none d-sm-block">
-                                <p>${element.descripcion}</p>
-                            </div>
-                            <div class="row precio-producto">
-                                <p>$${element.precio}</p>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="col-12">
-                                <label for="cantidad">Cantidad</label>
-                                <input type="number" name="cantidad" class="cantidad-producto" min="1" required value="${element.cantidad}">
-                                <div class="invalid-feedback">
-                                    <i class="fa-solid fa-triangle-exclamation"></i> Valor inválido.
-                                </div>
-                            </div>
-                            <br>
-                            <div class="col-12">    
-                                <button type="button" class="btn btn-danger text-nowrap"><i class="fa-solid fa-trash-can"></i></button>
-                            </div>
-                        </div>
-                    </div>`;
-
-                carrito.appendChild(itemCarrito);
-
-                subtotal += element.precio * element.cantidad;
-
-            });
-
-            const subtotales = document.querySelectorAll(".precio-subtotal");
-            const envios = document.querySelectorAll(".precio-envio");
-            const impuestos = document.querySelectorAll(".precio-impuestos");
-            const totales = document.querySelectorAll(".precio-total");
-
-            modificarTextos(subtotales, "$" + subtotal);
-            modificarTextos(envios, "GRATIS");
-            modificarTextos(impuestos, "$" + subtotal * 0.02);
-            modificarTextos(totales, "$" + subtotal * 1.02);
-
-        }
-    }
-
-    function modificarTextos(array, text){
-        array.forEach(item => {
-            item.textContent = text;
-        });
-    }
+    localStorage.setItem("carritoActual", '[{"nombre":"Zucaritas","precio":300,"descripcion":"Muy ricas, sisi muy muy ricas","imagenes":["/img/test.jpg","/img/test.jpg"],"id":"777","cantidad":7},{"nombre":"Laptop","precio":7000,"descripcion":"Super potente master","imagenes":["img/Zucaritas.webp"],"id":"69","cantidad":4}]')
 
     let carritoActual = JSON.parse(localStorage.getItem('carritoActual'));
 
@@ -190,9 +282,6 @@ document.addEventListener("DOMContentLoaded", async function(e) {
     });
     
     departamentos.value = "";
-
-
-
 
 
 
