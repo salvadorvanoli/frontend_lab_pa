@@ -115,8 +115,8 @@ a.nav-link{
     height: 530px;
     margin-top: 0px;
     margin-bottom: 0px;
-    margin-left: 25px;
-    margin-right: 25px;
+    margin-left: 50px;
+    margin-right: 40px;
     background: #E6E6E6;
     color: #7A7A7A;
     border-color: #000000;
@@ -222,10 +222,37 @@ a.nav-link{
     justify-content: center;
 }
 
-.opcion-navegador {
+.color-rosa{
+    color:#A45D7F
+}
 
-    .current{
-        background: #A45D7F;
-    }
-    
+.background-rosa{
+    background:#A45D7F ;
+}
+
+.color-marron{
+    color:#B8635F
+}
+
+.color-blanco{
+    color: #E6E6E6;
+}
+
+.imagen-utec{
+    border-radius: 6px 6px 6px 6px;  
+    width: 154px;
+    height: 65px;
+}
+
+.scrolleable{
+    overflow-y:scroll;
+}
+
+.footer-segundaParte-{
+    margin-left: 40px;
+}
+
+.selected-Page{
+    background-color: #A45D7F;
+    color: #E6E6E6;
 }
