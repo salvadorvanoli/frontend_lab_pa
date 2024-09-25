@@ -69,7 +69,7 @@ a.nav-link{
     padding: 0;
   }
 
-#titulo-fase-principal {
+.titulo-fase-principal {
     width: 201px;
     height: 29px;
     color: #C8709A;
@@ -96,16 +96,12 @@ a.nav-link{
     color: #A45D7F;
 }
 
-#contenedor-productos{
+.contenedor-productos{
     overflow-y: scroll;
     border-style: solid;
     border-color: black;
     border-width: 1px;
     max-height: 100%;
-}
-
-.imagen-producto{
-    min-width: 100px;
 }
 
 .titulo-producto{
@@ -138,7 +134,7 @@ a.nav-link{
     }
 }
 
-#titulo-resumen{
+.titulo-resumen{
     color: #444444;
 }
 
@@ -185,5 +181,28 @@ a.nav-link{
     border-style: solid;
     border-radius: 3px;
     font-weight: 600;
+    font-size: 18px;
+}
+
+.estetica-input{
+    height: 50px;
+    border-color: #929292;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 3px 3px 3px 3px;
+}
+
+.label-input{
+    color: #C0C0C0;
+}
+
+.opcion-box{
+    background: #F7F6F6;
+    color: #606060;
+    border-color: #7A7A7A;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 6px 6px 6px 6px;
+    font-weight: 300;
     font-size: 18px;
 }
