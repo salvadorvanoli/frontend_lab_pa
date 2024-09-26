@@ -206,3 +206,12 @@ a.nav-link{
     font-weight: 300;
     font-size: 18px;
 }
+
+.alerta-carrito{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    z-index: 100;
+}
