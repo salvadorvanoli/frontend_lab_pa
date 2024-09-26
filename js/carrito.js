@@ -1,3 +1,5 @@
+
+
 const subtotales = document.querySelectorAll(".precio-subtotal");
 const envios = document.querySelectorAll(".precio-envio");
 const impuestos = document.querySelectorAll(".precio-impuestos");
@@ -192,19 +194,17 @@ function modificarEnvio(){
     }
 }
 
-let alertaEnPantalla = false;
-
-function mostrarAlerta(message){
-    if (!alertaEnPantalla){
-        const div = document.createElement("div");
-        div.innerHTML = 
-            `<div class="alert alert-warning alert-dismissible fade show alerta-carrito fs-5 d-flex justify-items-center align-items-center" role="alert" id="alertaFormulario">
-                <strong><i class="fa-solid fa-triangle-exclamation me-3"></i></strong> ${message}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="alertaEnPantalla=false;"></button>
-            </div>`;
-        document.body.appendChild(div);
-        alertaEnPantalla = true;
-    }
+function mostrarAlerta(message, type, icon){
+    const alertaActual = document.querySelector(".alerta-carrito");
+    if (alertaActual != undefined)
+        alertaActual.remove();
+    const div = document.createElement("div");
+    div.innerHTML = 
+        `<div class="alert ${type} alert-dismissible fade show alerta-carrito fs-5 d-flex justify-items-center align-items-center" role="alert" id="alertaFormulario">
+            <strong>${icon}</strong> ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="alertaEnPantalla=false;"></button>
+        </div>`;
+    document.body.appendChild(div);
 }
 
 
@@ -219,6 +219,137 @@ const seccion2 = document.querySelector("#seccion2");
 
 const encabezado3 = document.querySelector("#encabezado3");
 const seccion3 = document.querySelector("#seccion3");
+
+
+// Cargamos al usuario actual
+
+/*
+localStorage.setItem("usuarioActual", JSON.stringify(
+{
+    "nombre": "Salvador",
+    "apellido": "Vanoli",
+    "nickname": "salvaelpro777",
+    "tipo": "proveedor",
+    "email": "salva@salva.com",
+    "fecha": "2004-05-01",
+    "foto": "img/test.jpg",
+    "web": "salva.com",
+    "empresa": "salvaEnterprise",
+    "id": "0",
+    "ordenes": [
+        {
+            "id": 0,
+            "fecha": "2024-09-24",
+            "productos": [
+                {
+                    "nombre": "Zucaritas",
+                    "precio": 300,
+                    "descripcion": "Muy ricas, sisi muy muy ricas",
+                    "imagenes": [
+                      "/img/test.jpg",
+                      "/img/test.jpg"
+                    ],
+                    "id": "777",
+                    "cantidad": 1
+                },
+                {
+                    "nombre": "WATAFAK",
+                    "precio": 200,
+                    "descripcion": "sii",
+                    "imagenes": [
+                      "/img/test.jpg",
+                      "/img/test.jpg"
+                    ],
+                    "id": "778",
+                    "cantidad": 5
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "fecha": "2024-09-27",
+            "productos": [
+                {
+                    "nombre": "Zucaritas",
+                    "precio": 400,
+                    "descripcion": "Muy ricas, sisi muy muy ricas",
+                    "imagenes": [
+                      "/img/test.jpg",
+                      "/img/test.jpg"
+                    ],
+                    "id": "777",
+                    "cantidad": 6
+                },
+                {
+                    "nombre": "SSSSSSSSSSSESx",
+                    "precio": 200,
+                    "descripcion": "sii",
+                    "imagenes": [
+                      "/img/test.jpg",
+                      "/img/test.jpg"
+                    ],
+                    "id": "778",
+                    "cantidad": 8
+                }
+            ]
+        },
+    ],
+    "productos": [
+        {
+            "nombre": "Zucaritas",
+            "estrellas": 3,
+            "precio": 300,
+            "descripcion": "Muy ricas, sisi muy muy ricas",
+            "id": "777",
+            "categorias": [
+                "Comida",
+                "Dulce",
+                "Cereales"
+            ],
+            "especificacion": [
+                "Cereal dulce de maíz",
+                "0 proteína 100% lípidos",
+                "Totalmente mortal para el cuerpo"
+            ],
+            "imagenes": [
+                "/img/test.jpg",
+                "/img/test.jpg"
+            ]
+        }
+    ]
+}));
+*/
+
+const usuarioActual = JSON.parse(localStorage.getItem("usuarioActual"));
+console.log(usuarioActual);
+
+
+
+// Cargamos al carrito actual
+
+// localStorage.setItem("carritoActual", '[{"nombre":"Zucaritas","precio":300,"descripcion":"Muy ricas, sisi muy muy ricas","imagenes":["/img/test.jpg","/img/test.jpg"],"id":"777","cantidad":7},{"nombre":"Laptop","precio":7000,"descripcion":"Super potente master","imagenes":["img/Zucaritas.webp"],"id":"69","cantidad":4}]')
+
+let carritoActual = JSON.parse(localStorage.getItem('carritoActual'));
+
+console.log(carritoActual);
+
+
+function checkUsuarioActual(){
+    if (usuarioActual == undefined){
+        let inputs = seccion1.querySelectorAll("input");
+        inputs.forEach(input => {
+            input.setAttribute("disabled", true);
+        });
+        mostrarAlerta("Aún no tienes la sesión iniciada. Serás redirigido a inicio en unos segundos.", "alert-primary", '<i class="fa-solid fa-circle-info me-3"></i>');
+        setTimeout(function () {
+            window.location.href = "index.html";
+        }, 5000);
+    }
+}
+
+checkUsuarioActual();
+
+
 
 const form1 = document.querySelector("#formCarrito");
 const form2 = document.querySelector("#formEnvio");
@@ -238,8 +369,8 @@ form1.addEventListener('submit', function(e) {
         encabezado2.classList.remove("d-none");
         seccion2.classList.remove("d-none");
     } else {
-        if (document.querySelector("#alertaFormulario") == null){
-            mostrarAlerta("Aún hay campos incompletos o con valores inválidos.");
+        if (document.querySelector("#alertaFormulario") == undefined){
+            mostrarAlerta("Aún hay campos incompletos o con valores inválidos.", "alert-warning", '<i class="fa-solid fa-triangle-exclamation me-3"></i>');
         }
     }
 
@@ -255,41 +386,81 @@ form2.addEventListener("submit", function(e) {
         encabezado3.classList.remove("d-none");
         seccion3.classList.remove("d-none");
     } else {
-        if (document.querySelector("#alertaFormulario") == null){
-            mostrarAlerta("Aún hay campos incompletos o con valores inválidos.");
+        if (document.querySelector("#alertaFormulario") == undefined){
+            mostrarAlerta("Aún hay campos incompletos o con valores inválidos.", "alert-warning", '<i class="fa-solid fa-triangle-exclamation me-3"></i>');
         }
     }
 
     form2.classList.add('was-validated');
 }, false);
 
+
+function agregarOrdenCompra() {
+    let idOrden = 0;
+    usuarioActual.ordenes.forEach(orden => {
+        if (idOrden <= orden.id){
+            idOrden = orden.id + 1;
+        }
+    });
+
+    const fechaActual = new Date().toJSON().slice(0, 10);
+
+    const nuevaOrden = {
+        "id": idOrden,
+        "fecha": fechaActual,
+        "productos": carritoActual
+    }
+
+    usuarioActual.ordenes.push(nuevaOrden);
+
+    localStorage.setItem("usuarioActual", JSON.stringify(usuarioActual));
+    localStorage.setItem("carritoActual", "[]");
+
+}
+
+function disableInputs() {
+    inputs = document.querySelectorAll("input");
+    inputs.forEach(input => {
+        input.setAttribute("disabled", true);
+    });
+}
+
 form3.addEventListener("submit", function(e) {
     e.preventDefault();
     e.stopPropagation();
-    let formulariosValidos = true;
+    // let formulariosValidos = true;
     let mensajeError = "";
     if (form3.checkValidity()) {
         if (form2.checkValidity()) {
             if (form1.checkValidity()) {
-
+                disableInputs();
+                agregarOrdenCompra();
+                mostrarAlerta("¡Compra realizada de manera exitosa! Serás redirigido al inicio.", "alert-success", '<i class="fa-solid fa-circle-check me-3"></i>');
+                setTimeout(function () {
+                    window.location.href = "index.html";
+                }, 5000);
             } else {
-                mensajeError = "<i class='fa-solid fa-triangle-exclamation me-3'></i>Se encontraron errores de validación en el Carrito de Compra."
-                formulariosValidos = false;
+                mensajeError = "Se encontraron errores de validación en el Carrito de Compra."
+                // formulariosValidos = false;
             }
         } else {
-            formulariosValidos = false;
+            // formulariosValidos = false;
             if (mensajeError == ""){
                 mensajeError = mensajeError.slice(0, -1);
                 mensajeError += " y en los Detalles del envío.";
             } else {
-                mensajeError = "<i class='fa-solid fa-triangle-exclamation me-3'></i>Se encontraron errores de validación en los Detalles del envío."
+                mensajeError = "Se encontraron errores de validación en los Detalles del envío."
             }
         }
         // Chequear los otros 2, agregarlos al cuarto formulario, mensaje de exito, y submit
     } else {
-        if (document.querySelector("#alertaFormulario") == null){
-            mostrarAlerta("Aún hay campos incompletos o con valores inválidos.");
+        if (document.querySelector("#alertaFormulario") == undefined){
+            mostrarAlerta("Aún hay campos incompletos o con valores inválidos.", "alert-warning", '<i class="fa-solid fa-triangle-exclamation me-3"></i>');
         }
+    }
+
+    if (mensajeError != ""){
+        mostrarAlerta(mensajeError, "alert-warning", '<i class="fa-solid fa-triangle-exclamation me-3"></i>');
     }
 
     form3.classList.add('was-validated');
@@ -356,16 +527,9 @@ async function cargarCiudades() {
     });
 }
 
-
-
-
-// localStorage.setItem("carritoActual", '[{"nombre":"Zucaritas","precio":300,"descripcion":"Muy ricas, sisi muy muy ricas","imagenes":["/img/test.jpg","/img/test.jpg"],"id":"777","cantidad":7},{"nombre":"Laptop","precio":7000,"descripcion":"Super potente master","imagenes":["img/Zucaritas.webp"],"id":"69","cantidad":4}]')
-
-let carritoActual = JSON.parse(localStorage.getItem('carritoActual'));
-
-console.log(carritoActual);
-
-cargarElementosCarrito(carritoActual);
+if (usuarioActual != undefined && carritoActual != undefined && carritoActual.length != 0) {
+    cargarElementosCarrito(carritoActual);
+}
 
 departamentos.addEventListener("change", async function(e){
     if (departamentos.value != ""){
