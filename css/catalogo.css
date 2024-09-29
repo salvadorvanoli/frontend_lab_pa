@@ -38,6 +38,10 @@ a.nav-link{
     background-color: #c84383;
 }
 
+.container-fluid {
+    width: 100%; /* Se asegura que ocupe todo el ancho */
+}
+
 .select-1 {
     float: right;
 	width: 180px;
@@ -99,13 +103,16 @@ a.nav-link{
 }
 
 .rectangle-1 {
-    width: 870px;
+    width: 90%;
     height: 270px;
     margin-top: 0px;
     margin-bottom: 20px;
-    margin-left: 0px;
-    margin-right: 0px;
-    padding: 8px 8px 8px 8px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 8px;
+    padding-right: 8px;
     background: #F7F6F6;
     border-color: #929292;
     border-width: 1px;
@@ -120,7 +127,8 @@ a.nav-link{
     margin-top: 0px;
     margin-bottom: 40px;
     margin-left: 50px;
-    margin-right: 40px;
+    margin-right: 20px;
+    padding: 0px;
     background: #E6E6E6;
     color: #7A7A7A;
     border-color: #000000;
@@ -142,8 +150,38 @@ a.nav-link{
     border-radius: 12px 12px 12px 12px;
 }
 
+.dropdown-div{
+    width: 225px;
+    padding: 0px;
+}
+
+.dropdown-style{
+    width: 100%;
+    padding: 0px;
+    background-color: #E6E6E6;
+    border-color:#E6E6E6;
+    border-bottom-color: #000000;
+    border-radius: 0%;
+    color: #000000;
+    text-align: start;
+}
+
+.dropdown-style:hover{
+    background-color: #cecece;
+    border-color:#E6E6E6;
+    border-bottom-color: #000000;
+    color: #313131;
+}
+
+.dropdown-style:first-child:active{
+    background-color: #b1b0b0;
+    border-color:#E6E6E6;
+    border-bottom-color: #000000;
+    color: #4b4a4a;
+}
+
 .item-1 {
-    width: 470px;
+    width: 50%;
     height: 54px;
     color: #A45D7F;
     font-family: "Open Sans";
@@ -181,10 +219,9 @@ a.nav-link{
 }
 
 .conjunto_estrellas {
-    width: 178px;
+    width: 100%;
     height: 32px;
     float:left;
-    margin-left: 10px;
     margin-bottom: 22px;
     color : #c0c0c0;
     .checked {
@@ -257,8 +294,20 @@ a.nav-link{
     margin-left: 40px;
 }
 
-.selected-Page{
-    background-color: #A45D7F;
-    border-color: #A45D7F;
-    color: #E6E6E6;
+.navigator-menu{
+    width: 704px;
+    height: 60px;
+    padding: 0px;
+    background: #E6E6E6;
+    border-color: #CCCCCC;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
 }
+
+.navigator-page{
+    color:#A45D7F;
+    background-color: #E6E6E6;
+    padding: 0px;
+}
+
