@@ -66,6 +66,17 @@ a.nav-link{
     overflow-y: scroll; /* Habilita el scrollbar vertical */
 }
 
+.rectangle-2 {
+	width: 100%;
+	height: 50%;
+	padding: 8px 8px 8px 8px;
+	background: #FFFFFF;
+	border-color: #e8e8e8;
+	border-width: 1px;
+	border-style: solid;
+    margin: auto;
+}
+
 .fotosProductos {
 	width: 100px;
 	height: 139px;
@@ -74,43 +85,81 @@ a.nav-link{
 	border-width: 2px;
 	border-style: solid;
 	border-radius: 4px 4px 4px 4px;
+	margin-top: 1%;
+	margin-bottom: 1%;
+	margin-left: 2%;
+	margin-right: 1%;
 }
 
 .nombresProductos {
-	width: 122px;
-	height: 24px;
-	color: #A45D7F;
-	font-weight: 400;
-	font-size: 18px;
-	line-height: 1.3;
-	text-align: left;
+    color: #A45D7F;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.3;
+    text-align: left;
+    margin-top: 2%;
+	text-transform: uppercase; 
 }
+
 
 .numProducto {
 	width: 128px;
 	height: 24px;
 	color: #A45D7F;
 	font-weight: 400;
-	font-size: 18px;
+	font-size: 17px;
 	line-height: 1.3;
 	text-align: left;
+	margin-right: 2%;
+	text-transform: uppercase; 
 }
 
 .descripcionProductos {
-	width: 338px;
-	height: 54px;
-	color: #606060;
-	font-weight: 400;
-	font-size: 14px;
-	line-height: 1.5;
-	text-align: left;
+    max-width: 100%; /* Asegura que no traspase el contenedor */
+    overflow: hidden; /* Esconde el texto que sobrepasa el contenedor */
+    text-overflow: ellipsis; /* Muestra "..." al final */
+    display: block; /* Asegura que se comporte como bloque */
+    line-height: 1.5; /* Ajusta la altura de línea */
+    max-height: 3em; /* 2 líneas + un poco de espacio */
+    position: relative; /* Para el pseudo-elemento */
+    font-weight: 400;
+    font-size: 14px;
+    color: #606060;
 }
 
-.cantidadProductos {
+.labelCantidad{
 	width: 108px;
+	height: 24px;
+	color: #606060;
+	font-weight: 400;
+	font-size: 13px;
+	line-height: 1.3;
+	text-align: center;
+	margin: auto;
+	text-transform: uppercase;
+}
+.descripcionProductos::after {
+    content: '...'; /* Muestra puntos suspensivos */
+    position: absolute;
+    bottom: 0; /* Coloca el pseudo-elemento en la parte inferior */
+    right: 0; /* Alinea a la derecha */
+    background: white; /* Fondo blanco para que cubra el texto subyacente */
+    padding-left: 4px; /* Espaciado a la izquierda para evitar que se superponga */
+}
+
+.stepper-container {
+    display: flex;
+    flex-direction: column; /* Coloca los elementos en columna */
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+	margin-left: 50%;
+}
+.stepper {
+	width: 70px;
 	height: 41px;
 	padding: 0px 5px 0px 5px;
-	background: #00000000;
+	background: #14141400;
 	color: #444444;
 	border-color: #929292;
 	border-width: 1px;
@@ -118,17 +167,18 @@ a.nav-link{
 	border-radius: 3px 3px 3px 3px;
 	font-weight: 400;
 	font-size: 18px;
-	text-align: left;
+	margin: auto;
 }
 
 .textoSubtotal {
-	width: 108px;
+	width: 90%;
 	height: 24px;
 	color: #606060;
 	font-weight: 400;
 	font-size: 18px;
 	line-height: 1.3;
-	text-align: left;
+	text-transform: uppercase; 
+	text-align: right;
 }
 
 .precioProductos {
@@ -141,6 +191,16 @@ a.nav-link{
 	text-align: right;
 }
 
+.precioProductosSubt {
+	
+	width: 90%;
+	height: 24px;
+	color: #606060;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 1.3;
+	text-align: right;
+}
 .scrollbar {
 	width: 18px;
 	height: 351px;
