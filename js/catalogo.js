@@ -4,4 +4,11 @@ document.querySelectorAll('.dropdown-menu').forEach(function (dropdown) {
     });
 });
 
+//productoSeleccionado 
 
+let prod = document.getElementById("producto1");
+
+prod.addEventListener('click', function() {
+    productoSeleccionado = prod;
+    cargarProducto();
+});

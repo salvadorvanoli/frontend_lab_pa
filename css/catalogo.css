@@ -118,6 +118,7 @@ a.nav-link{
     border-width: 1px;
     border-style: solid;
     border-radius: 20px 20px 20px 20px;
+    cursor: pointer;
 }
 
 .aside-1 {
@@ -308,6 +309,16 @@ a.nav-link{
 .navigator-page{
     color:#A45D7F;
     background-color: #E6E6E6;
-    padding: 0px;
+}
+
+.navigator-page:hover{
+    color:#884c69;
+    background-color: #cecece;
+}
+
+.pagination .activa .page-link{
+    color: #E6E6E6; 
+    background-color: #A45D7F; 
+    border-color: #A45D7F; 
 }
 
