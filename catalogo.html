@@ -12,7 +12,7 @@
 <body>
 
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-md ms-5 me-5">
+    <nav class="navbar navbar-expand-md ">
         <div class="container-fluid text-center">
             <a class="navbar-brand me-5" href="#">
                 <img src="img/Flamin-Go.webp" alt="Flamin-Go" class="flamin-go-pic">
@@ -44,27 +44,30 @@
     </nav>
 
     <!-- Ordenar por -->
-    <header class="header-1">
-        <div class="container-fluid text-center">
-            <select class="select-1">
-                <option selected value="1">Recomendados</option>
-                <option value="2">Precios Bajos</option>
-                <option value="3">Precios altos</option>
-            </select>
-        </div>
-    </header>
+    <div class="row container-fluid padre-header justify-content-end align-items-center">
+        <header class="header-1 col align-self-end">
+            <div class="text-center">
+                <select class="select-1">
+                    <option selected value="1">Recomendados</option>
+                    <option value="2">Precios Bajos</option>
+                    <option value="3">Precios altos</option>
+                </select>
+            </div>
+        </header>
+    </div>
+    
 
     <div class="container-fluid">
         <div class="row">
 
             <!-- Aside -->
-            <aside class="aside-1 scrolleable col-3">
+            <aside class="aside-1 scrolleable col-3 col-sm-4 d-flex">
                     
             </aside>
             
 
             <!-- Productos -->
-            <main class="col">
+            <main class="col ">
                 <article class="rectangle-1">
                     <img src="https://i.kym-cdn.com/entries/icons/original/000/036/023/bale-1.jpg" class="image-1">
                     <div class="row">
@@ -86,7 +89,7 @@
             </main>
 
             <!-- Navegacion -->
-            <div class="d-flex justify-content-center w-100">
+            <div class="d-flex justify-content-center w-100 container-fluid col-sm-4 ">
                 <nav class="navegador col-4 d-flex justify-content-center w-100" aria-label="...">
                     <ul class="pagination">
                       <li class="page-item disabled">
