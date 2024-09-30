@@ -64,7 +64,7 @@
                     </div>
                     <div class="col-md-2">
                         <h1 class="textoSubtotal mt-3">Subtotal</h1>
-                        <h1 class="precioProductosSubt mt-3"> $6666666</h1>
+                        <h1 class="precioProductosSubt mt-3"> $0</h1>
                     </div>
                 </div>
             </div>
@@ -79,16 +79,16 @@
                     <h1 class="impuestos"> impuestos</h1>
                 </div>
                 <div class="col-md-6 mt-3 d-flex flex-column align-items-end">
-                    <h1 class="subtotal2"> $300 </h1>
-                    <h1 class="envio2"> grati </h1>
-                    <h1 class="impuestos2"> $30000</h1>
+                    <h1 class="subtotal2"> $0 </h1>
+                    <h1 class="envio2"> Envio </h1>
+                    <h1 class="impuestos2"> $0</h1>
                 </div>
             <div class="horizontal-line"></div>
             <div class="col-md-6 mt-3">
                 <h1 class="total"> total </h1>
             </div>
             <div class="col-md-6 mt-3 d-flex flex-column align-items-end">
-                <h1 class="total2"> $7 </h1>
+                <h1 class="total2"> $0 </h1>
             </div>
             <div class="col-md-12 mt-5 d-flex flex-column align-items-end">
                 <button type="button" class="button-volver"> Volver </button>
@@ -105,113 +105,7 @@
 </body>
 
 
-<script>
-    localStorage.setItem("usuarioActual", JSON.stringify(
-{
-    "nombre": "Salvador",
-    "apellido": "Vanoli",
-    "nickname": "salvaelpro777",
-    "tipo": "proveedor",
-    "email": "salva@salva.com",
-    "fecha": "2004-05-01",
-    "foto": "img/test.jpg",
-    "web": "salva.com",
-    "empresa": "salvaEnterprise",
-    "id": "0",
-    "ordenes": [
-        {
-            "id": 0,
-            "fecha": "2024-09-24",
-            "productos": [
-                {
-                    "nombre": "Zucaritas",
-                    "precio": 300,
-                    "descripcion": "Muy ricas, sisi muy muy ricas",
-                    "imagenes": [
-                      "img/test.jpg",
-                      "img/test.jpg"
-                    ],
-                    "id": "777",
-                    "cantidad": 1
-                },
-                {
-                    "nombre": "WATAFAK",
-                    "precio": 200,
-                    "descripcion": "sii",
-                    "imagenes": [
-                      "img/test.jpg",
-                      "img/test.jpg"
-                    ],
-                    "id": "778",
-                    "cantidad": 5
-                }
-            ]
-        },
-        {
-            "id": 1,
-            "fecha": "2024-09-27",
-            "productos": [
-                {
-                    "nombre": "Zucaritas",
-                    "precio": 400,
-                    "descripcion": "Muy ricas, sisi muy muy ricas",
-                    "imagenes": [
-                      "img/test.jpg",
-                      "img/test.jpg"
-                    ],
-                    "id": "777",
-                    "cantidad": 6
-                },
-                {
-                    "nombre": "SSSSSSSSSSSESx",
-                    "precio": 200,
-                    "descripcion": "sii",
-                    "imagenes": [
-                      "img/test.jpg",
-                      "img/test.jpg"
-                    ],
-                    "id": "778",
-                    "cantidad": 8
-                },
-                {
-                    "nombre": "Chorizo",
-                    "precio": 45,
-                    "descripcion": "chorizooo",
-                    "imagenes": [
-                      "img/test.jpg",
-                      "img/test.jpg"
-                    ],
-                    "id": "779",
-                    "cantidad": 2
-                }
-            ]
-        },
-    ],
-    "productos": [
-        {
-            "nombre": "Zucaritas",
-            "estrellas": 3,
-            "precio": 300,
-            "descripcion": "Muy ricas, sisi muy muy ricas",
-            "id": "777",
-            "categorias": [
-                "Comida",
-                "Dulce",
-                "Cereales"
-            ],
-            "especificacion": [
-                "Cereal dulce de maíz",
-                "0 proteína 100% lípidos",
-                "Totalmente mortal para el cuerpo"
-            ],
-            "imagenes": [
-                "img/test.jpg",
-                "img/test.jpg"
-            ]
-        }
-    ]
-}));
-</script>
+
 
 
 <!--
@@ -394,6 +288,128 @@ alert('Datos guardados en localStorage');
 </script>
 -->
 <script src="js/infoOrdenCompra.js"></script>
+<!--
+<script>
+    // Cargamos al usuario actual
+
+localStorage.setItem("usuarioActual", JSON.stringify(
+{
+    "nombre": "Salvador",
+    "apellido": "Vanoli",
+    "nickname": "salvaelpro777",
+    "tipo": "proveedor",
+    "email": "salva@salva.com",
+    "fecha": "2004-05-01",
+    "foto": "img/test.jpg",
+    "web": "salva.com",
+    "empresa": "salvaEnterprise",
+    "id": "0",
+    "ordenes": [
+        {
+            "id": 0,
+            "fecha": "2024-09-24",
+            "productos": [
+                {
+                    "nombre": "Zucaritas",
+                    "precio": 300,
+                    "descripcion": "Muy ricas, sisi muy muy ricas",
+                    "imagenes": [
+                      "/img/test.jpg",
+                      "/img/test.jpg"
+                    ],
+                    "id": "777",
+                    "cantidad": 1
+                },
+                {
+                    "nombre": "WATAFAK",
+                    "precio": 200,
+                    "descripcion": "sii",
+                    "imagenes": [
+                      "/img/test.jpg",
+                      "/img/test.jpg"
+                    ],
+                    "id": "778",
+                    "cantidad": 5
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "fecha": "2024-09-27",
+            "productos": [
+                {
+                    "nombre": "Zucaritas",
+                    "precio": 400,
+                    "descripcion": "Muy ricas, sisi muy muy ricas",
+                    "imagenes": [
+                      "/img/test.jpg",
+                      "/img/test.jpg"
+                    ],
+                    "id": "777",
+                    "cantidad": 6
+                },
+                {
+                    "nombre": "SSSSSSSSSSSESx",
+                    "precio": 200,
+                    "descripcion": "sii",
+                    "imagenes": [
+                      "/img/test.jpg",
+                      "/img/test.jpg"
+                    ],
+                    "id": "778",
+                    "cantidad": 8
+                }
+            ]
+        },
+    ],
+    "productos": [
+        {
+            "nombre": "Zucaritas",
+            "estrellas": 3,
+            "precio": 300,
+            "descripcion": "Muy ricas, sisi muy muy ricas",
+            "id": "777",
+            "categorias": [
+                "Comida",
+                "Dulce",
+                "Cereales"
+            ],
+            "especificacion": [
+                "Cereal dulce de maíz",
+                "0 proteína 100% lípidos",
+                "Totalmente mortal para el cuerpo"
+            ],
+            "imagenes": [
+                "/img/test.jpg",
+                "/img/test.jpg"
+            ]
+        }
+    ]
+}));
+
+
+const usuarioActual = JSON.parse(localStorage.getItem("usuarioActual"));
+// console.log(usuarioActual);
+
+
+
+// Cargamos al carrito actual
+
+localStorage.setItem("carritoActual", '[{"nombre":"Zucaritas","precio":300,"descripcion":"Muy ricas, sisi muy muy ricas","imagenes":["/img/test.jpg","/img/test.jpg"],"id":"777","cantidad":7},{"nombre":"Laptop","precio":7000,"descripcion":"Super potente master","imagenes":["img/Zucaritas.webp"],"id":"69","cantidad":4}]')
+
+let carritoActual = JSON.parse(localStorage.getItem('carritoActual'));
+
+// console.log(carritoActual);
+
+
+
+
+</script>
+-->
+
+
+<!--<script src="js/carrito.js"></script>
+-->
 <script src="https://kit.fontawesome.com/d795c6c237.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </html>

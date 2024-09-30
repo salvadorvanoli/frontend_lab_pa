@@ -2,7 +2,7 @@ const usuarioActual = JSON.parse(localStorage.getItem('usuarioActual'));
 
 // Si el usuario actual y las órdenes existen
 if (usuarioActual && usuarioActual.ordenes && usuarioActual.ordenes.length > 0) {
-    const orden = usuarioActual.ordenes[1];
+    const orden = usuarioActual.ordenes[0];
 
     const container = document.querySelector('main');
     const rectangle3 = document.querySelector('.rectangle-3');
@@ -51,24 +51,23 @@ if (usuarioActual && usuarioActual.ordenes && usuarioActual.ordenes.length > 0) 
             </div>
         `;
 
-      
         rectangle1.appendChild(rectangle2);
 
-       
         subtotal += producto.precio * producto.cantidad;
     });
 
-    
+    console.log(orden);
+
     precioSubtotal.textContent = `$${subtotal.toFixed(2)}`;
 
-  
-    const envio = 0;
-    const impuestos = subtotal * 0.02; 
+    const envio2 = orden.detallesEnvio.precioEnvio; 
+    precioEnvio.textContent = `$${envio2.toFixed(2)}`; 
 
-    precioEnvio.textContent = `Gratis`;
+    const impuestos = subtotal * 0.02; 
     precioImpuesto.textContent = `$${impuestos.toFixed(2)}`;
 
-    const total = subtotal + envio + impuestos;
+
+    const total = subtotal + envio2 + impuestos; 
     document.querySelector('.total2').textContent = `$${total.toFixed(2)}`;
 } else {
     console.log("No se encontraron órdenes de compra.");
