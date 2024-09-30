@@ -37,6 +37,7 @@ if (!usuarioActual) {
         "web": "salva.com",
         "empresa": "salvaEnterprise",
         "id": "0",
+        "contraseña": "jejejeje",
         "ordenes": [], // Inicializamos el arreglo de órdenes vacío
         "productos": [
             {

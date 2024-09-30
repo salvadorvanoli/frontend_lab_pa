@@ -1,4 +1,4 @@
-const usuarioActual = JSON.parse(localStorage.getItem('usuarioActual'));
+let usuarioActual = JSON.parse(localStorage.getItem('usuarioActual'));
 
 // Si el usuario actual y las órdenes existen
 if (usuarioActual && usuarioActual.ordenes && usuarioActual.ordenes.length > 0) {
@@ -72,3 +72,8 @@ if (usuarioActual && usuarioActual.ordenes && usuarioActual.ordenes.length > 0) 
 } else {
     console.log("No se encontraron órdenes de compra.");
 }
+
+document.getElementById("volver").addEventListener("click", function() {
+    window.location.href = "infoUsuario.html";
+});
+
