@@ -151,6 +151,13 @@ a.nav-link{
 	margin-left: 2%;
 	margin-right: 1%;
 }
+.fotosProductos img {
+    width: 100%; /* Asegura que la imagen ocupe todo el ancho del div */
+    height: 100%; /* Asegura que la imagen ocupe toda la altura del div */
+    object-fit: cover; /* Mantiene la relación de aspecto y recorta si es necesario */
+    border-radius: 4px; /* Redondea las esquinas de la imagen */
+}
+
 
 .nombresProductos {
     color: #A45D7F;
