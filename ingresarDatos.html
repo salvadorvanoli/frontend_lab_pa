@@ -83,21 +83,20 @@
     </main> -->
     
     <main class="container-fluid p-0">
-        <article class="rectangle-1 text-wrap">
+        <form class="rectangle-1 text-wrap">
             <!-- Imagen del registro -->
             <img src="img/Flamin-Go.webp" alt="Flamin-Go" class="image-placeholder-1">
             <h1 class="w-100 tituloComDato"> Completar datos </h1>
-
+    
             <!-- Icono de usuario y boton de elegir imagen -->
             <figure>
                 <i class="fa-solid fa-circle-user" id="icono-usuario2"></i>
                 <div>
-                    <!-- <button type="button" class="buttonElegirImagen"> Elegir imagen</button> -->
-                
-                <button type="button" class="btn btn-primary btn-block buttonElegirImagen">Elegir imagen</button>    
+                    <button type="button" class="btn btn-primary btn-block buttonElegirImagen" id="buttonElegirImagen">Elegir imagen</button>
+                    <input type="file" id="inputImagen" accept="image/*" style="display: none;">
                 </div>
-                    
             </figure>
+            
     
             <!-- Contraseña -->
             <div class="form-floating mb-3">
@@ -122,66 +121,60 @@
                     <label for="floatingInputApellido">Apellido</label>
                 </div>
             </div>
-
+    
             <!-- Date Picker -->
             <div class="col-md-6 form-floating date-picker-1">
-            <input type="date" class="form-control" id="floatingDate" placeholder="Fecha">
-            <label for="floatingDate">Fecha</label>
-            
+                <input type="date" class="form-control" id="floatingDate" placeholder="Fecha">
+                <label for="floatingDate">Fecha</label>
             </div>
-
+    
             <!-- Titulo tipos de usuarios -->
             <article class="w-100">
                 <h2 class="w-100 tipo-de-usuario"> Tipo de usuario </h2>    
             </article>
-
+    
             <!-- los dos radios de proveedor y cliente -->
             <div class="row g-2 w-50 me-auto ms-auto">
                 <div class="col-md-6 form-check radios">
-                    <input class="form-check-input radios" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <input class="form-check-input radios" type="radio" name="tipoUsuario" id="flexRadioDefault1" value="Proveedor">
                     <label class="form-check-label textoradios" for="flexRadioDefault1">Proveedor</label>
                 </div>
-
+            
                 <div class="col-md-6 form-check radios">
-                    <input class="form-check-input radios" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                    <label class="form-check-label textoradios" for="flexRadioDefault1">Cliente</label>
+                    <input class="form-check-input radios" type="radio" name="tipoUsuario" id="flexRadioDefault2" value="Cliente">
+                    <label class="form-check-label textoradios" for="flexRadioDefault2">Cliente</label>
                 </div>
-
             </div>
-
-             <!-- Input del sitio web -->
+    
+            <!-- sitio web -->
             <div class="form-floating">
                 <input type="text" class="form-control text-input-sitioWeb" id="floatingInputSitioWeb" placeholder="sitioWeb">
                 <label for="floatingInputSitioWeb">Sitio web</label>
             </div>
-
-            <!-- Input de la compañía -->
+    
+            <!-- compañía -->
             <div class="form-floating">
-                <input type="text" class="form-control text-input-sitioWeb" id="floatingInputCompania" placeholder="Compania">
+                <input type="text" class="form-control text-input-sitioWeb" id="floatingInputCompania" placeholder="Compañía">
                 <label for="floatingInputCompania">Compañía</label>
             </div>
             
             <div class="row g-2">
-
                 <div class="col-md-6">
-                    <button type="button" class="button-cancelar"> Cancelar</button>    
+                    <button type="button" id="button-cancelar"> Cancelar</button>    
                 </div>    
-
+    
                 <div class="col-md-6">
-                    <button type="button" class="button-registrar"> Registrar</button>    
+                    <button type="button" id="button-registrar"> Registrar</button>    
                 </div> 
-
             </div>
-           
-
-
-        </article>    
+        </form>    
     </main>
+    
        
     
         
     <!-- ENCABEZADO DE FASES -->
-
+<script src="js/ingresarDatos.js"></script>
 </body>
 <script src="https://kit.fontawesome.com/d795c6c237.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

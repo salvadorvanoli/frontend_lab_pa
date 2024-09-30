@@ -1,39 +1,36 @@
-const usuarioActual = JSON.parse(localStorage.getItem('usuarioActual'));
+let usuarioActual = JSON.parse(localStorage.getItem('usuarioActual'));
 
 // Si el usuario actual y las órdenes existen
 if (usuarioActual && usuarioActual.ordenes && usuarioActual.ordenes.length > 0) {
-    const orden = usuarioActual.ordenes[1];  // Selecciono la primera orden para el ejemplo
+    const orden = usuarioActual.ordenes[0];
 
-    const container = document.querySelector('main'); // Seleccionamos el contenedor principal donde se agregará todo
-    const rectangle3 = document.querySelector('.rectangle-3'); // Seleccionamos rectangle-3
+    const container = document.querySelector('main');
+    const rectangle3 = document.querySelector('.rectangle-3');
     const precioSubtotal = document.querySelector('.subtotal2');
     const precioEnvio = document.querySelector('.envio2');
     const precioImpuesto = document.querySelector('.impuestos2');
 
-    // Inicializar subtotal
     let subtotal = 0;
 
-    // Limpiar el contenido previo
-    const rectanglesPrevios = container.querySelectorAll('.rectangle-1'); // Seleccionamos todos los rectangle-1 existentes
-    rectanglesPrevios.forEach(rect => rect.remove()); // Eliminamos todos los anteriores
+    const rectanglesPrevios = container.querySelectorAll('.rectangle-1');
+    rectanglesPrevios.forEach(rect => rect.remove());
 
-    // Crear un rectangle-1 para la orden
     const rectangle1 = document.createElement('div');
-    rectangle1.className = 'rectangle-1 mb-4'; // Agregar clase para margen inferior
+    rectangle1.className = 'rectangle-1 mb-4';
 
-    // Agregar rectangle-1 antes de rectangle-3
     container.insertBefore(rectangle1, rectangle3);
 
-    // Mostrar cada producto de la orden
     orden.productos.forEach(producto => {
-        // Crear un nuevo rectangle-2 para cada producto
         const rectangle2 = document.createElement('div');
-        rectangle2.className = 'rectangle-2'; // Clase para el rectangle-2
+        rectangle2.className = 'rectangle-2'; 
+        const primeraImagen = producto.imagenes[0];
 
         rectangle2.innerHTML = `
             <div class="row"> 
                 <div class="col-md-2 col-12 d-flex">
-                    <div class="fotosProductos"></div>   
+                    <div class="fotosProductos">
+                        <img src="${primeraImagen}" alt="${producto.nombre}" class="imagenProducto" onerror="this.onerror=null; this.src='ruta_por_defecto.jpg';">
+                    </div>   
                 </div>
                 <div class="col-md-4 col-12 d-flex flex-column justify-content-start p-0">
                     <h1 class="nombresProductos text-start mt-3">${producto.nombre}</h1>    
@@ -54,26 +51,29 @@ if (usuarioActual && usuarioActual.ordenes && usuarioActual.ordenes.length > 0) 
             </div>
         `;
 
-        // Agregar el nuevo rectangle-2 al rectangle-1
         rectangle1.appendChild(rectangle2);
 
-        // Calcular subtotal para todos los productos
         subtotal += producto.precio * producto.cantidad;
     });
 
-    // Actualizar el subtotal total
+    console.log(orden);
+
     precioSubtotal.textContent = `$${subtotal.toFixed(2)}`;
 
-    // Calcular y mostrar el envío y los impuestos
-    const envio = 0; // Aquí puedes definir el costo de envío
-    const impuestos = subtotal * 0.1; // Ejemplo: 10% de impuestos
+    const envio2 = orden.detallesEnvio.precioEnvio; 
+    precioEnvio.textContent = `$${envio2.toFixed(2)}`; 
 
-    precioEnvio.textContent = `Gratis`; // Puedes modificar esto según el costo real
-    precioImpuesto.textContent = `$${impuestos.toFixed(2)}`; // Actualiza el texto de impuestos
+    const impuestos = subtotal * 0.02; 
+    precioImpuesto.textContent = `$${impuestos.toFixed(2)}`;
 
-    // Calcular y mostrar el total
-    const total = subtotal + envio + impuestos;
+
+    const total = subtotal + envio2 + impuestos; 
     document.querySelector('.total2').textContent = `$${total.toFixed(2)}`;
 } else {
     console.log("No se encontraron órdenes de compra.");
 }
+
+document.getElementById("volver").addEventListener("click", function() {
+    window.location.href = "infoUsuario.html";
+});
+
