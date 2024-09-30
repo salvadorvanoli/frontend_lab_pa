@@ -70,89 +70,89 @@
 
             <form class="row g-3 needs-validation" novalidate id="formCarrito"> <!-- DUDOSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO -->
 
-            <div class="col-md-8 col-12 mt-5">
+                <div class="col-md-8 col-12 mt-5">
 
-                <h1 id="titulo-carrito">Carrito de Compra</h1>
+                    <h1 id="titulo-carrito">Carrito de Compra</h1>
 
-                <!-- CONTENEDOR DE LOS PRODUCTOS DEL CARRITO -->
-                <div class="contenedor-productos" id="carrito">
+                    <!-- CONTENEDOR DE LOS PRODUCTOS DEL CARRITO -->
+                    <div class="contenedor-productos" id="carrito">
 
-                    <!-- EJEMPLO DE PRODUCTO
+                        <!-- EJEMPLO DE PRODUCTO
 
-                    <div class="row my-3 d-flex align-items-center">
-                        <div class="col-sm-3 col-4 d-flex align-items-center justify-content-center">
-                            <img class="w-75" src="img/Zucaritas.webp" alt="Zucaritas">
-                        </div>
-                        <div class="col-sm-6 col-4">
-                            <div class="row titulo-producto">
-                                <p class="col-sm-6 col-12">Zucaritas</p>
-                                <p class="col-sm-6 col-12">Nro. 12</p>
+                        <div class="row my-3 d-flex align-items-center">
+                            <div class="col-sm-3 col-4 d-flex align-items-center justify-content-center">
+                                <img class="w-75" src="img/Zucaritas.webp" alt="Zucaritas">
                             </div>
-                            <div class="row descripcion-producto d-none d-sm-block">
-                                <p>Son muy ricos!</p>
-                            </div>
-                            <div class="row precio-producto">
-                                <p>$5000</p>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="col-12">
-                                <label for="cantidad">Cantidad</label>
-                                <input type="number" name="cantidad" class="cantidad-producto" min="1" value="1" required>
-                                <div class="invalid-feedback">
-                                    <i class="fa-solid fa-triangle-exclamation"></i> Valor inválido.
+                            <div class="col-sm-6 col-4">
+                                <div class="row titulo-producto">
+                                    <p class="col-sm-6 col-12">Zucaritas</p>
+                                    <p class="col-sm-6 col-12">Nro. 12</p>
+                                </div>
+                                <div class="row descripcion-producto d-none d-sm-block">
+                                    <p>Son muy ricos!</p>
+                                </div>
+                                <div class="row precio-producto">
+                                    <p>$5000</p>
                                 </div>
                             </div>
-                            <br>
-                            <div class="col-12">    
-                                <button type="button" class="btn btn-danger text-nowrap"><i class="fa-solid fa-trash-can"></i></button>
+                            <div class="col-3">
+                                <div class="col-12">
+                                    <label for="cantidad">Cantidad</label>
+                                    <input type="number" name="cantidad" class="cantidad-producto" min="1" value="1" required>
+                                    <div class="invalid-feedback">
+                                        <i class="fa-solid fa-triangle-exclamation"></i> Valor inválido.
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="col-12">    
+                                    <button type="button" class="btn btn-danger text-nowrap"><i class="fa-solid fa-trash-can"></i></button>
+                                </div>
                             </div>
                         </div>
+
+                        -->
+
                     </div>
 
-                    -->
 
                 </div>
 
+                <!-- RESUMEN DEL CARRITO -->
+                <div class="col-md-4 col-12 mt-5">
+                    <h1 class="titulo-resumen">Resumen</h1>
+                    <div class="linea-resumen my-2"></div>
+                    <div class="row texto-resumen mt-3">
+                        <p class="col-6">SUBTOTAL</p>
+                        <p class="col-6 text-end precio-subtotal">$0</p>
+                    </div>
+                    <div class="row texto-resumen">
+                        <p class="col-6">ENVÍO</p>
+                        <p class="col-6 text-end precio-envio">GRATIS</p>
+                    </div>
+                    <div class="row texto-resumen">
+                        <p class="col-6">IMPUESTOS</p>
+                        <p class="col-6 text-end precio-impuestos">$0</p>
+                    </div>
+                    <div class="linea-resumen mb-3"></div>
+                    <div class="row texto-total">
+                        <p class="col-6">TOTAL</p>
+                        <p class="col-6 text-end precio-total">$0</p>
+                    </div>
+                </div>
 
-            </div>
-
-            <!-- RESUMEN DEL CARRITO -->
-            <div class="col-md-4 col-12 mt-5">
-                <h1 class="titulo-resumen">Resumen</h1>
-                <div class="linea-resumen my-2"></div>
-                <div class="row texto-resumen mt-3">
-                    <p class="col-6">SUBTOTAL</p>
-                    <p class="col-6 text-end precio-subtotal">$0</p>
+                <!-- BOTONES PARA CONTINUAR O CANCELAR -->
+                <div class="row">
+                    <div class="col-12">
+                        
+                        <input type="submit" class="btn siguiente-button my-4 me-4" id="botonSiguiente1" value="Siguiente">
+                        <input type="button" class="btn cancelar-button my-4" id="botonVolver" value="Volver">
+                        
+                        <!--
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Open modal for @mdo</button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Open modal for @fat</button>
+                        -->
+                    </div>
                 </div>
-                <div class="row texto-resumen">
-                    <p class="col-6">ENVÍO</p>
-                    <p class="col-6 text-end precio-envio">GRATIS</p>
-                </div>
-                <div class="row texto-resumen">
-                    <p class="col-6">IMPUESTOS</p>
-                    <p class="col-6 text-end precio-impuestos">$0</p>
-                </div>
-                <div class="linea-resumen mb-3"></div>
-                <div class="row texto-total">
-                    <p class="col-6">TOTAL</p>
-                    <p class="col-6 text-end precio-total">$0</p>
-                </div>
-            </div>
-
-            <!-- BOTONES PARA CONTINUAR O CANCELAR -->
-            <div class="row">
-                <div class="col-12">
-                    
-                    <input type="submit" class="btn siguiente-button my-4 me-4" id="botonSiguiente1" value="Siguiente">
-                    <input type="button" class="btn cancelar-button my-4" id="botonVolver" value="Volver">
-                    
-                    <!--
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Open modal for @mdo</button>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Open modal for @fat</button>
-                    -->
-                </div>
-            </div>
             </form>
 
         </div>
@@ -216,10 +216,10 @@
 
             <form class="row g-3 needs-validation" novalidate id="formEnvio"> <!-- DUDOSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO -->
 
-            <div class="col-md-8 col-12 mt-5">
+                <div class="col-md-8 col-12 mt-5">
 
-                <h1 class="titulo-resumen">Detalles del envío</h1>
-                
+                    <h1 class="titulo-resumen">Detalles del envío</h1>
+                    
                     <div class="row mb-md-4">
                         <div class="form-floating col-md-6 mb-md-0 mb-4">
                             <input type="text" class="form-control estetica-input" id="nombre" placeholder="Nombre" required pattern="[A-Za-z]+(( ?([A-Za-z]+))?)+">
@@ -283,10 +283,10 @@
                         <div class="col-md-6 mb-md-0 mb-4">
                             <select class="form-select estetica-input" aria-label="Selecciona una ciudad" id="ciudad" disabled required>
                                 <option value="" selected>Elige una ciudad</option>
-                                <div class="invalid-feedback">
-                                    <i class="fa-solid fa-triangle-exclamation"></i> Se debe seleccionar una ciudad.
-                                </div>
                             </select>
+                            <div class="invalid-feedback">
+                                <i class="fa-solid fa-triangle-exclamation"></i> Se debe seleccionar una ciudad.
+                            </div>
                         </div>
                     </div>
 
@@ -337,70 +337,53 @@
 
                     <div class="linea-resumen my-4"></div>
 
-            </div>
+                </div>
 
-            <!-- RESUMEN DEL CARRITO -->
-            <div class="col-md-4 col-12 mt-5">
+                <!-- RESUMEN DEL CARRITO -->
+                <div class="col-md-4 col-12 mt-5">
 
-                <h1 class="titulo-resumen">Resumen</h1>
-                <!-- CONTENEDOR DE LOS PRODUCTOS DEL CARRITO -->
-                <div class="contenedor-productos">
+                    <h1 class="titulo-resumen">Resumen</h1>
+                    <!-- CONTENEDOR DE LOS PRODUCTOS DEL CARRITO -->
+                    <div class="contenedor-productos contenedor-secundario">
 
-                    <!-- PRODUCTO 1 -->
-                    <div class="row my-3 d-flex align-items-center">
-                        <img class="col-4" src="img/Zucaritas.webp" alt="Zucaritas">
-                        <div class="col-4">
-                            <div class="row titulo-producto">
-                                <p>Zucaritas</p>
-                            </div>
-                            <div class="row precio-producto">
-                                <p>$5000</p>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="col-12">
-                                <label for="cantidad">Cant.</label>
-                                <input type="number" name="cantidad" class="cantidad-producto" disabled value="1">
-                            </div>
-                        </div>
+                        
+
+                    </div>
+
+                    <div class="linea-resumen my-2 mt-4"></div>
+                    <div class="row texto-resumen mt-3">
+                        <p class="col-6">SUBTOTAL</p>
+                        <p class="col-6 text-end precio-subtotal">$0</p>
+                    </div>
+                    <div class="row texto-resumen">
+                        <p class="col-6">ENVÍO</p>
+                        <p class="col-6 text-end precio-envio">GRATIS</p>
+                    </div>
+                    <div class="row texto-resumen">
+                        <p class="col-6">IMPUESTOS</p>
+                        <p class="col-6 text-end precio-impuestos">$0</p>
+                    </div>
+                    <div class="linea-resumen mb-3"></div>
+                    <div class="row texto-total">
+                        <p class="col-6">TOTAL</p>
+                        <p class="col-6 text-end precio-total">$0</p>
                     </div>
 
                 </div>
 
-                <div class="linea-resumen my-2 mt-4"></div>
-                <div class="row texto-resumen mt-3">
-                    <p class="col-6">SUBTOTAL</p>
-                    <p class="col-6 text-end precio-subtotal">$0</p>
+                <!-- BOTONES PARA CONTINUAR O CANCELAR -->
+                <div class="row">
+                    <div class="col-12">
+                        
+                        <input type="submit" class="btn siguiente-button my-4 me-4" value="Siguiente" id="botonSiguiente2">
+                        <input type="button" class="btn cancelar-button my-4" value="Atrás" id="botonAtras1">
+                        
+                        <!--
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Open modal for @mdo</button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Open modal for @fat</button>
+                        -->
+                    </div>
                 </div>
-                <div class="row texto-resumen">
-                    <p class="col-6">ENVÍO</p>
-                    <p class="col-6 text-end precio-envio">GRATIS</p>
-                </div>
-                <div class="row texto-resumen">
-                    <p class="col-6">IMPUESTOS</p>
-                    <p class="col-6 text-end precio-impuestos">$0</p>
-                </div>
-                <div class="linea-resumen mb-3"></div>
-                <div class="row texto-total">
-                    <p class="col-6">TOTAL</p>
-                    <p class="col-6 text-end precio-total">$0</p>
-                </div>
-
-            </div>
-
-            <!-- BOTONES PARA CONTINUAR O CANCELAR -->
-            <div class="row">
-                <div class="col-12">
-                    
-                    <input type="submit" class="btn siguiente-button my-4 me-4" value="Siguiente" id="botonSiguiente2">
-                    <input type="button" class="btn cancelar-button my-4" value="Atrás" id="botonAtras1">
-                    
-                    <!--
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Open modal for @mdo</button>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Open modal for @fat</button>
-                    -->
-                </div>
-            </div>
             </form>
         </div>
     </div>
@@ -431,131 +414,132 @@
 
     <div class="container-md container-fluid d-none" id="seccion3">
         <div class="row d-flex justify-content-center">
-            <div class="col-md-8 col-12 mt-5">
 
-                <h1 class="titulo-resumen">Método de pago</h1>
+            <form class="row g-3 needs-validation" novalidate id="formPago">
 
-                <div class="mb-4 opcion-box d-flex align-items-center justify-content-center py-2">
-                    <div class="row w-100">
-                        <div class="col-1 d-flex align-items-center justify-content-center">
-                            <input class="form-check-input mt-0" type="radio" name="tipoPago" value="credito" aria-label="Radio button for following text input" checked>
-                        </div>
-                        <div class="col-11">
-                            <p class="p-0 m-0">Tarjeta de crédito</p>
-                            <p class="p-0 m-0">Realiza pagos rápidos y seguros con tu tarjeta de crédito. Aceptamos Visa, MasterCard, y más.</p>
-                        </div>
-                        <div class="row col-12">
-                            <div class="col-sm-6 col-12">
-                                <div class="input-group m-3">
-                                    <span class="input-group-text" id="addon-wrapping"><i class="fa-regular fa-credit-card"></i></span>
-                                    <input type="text" class="form-control estetica-input" id="numTarjeta" placeholder="0000 0000 0000 0000" aria-label="Número de tarjeta">
+                <div class="col-md-8 col-12 mt-5">
+
+                    <h1 class="titulo-resumen">Método de pago</h1>
+
+                    <div class="mb-4 opcion-box d-flex align-items-center justify-content-center py-2">
+                        <div class="row w-100">
+                            <div class="col-1 d-flex align-items-center justify-content-center">
+                                <input class="form-check-input mt-0" type="radio" name="tipoPago" value="credito" aria-label="Radio button for following text input" checked>
+                            </div>
+                            <div class="col-11">
+                                <p class="p-0 m-0">Tarjeta de crédito</p>
+                                <p class="p-0 m-0">Realiza pagos rápidos y seguros con tu tarjeta de crédito. Aceptamos Visa, MasterCard, y más.</p>
+                            </div>
+                            <div class="row col-12">
+                                <div class="col-sm-6 col-12">
+                                    <div class="input-group m-3">
+                                        <span class="input-group-text" id="addon-wrapping"><i class="fa-regular fa-credit-card"></i></span>
+                                        <input type="text" class="form-control estetica-input" id="numTarjeta" placeholder="0000 0000 0000 0000" aria-label="Número de tarjeta" pattern="([0-9]{16}|(([0-9]){4} ){3}[0-9]{4})" required>
+                                        <div class="invalid-feedback">
+                                            <i class="fa-solid fa-triangle-exclamation"></i> "Número de tarjeta" no puede estar vacío (16 dígitos).
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-6">
+                                    <div class="input-group m-3">
+                                        <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-calendar-days"></i></span>
+                                        <input type="text" class="form-control estetica-input" id="fecVencimiento" placeholder="MM/YY" aria-label="Fecha de vencimiento" pattern="(0[1-9]|1[0-2])/[0-9]{2}" required maxlength="5">
+                                        <div class="invalid-feedback">
+                                            <i class="fa-solid fa-triangle-exclamation"></i> "Fecha de vencimiento" no puede estar vacío (la fecha no puede ser posterior a la fecha actual).
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-6">
+                                    <div class="input-group m-3">
+                                        <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-lock"></i></span>
+                                        <input type="text" class="form-control estetica-input" id="cvv" placeholder="CVV" aria-label="Código de verificación" pattern="[0-9]{3}" required maxlength="3">
+                                        <div class="invalid-feedback">
+                                            <i class="fa-solid fa-triangle-exclamation"></i> "Código de verificación" no puede estar vacío (3 dígitos).
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-sm-3 col-6">
+                            <div class="row col-12">
                                 <div class="input-group m-3">
-                                    <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-calendar-days"></i></span>
-                                    <input type="text" class="form-control estetica-input" id="fecVencimiento" placeholder="MM/YY" aria-label="Fecha de vencimiento">
+                                    <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-user"></i></span>
+                                    <input type="text" class="form-control estetica-input" id="nomTitular" placeholder="Nombre del titular" aria-label="Nombre del titular" required pattern="[A-Za-z]+(( ?([A-Za-z]+))?)+">
+                                    <div class="invalid-feedback">
+                                        <i class="fa-solid fa-triangle-exclamation"></i> "Nombre del titular" no puede estar vacío.
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-3 col-6">
-                                <div class="input-group m-3">
-                                    <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-lock"></i></span>
-                                    <input type="text" class="form-control estetica-input" id="cvv" placeholder="CVV" aria-label="Código de verificación">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row col-12">
-                            <div class="input-group m-3">
-                                <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-user"></i></span>
-                                <input type="text" class="form-control estetica-input" id="nomTitular" placeholder="Nombre del titular" aria-label="Nombre del titular">
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="mb-4 opcion-box d-flex align-items-center justify-content-center py-2">
-                    <div class="row w-100">
-                        <div class="col-1 d-flex align-items-center justify-content-center">
-                            <input class="form-check-input mt-0" type="radio" name="tipoPago" value="paypal" aria-label="Radio button for following text input">
-                        </div>
-                        <div class="col-11">
-                            <p class="p-0 m-0">PayPal</p>
-                            <p class="p-0 m-0">Usa PayPal para pagar de forma segura sin compartir tu información financiera. Fácil, rápido y seguro.</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- RESUMEN DEL CARRITO -->
-            <div class="col-md-4 col-12 mt-5">
-
-                <h1 class="titulo-resumen">Resumen</h1>
-                <!-- CONTENEDOR DE LOS PRODUCTOS DEL CARRITO -->
-                <div class="contenedor-productos">
-
-                    <!-- PRODUCTO 1 -->
-                    <div class="row my-3 d-flex align-items-center">
-                        <img class="col-4" src="img/Zucaritas.webp" alt="Zucaritas">
-                        <div class="col-4">
-                            <div class="row titulo-producto">
-                                <p>Zucaritas</p>
+                    <div class="mb-4 opcion-box d-flex align-items-center justify-content-center py-2">
+                        <div class="row w-100">
+                            <div class="col-1 d-flex align-items-center justify-content-center">
+                                <input class="form-check-input mt-0" type="radio" name="tipoPago" value="paypal" aria-label="Radio button for following text input" disabled>
                             </div>
-                            <div class="row precio-producto">
-                                <p>$5000</p>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="col-12">
-                                <label for="cantidad">Cant.</label>
-                                <input type="number" name="cantidad" class="cantidad-producto" disabled value="1">
+                            <div class="col-11">
+                                <p class="p-0 m-0">PayPal</p>
+                                <p class="p-0 m-0">Usa PayPal para pagar de forma segura sin compartir tu información financiera. Fácil, rápido y seguro.</p>
                             </div>
                         </div>
                     </div>
 
                 </div>
 
-                <div class="linea-resumen my-2 mt-4"></div>
-                <div class="row texto-resumen mt-3">
-                    <p class="col-6">SUBTOTAL</p>
-                    <p class="col-6 text-end precio-subtotal">$0</p>
-                </div>
-                <div class="row texto-resumen">
-                    <p class="col-6">ENVÍO</p>
-                    <p class="col-6 text-end precio-envio">GRATIS</p>
-                </div>
-                <div class="row texto-resumen">
-                    <p class="col-6">IMPUESTOS</p>
-                    <p class="col-6 text-end precio-impuestos">$0</p>
-                </div>
-                <div class="linea-resumen mb-3"></div>
-                <div class="row texto-total">
-                    <p class="col-6">TOTAL</p>
-                    <p class="col-6 text-end precio-total">$0</p>
+                <!-- RESUMEN DEL CARRITO -->
+                <div class="col-md-4 col-12 mt-5">
+
+                    <h1 class="titulo-resumen">Resumen</h1>
+                    <!-- CONTENEDOR DE LOS PRODUCTOS DEL CARRITO -->
+                    <div class="contenedor-productos contenedor-secundario">
+
+                        
+
+                    </div>
+
+                    <div class="linea-resumen my-2 mt-4"></div>
+                    <div class="row texto-resumen mt-3">
+                        <p class="col-6">SUBTOTAL</p>
+                        <p class="col-6 text-end precio-subtotal">$0</p>
+                    </div>
+                    <div class="row texto-resumen">
+                        <p class="col-6">ENVÍO</p>
+                        <p class="col-6 text-end precio-envio">GRATIS</p>
+                    </div>
+                    <div class="row texto-resumen">
+                        <p class="col-6">IMPUESTOS</p>
+                        <p class="col-6 text-end precio-impuestos">$0</p>
+                    </div>
+                    <div class="linea-resumen mb-3"></div>
+                    <div class="row texto-total">
+                        <p class="col-6">TOTAL</p>
+                        <p class="col-6 text-end precio-total">$0</p>
+                    </div>
+
                 </div>
 
-            </div>
-
-            <!-- BOTONES PARA CONTINUAR O CANCELAR -->
-            <div class="row">
-                <div class="col-12">
-                    
-                    <input type="submit" class="btn siguiente-button my-4 me-4" value="Pagar ahora" id="botonPagar">
-                    <input type="button" class="btn cancelar-button my-4" value="Atrás" id="botonAtras2">
-                    
-                    <!--
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Open modal for @mdo</button>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Open modal for @fat</button>
-                    -->
+                <!-- BOTONES PARA CONTINUAR O CANCELAR -->
+                <div class="row">
+                    <div class="col-12">
+                        
+                        <input type="submit" class="btn siguiente-button my-4 me-4" value="Pagar ahora" id="botonPagar">
+                        <input type="button" class="btn cancelar-button my-4" value="Atrás" id="botonAtras2">
+                        
+                        <!--
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Open modal for @mdo</button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Open modal for @fat</button>
+                        -->
+                    </div>
                 </div>
-            </div>
+
+            </form>
+
         </div>
     </div>
 
 
     <div class="d-none">
-        <form class="row g-3 needs-validation" novalidate id="formEnvio"> <!-- DUDOSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO -->
-
+        <form class="row g-3 needs-validation" novalidate id="formFinal"> <!-- DUDOSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO -->
+            
         </form>
     </div>
 

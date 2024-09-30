@@ -1,3 +1,5 @@
+
+
 const subtotales = document.querySelectorAll(".precio-subtotal");
 const envios = document.querySelectorAll(".precio-envio");
 const impuestos = document.querySelectorAll(".precio-impuestos");
@@ -15,7 +17,7 @@ function modificarTextos(array, text){
 
 
 const carrito = document.querySelector("#carrito");
-
+const contenedoresSecundarios = document.querySelectorAll(".contenedor-secundario");
 
 function cargarElementosCarrito(array){
     if (array.length === 0){
@@ -57,6 +59,33 @@ function cargarElementosCarrito(array){
                 </div>`;
 
             carrito.appendChild(itemCarrito);
+
+            contenedoresSecundarios.forEach(contenedor => {
+
+                let itemContenedor = document.createElement("div");
+                itemContenedor.innerHTML =
+                    `<div class="row my-3 d-flex align-items-center producto-secundario${element.id}">
+                        <div class="col-4 d-flex align-items-center justify-content-center">
+                            <img class="w-75" src="${element.imagenes[0]}" alt="Zucaritas">
+                        </div>
+                        <div class="col-4">
+                            <div class="row titulo-producto">
+                                <p>${element.nombre}</p>
+                            </div>
+                            <div class="row precio-producto">
+                                <p>$${element.precio}</p>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="col-12">
+                                <label for="cantidad">Cant.</label>
+                                <input type="number" name="cantidad" class="cantidad-producto" disabled value="${element.cantidad}">
+                            </div>
+                        </div>
+                    </div>`;
+
+                contenedor.appendChild(itemContenedor);
+            });
 
             subtotal += element.precio * element.cantidad;
 
@@ -105,6 +134,12 @@ function manejarCantidad(input, id){
         }
     }
 
+    const itemsSecundarios = document.querySelectorAll(".producto-secundario" + id);
+
+    itemsSecundarios.forEach(itemSecundario => {
+        itemSecundario.querySelector(".cantidad-producto").value = input.value;
+    });
+
     localStorage.setItem("carritoActual", JSON.stringify(carritoActual));
 
     modificarAllTextos(carritoActual);
@@ -130,6 +165,12 @@ function eliminarItem(id){
     const item = document.querySelector("#producto" + id);
     item.remove();
 
+    const itemsSecundarios = document.querySelectorAll(".producto-secundario" + id);
+
+    itemsSecundarios.forEach(itemSecundario => {
+        itemSecundario.remove();
+    });
+
 }
 
 
@@ -153,164 +194,370 @@ function modificarEnvio(){
     }
 }
 
+function mostrarAlerta(message, type, icon){
+    const alertaActual = document.querySelector(".alerta-carrito");
+    if (alertaActual != undefined)
+        alertaActual.remove();
+    const div = document.createElement("div");
+    div.innerHTML = 
+        `<div class="alert ${type} alert-dismissible fade show alerta-carrito fs-5 d-flex justify-items-center align-items-center" role="alert" id="alertaFormulario">
+            <strong>${icon}</strong> ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="alertaEnPantalla=false;"></button>
+        </div>`;
+    document.body.appendChild(div);
+}
 
-document.addEventListener("DOMContentLoaded", async function(e) {
 
-    const encabezado1 = document.querySelector("#encabezado1");
-    const seccion1 = document.querySelector("#seccion1");
-    
-    const encabezado2 = document.querySelector("#encabezado2");
-    const seccion2 = document.querySelector("#seccion2");
-    
-    const encabezado3 = document.querySelector("#encabezado3");
-    const seccion3 = document.querySelector("#seccion3");
-    
-    const form1 = document.querySelector("#formCarrito");
-    const form2 = document.querySelector("#formEnvio");
+// Codigo que saque del document.addEventListener:
 
-    const departamentos = document.querySelector("#departamento");
-    const ciudades = document.querySelector("#ciudad");
 
-    form1.addEventListener('submit', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        if (form1.checkValidity()) {
-            encabezado1.classList.add("d-none");
-            seccion1.classList.add("d-none");
-            encabezado2.classList.remove("d-none");
-            seccion2.classList.remove("d-none");
+const encabezado1 = document.querySelector("#encabezado1");
+const seccion1 = document.querySelector("#seccion1");
+
+const encabezado2 = document.querySelector("#encabezado2");
+const seccion2 = document.querySelector("#seccion2");
+
+const encabezado3 = document.querySelector("#encabezado3");
+const seccion3 = document.querySelector("#seccion3");
+
+
+// Cargamos al usuario actual
+
+/*
+localStorage.setItem("usuarioActual", JSON.stringify(
+{
+    "nombre": "Salvador",
+    "apellido": "Vanoli",
+    "nickname": "salvaelpro777",
+    "tipo": "proveedor",
+    "email": "salva@salva.com",
+    "fecha": "2004-05-01",
+    "foto": "img/test.jpg",
+    "web": "salva.com",
+    "empresa": "salvaEnterprise",
+    "id": "0",
+    "ordenes": [
+        {
+            "id": 0,
+            "fecha": "2024-09-24",
+            "productos": [
+                {
+                    "nombre": "Zucaritas",
+                    "precio": 300,
+                    "descripcion": "Muy ricas, sisi muy muy ricas",
+                    "imagenes": [
+                      "/img/test.jpg",
+                      "/img/test.jpg"
+                    ],
+                    "id": "777",
+                    "cantidad": 1
+                },
+                {
+                    "nombre": "WATAFAK",
+                    "precio": 200,
+                    "descripcion": "sii",
+                    "imagenes": [
+                      "/img/test.jpg",
+                      "/img/test.jpg"
+                    ],
+                    "id": "778",
+                    "cantidad": 5
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "fecha": "2024-09-27",
+            "productos": [
+                {
+                    "nombre": "Zucaritas",
+                    "precio": 400,
+                    "descripcion": "Muy ricas, sisi muy muy ricas",
+                    "imagenes": [
+                      "/img/test.jpg",
+                      "/img/test.jpg"
+                    ],
+                    "id": "777",
+                    "cantidad": 6
+                },
+                {
+                    "nombre": "SSSSSSSSSSSESx",
+                    "precio": 200,
+                    "descripcion": "sii",
+                    "imagenes": [
+                      "/img/test.jpg",
+                      "/img/test.jpg"
+                    ],
+                    "id": "778",
+                    "cantidad": 8
+                }
+            ]
+        },
+    ],
+    "productos": [
+        {
+            "nombre": "Zucaritas",
+            "estrellas": 3,
+            "precio": 300,
+            "descripcion": "Muy ricas, sisi muy muy ricas",
+            "id": "777",
+            "categorias": [
+                "Comida",
+                "Dulce",
+                "Cereales"
+            ],
+            "especificacion": [
+                "Cereal dulce de maíz",
+                "0 proteína 100% lípidos",
+                "Totalmente mortal para el cuerpo"
+            ],
+            "imagenes": [
+                "/img/test.jpg",
+                "/img/test.jpg"
+            ]
         }
+    ]
+}));
+*/
 
-        form1.classList.add('was-validated');
-    }, false);
+const usuarioActual = JSON.parse(localStorage.getItem("usuarioActual"));
+console.log(usuarioActual);
 
-    form2.addEventListener("submit", function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        if (form2.checkValidity()) {
-            encabezado2.classList.add("d-none");
-            seccion2.classList.add("d-none");
-            encabezado3.classList.remove("d-none");
-            seccion3.classList.remove("d-none");
-        }
 
-        form2.classList.add('was-validated');
-    }, false);
 
-    volver = document.querySelector("#botonVolver");
+// Cargamos al carrito actual
 
-    volver.addEventListener("click", function(e) {
-        // Te redirige a inicio
-    });
+// localStorage.setItem("carritoActual", '[{"nombre":"Zucaritas","precio":300,"descripcion":"Muy ricas, sisi muy muy ricas","imagenes":["/img/test.jpg","/img/test.jpg"],"id":"777","cantidad":7},{"nombre":"Laptop","precio":7000,"descripcion":"Super potente master","imagenes":["img/Zucaritas.webp"],"id":"69","cantidad":4}]')
 
-    atras1 = document.querySelector("#botonAtras1");
+let carritoActual = JSON.parse(localStorage.getItem('carritoActual'));
 
-    atras1.addEventListener("click", function(e) {
-        encabezado2.classList.add("d-none");
-        seccion2.classList.add("d-none");
-        encabezado1.classList.remove("d-none");
-        seccion1.classList.remove("d-none");
-    });
+console.log(carritoActual);
 
-    atras2 = document.querySelector("#botonAtras2");
 
-    atras2.addEventListener("click", function(e) {
-        encabezado3.classList.add("d-none");
-        seccion3.classList.add("d-none");
+function checkUsuarioActual(){
+    if (usuarioActual == undefined){
+        let inputs = seccion1.querySelectorAll("input");
+        inputs.forEach(input => {
+            input.setAttribute("disabled", true);
+        });
+        mostrarAlerta("Aún no tienes la sesión iniciada. Serás redirigido a inicio en unos segundos.", "alert-primary", '<i class="fa-solid fa-circle-info me-3"></i>');
+        setTimeout(function () {
+            window.location.href = "index.html";
+        }, 5000);
+    }
+}
+
+checkUsuarioActual();
+
+
+
+const form1 = document.querySelector("#formCarrito");
+const form2 = document.querySelector("#formEnvio");
+const form3 = document.querySelector("#formPago");
+const formFinal = document.querySelector("#formFinal");
+
+const departamentos = document.querySelector("#departamento");
+const ciudades = document.querySelector("#ciudad");
+
+
+form1.addEventListener('submit', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (form1.checkValidity()) {
+        encabezado1.classList.add("d-none");
+        seccion1.classList.add("d-none");
         encabezado2.classList.remove("d-none");
         seccion2.classList.remove("d-none");
-    });
-
-    async function getRegiones() {
-        const urlRegionesUruguay = "https://gist.githubusercontent.com/fedebabrauskas/b708c2a1b7a29af94927ad0e8d6d6a27/raw/b0c544d53c82de298ccedb824f8dd5e5ef5477e7/localidades.json"
-        try {
-            const response = await fetch(urlRegionesUruguay);
-            if (!response.ok){
-                throw new Error("Response status: " + response.status);
-            }
-            const json = await response.json();
-            console.log(json);
-            return json;
-        } catch (error) {
-            console.log(error.message);
+    } else {
+        if (document.querySelector("#alertaFormulario") == undefined){
+            mostrarAlerta("Aún hay campos incompletos o con valores inválidos.", "alert-warning", '<i class="fa-solid fa-triangle-exclamation me-3"></i>');
         }
     }
 
-    const regiones = await getRegiones();
+    form1.classList.add('was-validated');
+}, false);
 
-
-    function cargarCiudades() {
-        regiones.forEach(region => {
-            if (region.name == departamentos.value){   
-                if (region.towns.length != 0){
-                    ciudades.textContent = "";
-                    region.towns.forEach(town => {
-                        const option = document.createElement("option");
-                        const text = document.createTextNode(town.name);
-                        option.setAttribute("value", town.name);
-                        option.appendChild(text);
-                        ciudades.appendChild(option);
-                    });
-                    return;
-                }
-            }
-        });
+form2.addEventListener("submit", function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    if (form2.checkValidity()) {
+        encabezado2.classList.add("d-none");
+        seccion2.classList.add("d-none");
+        encabezado3.classList.remove("d-none");
+        seccion3.classList.remove("d-none");
+    } else {
+        if (document.querySelector("#alertaFormulario") == undefined){
+            mostrarAlerta("Aún hay campos incompletos o con valores inválidos.", "alert-warning", '<i class="fa-solid fa-triangle-exclamation me-3"></i>');
+        }
     }
 
+    form2.classList.add('was-validated');
+}, false);
 
-    localStorage.setItem("carritoActual", '[{"nombre":"Zucaritas","precio":300,"descripcion":"Muy ricas, sisi muy muy ricas","imagenes":["/img/test.jpg","/img/test.jpg"],"id":"777","cantidad":7},{"nombre":"Laptop","precio":7000,"descripcion":"Super potente master","imagenes":["img/Zucaritas.webp"],"id":"69","cantidad":4}]')
 
-    let carritoActual = JSON.parse(localStorage.getItem('carritoActual'));
+function agregarOrdenCompra() {
+    let idOrden = 0;
+    usuarioActual.ordenes.forEach(orden => {
+        if (idOrden <= orden.id){
+            idOrden = orden.id + 1;
+        }
+    });
 
-    console.log(carritoActual);
+    const fechaActual = new Date().toJSON().slice(0, 10);
 
-    cargarElementosCarrito(carritoActual);
+    const nuevaOrden = {
+        "id": idOrden,
+        "fecha": fechaActual,
+        "productos": carritoActual
+    }
 
-    departamentos.addEventListener("change", function(e){
-        if (departamentos.value != ""){
-            ciudades.removeAttribute('disabled');
-            cargarCiudades();
+    usuarioActual.ordenes.push(nuevaOrden);
+
+    localStorage.setItem("usuarioActual", JSON.stringify(usuarioActual));
+    localStorage.setItem("carritoActual", "[]");
+
+}
+
+function disableInputs() {
+    inputs = document.querySelectorAll("input");
+    inputs.forEach(input => {
+        input.setAttribute("disabled", true);
+    });
+}
+
+form3.addEventListener("submit", function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    // let formulariosValidos = true;
+    let mensajeError = "";
+    if (form3.checkValidity()) {
+        if (form2.checkValidity()) {
+            if (form1.checkValidity()) {
+                disableInputs();
+                agregarOrdenCompra();
+                mostrarAlerta("¡Compra realizada de manera exitosa! Serás redirigido al inicio.", "alert-success", '<i class="fa-solid fa-circle-check me-3"></i>');
+                setTimeout(function () {
+                    window.location.href = "index.html";
+                }, 5000);
+            } else {
+                mensajeError = "Se encontraron errores de validación en el Carrito de Compra."
+                // formulariosValidos = false;
+            }
         } else {
-            ciudades.setAttribute('disabled', true);
-            ciudades.textContent = "";
-            const option = document.createElement("option");
-            const text = document.createTextNode("Elige una ciudad");
-            option.setAttribute("value", "");
-            option.appendChild(text);
-            ciudades.appendChild(option);
+            // formulariosValidos = false;
+            if (mensajeError == ""){
+                mensajeError = mensajeError.slice(0, -1);
+                mensajeError += " y en los Detalles del envío.";
+            } else {
+                mensajeError = "Se encontraron errores de validación en los Detalles del envío."
+            }
+        }
+        // Chequear los otros 2, agregarlos al cuarto formulario, mensaje de exito, y submit
+    } else {
+        if (document.querySelector("#alertaFormulario") == undefined){
+            mostrarAlerta("Aún hay campos incompletos o con valores inválidos.", "alert-warning", '<i class="fa-solid fa-triangle-exclamation me-3"></i>');
+        }
+    }
+
+    if (mensajeError != ""){
+        mostrarAlerta(mensajeError, "alert-warning", '<i class="fa-solid fa-triangle-exclamation me-3"></i>');
+    }
+
+    form3.classList.add('was-validated');
+}, false);
+
+volver = document.querySelector("#botonVolver");
+
+volver.addEventListener("click", function(e) {
+    // Te redirige a inicio
+});
+
+atras1 = document.querySelector("#botonAtras1");
+
+atras1.addEventListener("click", function(e) {
+    encabezado2.classList.add("d-none");
+    seccion2.classList.add("d-none");
+    encabezado1.classList.remove("d-none");
+    seccion1.classList.remove("d-none");
+});
+
+atras2 = document.querySelector("#botonAtras2");
+
+atras2.addEventListener("click", function(e) {
+    encabezado3.classList.add("d-none");
+    seccion3.classList.add("d-none");
+    encabezado2.classList.remove("d-none");
+    seccion2.classList.remove("d-none");
+});
+
+
+
+
+async function getRegiones() {
+    const urlRegionesUruguay = "https://gist.githubusercontent.com/fedebabrauskas/b708c2a1b7a29af94927ad0e8d6d6a27/raw/b0c544d53c82de298ccedb824f8dd5e5ef5477e7/localidades.json"
+    try {
+        const response = await fetch(urlRegionesUruguay);
+        if (!response.ok){
+            throw new Error("Response status: " + response.status);
+        }
+        const json = await response.json();
+        console.log(json);
+        return json;
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+async function cargarCiudades() {
+    const regiones = await getRegiones();
+    regiones.forEach(region => {
+        if (region.name == departamentos.value){   
+            if (region.towns.length != 0){
+                ciudades.textContent = "";
+                region.towns.forEach(town => {
+                    const option = document.createElement("option");
+                    const text = document.createTextNode(town.name);
+                    option.setAttribute("value", town.name);
+                    option.appendChild(text);
+                    ciudades.appendChild(option);
+                });
+                return;
+            }
         }
     });
+}
+
+if (usuarioActual != undefined && carritoActual != undefined && carritoActual.length != 0) {
+    cargarElementosCarrito(carritoActual);
+}
+
+departamentos.addEventListener("change", async function(e){
+    if (departamentos.value != ""){
+        ciudades.removeAttribute('disabled');
+        await cargarCiudades();
+    } else {
+        ciudades.setAttribute('disabled', true);
+        ciudades.textContent = "";
+        const option = document.createElement("option");
+        const text = document.createTextNode("Elige una ciudad");
+        option.setAttribute("value", "");
+        option.appendChild(text);
+        ciudades.appendChild(option);
+    }
+});
+
+departamentos.value = "";
+
+
+/* DUDOSO
+document.addEventListener("DOMContentLoaded", async function(e) {
+
     
-    departamentos.value = "";
 
 
 
 
-
-
-
-
-    /*
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (() => {
-        'use strict'
-    
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        const forms = document.querySelectorAll('.needs-validation')
-    
-        // Loop over them and prevent submission
-        Array.from(forms).forEach(form => {
-            form.addEventListener('submit', event => {
-                if (!form.checkValidity()) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-        
-                form.classList.add('was-validated');
-            }, false)
-        })
-    })()
-
-    */
 
 });
+
+*/
