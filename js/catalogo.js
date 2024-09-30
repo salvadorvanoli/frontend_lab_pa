@@ -9,9 +9,8 @@ document.querySelectorAll('.dropdown-item input[type="checkbox"]').forEach(funct
 let producto = document.getElementById("producto1");
 
 prod.addEventListener('click', function() {
-    productoSeleccionado = producto;
+    productoSeleccionado = producto.nombre;
     cargarProducto();
-    window.open("'../infoProducto.html'", "_blank"); //ni idea si esto esta bien
 });
 
 function cargarCatalogo() {
