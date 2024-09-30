@@ -181,7 +181,7 @@ function modificarEnvio(){
         subtotal += element.precio * element.cantidad;
     });
 
-    console.log(envioGratis.checked);
+    // console.log(envioGratis.checked);
 
     if (envioGratis.checked){
         modificarTextos(envios, "GRATIS");
@@ -223,7 +223,6 @@ const seccion3 = document.querySelector("#seccion3");
 
 // Cargamos al usuario actual
 
-/*
 localStorage.setItem("usuarioActual", JSON.stringify(
 {
     "nombre": "Salvador",
@@ -318,20 +317,20 @@ localStorage.setItem("usuarioActual", JSON.stringify(
         }
     ]
 }));
-*/
+
 
 const usuarioActual = JSON.parse(localStorage.getItem("usuarioActual"));
-console.log(usuarioActual);
+// console.log(usuarioActual);
 
 
 
 // Cargamos al carrito actual
 
-// localStorage.setItem("carritoActual", '[{"nombre":"Zucaritas","precio":300,"descripcion":"Muy ricas, sisi muy muy ricas","imagenes":["/img/test.jpg","/img/test.jpg"],"id":"777","cantidad":7},{"nombre":"Laptop","precio":7000,"descripcion":"Super potente master","imagenes":["img/Zucaritas.webp"],"id":"69","cantidad":4}]')
+localStorage.setItem("carritoActual", '[{"nombre":"Zucaritas","precio":300,"descripcion":"Muy ricas, sisi muy muy ricas","imagenes":["/img/test.jpg","/img/test.jpg"],"id":"777","cantidad":7},{"nombre":"Laptop","precio":7000,"descripcion":"Super potente master","imagenes":["img/Zucaritas.webp"],"id":"69","cantidad":4}]')
 
 let carritoActual = JSON.parse(localStorage.getItem('carritoActual'));
 
-console.log(carritoActual);
+// console.log(carritoActual);
 
 
 function checkUsuarioActual(){
@@ -405,10 +404,62 @@ function agregarOrdenCompra() {
 
     const fechaActual = new Date().toJSON().slice(0, 10);
 
+    const nombre = document.querySelector("#nombre").value;
+    const apellido = document.querySelector("#apellido").value;
+    const direccion1 = document.querySelector("#direccion1").value;
+    const direccion2 = document.querySelector("#direccion2").value;
+    const departamento = document.querySelector("#departamento").value;
+    const ciudad = document.querySelector("#ciudad").value;
+    const codPostal = document.querySelector("#codPostal").value;
+    const numTelefono = document.querySelector("#numTelefono").value;
+
+    let tipoEnvio;
+    let precioEnvio;
+    if (document.querySelector("#envioGratis").checked) {
+        tipoEnvio = document.querySelector("#envioGratis").value;
+        precioEnvio = 0;
+    } else {
+        tipoEnvio = document.querySelector("#envioVip").value;
+        precioEnvio = 20;
+    }
+
+    const detallesEnvio = {
+        "nombre": nombre,
+        "apellido": apellido,
+        "direccion1": direccion1,
+        "direccion2": direccion2,
+        "departamento": departamento,
+        "ciudad": ciudad,
+        "codPostal": codPostal,
+        "numTelefono": numTelefono,
+        "tipoEnvio": tipoEnvio,
+        "precioEnvio": precioEnvio
+    }
+
+    let formaPago;
+
+    if (document.querySelector("#pagoTarjeta").checked){
+        const numTarjeta = document.querySelector("#numTarjeta").value;
+        const fecVencimiento = document.querySelector("#fecVencimiento").value;
+        const cvv = document.querySelector("#cvv").value;
+        const nomTitular = document.querySelector("#nomTitular").value;
+        formaPago = {
+            "tipoPago": "credito",
+            "numTarjeta": numTarjeta,
+            "fecVencimiento": fecVencimiento,
+            "cvv": cvv,
+            "nomTitular": nomTitular
+        }
+    } else {
+        // Manejar el pago con PayPal
+    }
+
     const nuevaOrden = {
         "id": idOrden,
         "fecha": fechaActual,
-        "productos": carritoActual
+        "productos": carritoActual,
+        "detallesEnvio": detallesEnvio,
+        "formaPago": formaPago
     }
 
     usuarioActual.ordenes.push(nuevaOrden);
@@ -416,6 +467,35 @@ function agregarOrdenCompra() {
     localStorage.setItem("usuarioActual", JSON.stringify(usuarioActual));
     localStorage.setItem("carritoActual", "[]");
 
+}
+
+function fechaValida(){
+    let partesFecha = document.querySelector("#fecVencimiento").value.split('/');
+
+    if (partesFecha.length != 2){
+        return false;
+    }
+
+    for (let i = 0; i < partesFecha.length; i++){
+        partesFecha[i] = Number.parseInt(partesFecha[i])
+    }
+
+    const date = new Date();
+    const MM = Number.parseInt(date.getMonth()) + 1;
+    const year = date.getFullYear().toString();
+
+    // console.log(partesFecha);
+
+    const YY = Number.parseInt(year.slice(2));
+
+    /*
+    console.log("MM: " + MM + "\nYY: " + YY);
+
+    console.log("CONDICION 1: " + partesFecha[1] > YY);
+    console.log("CONDICION 2: " + (partesFecha[1] == YY && partesFecha[0] > MM));
+    */
+
+    return !(partesFecha[1] < YY || (partesFecha[1] == YY && partesFecha[0] < MM));
 }
 
 function disableInputs() {
@@ -431,28 +511,33 @@ form3.addEventListener("submit", function(e) {
     // let formulariosValidos = true;
     let mensajeError = "";
     if (form3.checkValidity()) {
-        if (form2.checkValidity()) {
-            if (form1.checkValidity()) {
-                disableInputs();
-                agregarOrdenCompra();
-                mostrarAlerta("¡Compra realizada de manera exitosa! Serás redirigido al inicio.", "alert-success", '<i class="fa-solid fa-circle-check me-3"></i>');
-                setTimeout(function () {
-                    window.location.href = "index.html";
-                }, 5000);
+        if (fechaValida()) {
+            if (form2.checkValidity()) {
+                if (form1.checkValidity()) {
+                    disableInputs();
+                    agregarOrdenCompra();
+                    mostrarAlerta("¡Compra realizada de manera exitosa! Serás redirigido al inicio.", "alert-success", '<i class="fa-solid fa-circle-check me-3"></i>');
+                    setTimeout(function () {
+                        window.location.href = "index.html";
+                    }, 5000);
+                } else {
+                    mensajeError = "Se encontraron errores de validación en el Carrito de Compra."
+                    // formulariosValidos = false;
+                }
             } else {
-                mensajeError = "Se encontraron errores de validación en el Carrito de Compra."
                 // formulariosValidos = false;
+                if (mensajeError == ""){
+                    mensajeError = mensajeError.slice(0, -1);
+                    mensajeError += " y en los Detalles del envío.";
+                } else {
+                    mensajeError = "Se encontraron errores de validación en los Detalles del envío."
+                }
             }
         } else {
-            // formulariosValidos = false;
-            if (mensajeError == ""){
-                mensajeError = mensajeError.slice(0, -1);
-                mensajeError += " y en los Detalles del envío.";
-            } else {
-                mensajeError = "Se encontraron errores de validación en los Detalles del envío."
-            }
+            mostrarAlerta("La fecha ingresada es inválida.", "alert-warning", '<i class="fa-solid fa-triangle-exclamation me-3"></i>');
+            const fecha = document.querySelector("#fecVencimiento");
+            fecha.value = "";
         }
-        // Chequear los otros 2, agregarlos al cuarto formulario, mensaje de exito, y submit
     } else {
         if (document.querySelector("#alertaFormulario") == undefined){
             mostrarAlerta("Aún hay campos incompletos o con valores inválidos.", "alert-warning", '<i class="fa-solid fa-triangle-exclamation me-3"></i>');
@@ -501,7 +586,7 @@ async function getRegiones() {
             throw new Error("Response status: " + response.status);
         }
         const json = await response.json();
-        console.log(json);
+        // console.log(json);
         return json;
     } catch (error) {
         console.log(error.message);
