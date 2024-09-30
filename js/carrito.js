@@ -8,6 +8,15 @@ const totales = document.querySelectorAll(".precio-total");
 const envioGratis = document.querySelector("#envioGratis");
 const envioVip = document.querySelector("#envioVip");
 
+const encabezado1 = document.querySelector("#encabezado1");
+const seccion1 = document.querySelector("#seccion1");
+
+const encabezado2 = document.querySelector("#encabezado2");
+const seccion2 = document.querySelector("#seccion2");
+
+const encabezado3 = document.querySelector("#encabezado3");
+const seccion3 = document.querySelector("#seccion3");
+
 
 function modificarTextos(array, text){
     array.forEach(item => {
@@ -19,9 +28,22 @@ function modificarTextos(array, text){
 const carrito = document.querySelector("#carrito");
 const contenedoresSecundarios = document.querySelectorAll(".contenedor-secundario");
 
+function manejarCarritoVacio() {
+    encabezado1.remove();
+    seccion1.remove();
+    encabezado2.remove();
+    seccion2.remove();
+    encabezado3.remove();
+    seccion3.remove();
+    const texto = document.createElement("div");
+    texto.classList.add("text-center", "fs-1", "m-5");
+    texto.innerHTML = "No hay productos en el carrito actualmente";
+    document.body.appendChild(texto);
+}
+
 function cargarElementosCarrito(array){
-    if (array.length === 0){
-        return;
+    if (array == undefined || ! array.length > 0){
+        manejarCarritoVacio();
     } else {
         let subtotal = 0;
         array.forEach(element => {
@@ -158,6 +180,19 @@ function eliminarItem(id){
         }
     }
 
+    if (carritoActual.length == 0){
+        encabezado1.remove();
+        seccion1.remove();
+        encabezado2.remove();
+        seccion2.remove();
+        encabezado3.remove();
+        seccion3.remove();
+        const texto = document.createElement("div");
+        texto.classList.add("text-center", "fs-1", "m-5");
+        texto.innerHTML = "No hay productos en el carrito actualmente";
+        document.body.appendChild(texto);
+    }
+
     localStorage.setItem("carritoActual", JSON.stringify(carritoActual));
 
     modificarAllTextos(carritoActual);
@@ -181,7 +216,7 @@ function modificarEnvio(){
         subtotal += element.precio * element.cantidad;
     });
 
-    console.log(envioGratis.checked);
+    // console.log(envioGratis.checked);
 
     if (envioGratis.checked){
         modificarTextos(envios, "GRATIS");
@@ -211,117 +246,107 @@ function mostrarAlerta(message, type, icon){
 // Codigo que saque del document.addEventListener:
 
 
-const encabezado1 = document.querySelector("#encabezado1");
-const seccion1 = document.querySelector("#seccion1");
 
-const encabezado2 = document.querySelector("#encabezado2");
-const seccion2 = document.querySelector("#seccion2");
+// // Cargamos al usuario actual
 
-const encabezado3 = document.querySelector("#encabezado3");
-const seccion3 = document.querySelector("#seccion3");
+// localStorage.setItem("usuarioActual", JSON.stringify(
+// {
+//     "nombre": "Salvador",
+//     "apellido": "Vanoli",
+//     "nickname": "salvaelpro777",
+//     "tipo": "proveedor",
+//     "email": "salva@salva.com",
+//     "fecha": "2004-05-01",
+//     "foto": "img/test.jpg",
+//     "web": "salva.com",
+//     "empresa": "salvaEnterprise",
+//     "id": "0",
+//     "ordenes": [
+//         {
+//             "id": 0,
+//             "fecha": "2024-09-24",
+//             "productos": [
+//                 {
+//                     "nombre": "Zucaritas",
+//                     "precio": 300,
+//                     "descripcion": "Muy ricas, sisi muy muy ricas",
+//                     "imagenes": [
+//                       "/img/test.jpg",
+//                       "/img/test.jpg"
+//                     ],
+//                     "id": "777",
+//                     "cantidad": 1
+//                 },
+//                 {
+//                     "nombre": "WATAFAK",
+//                     "precio": 200,
+//                     "descripcion": "sii",
+//                     "imagenes": [
+//                       "/img/test.jpg",
+//                       "/img/test.jpg"
+//                     ],
+//                     "id": "778",
+//                     "cantidad": 5
+//                 }
+//             ]
+//         },
+//         {
+//             "id": 1,
+//             "fecha": "2024-09-27",
+//             "productos": [
+//                 {
+//                     "nombre": "Zucaritas",
+//                     "precio": 400,
+//                     "descripcion": "Muy ricas, sisi muy muy ricas",
+//                     "imagenes": [
+//                       "/img/test.jpg",
+//                       "/img/test.jpg"
+//                     ],
+//                     "id": "777",
+//                     "cantidad": 6
+//                 },
+//                 {
+//                     "nombre": "SSSSSSSSSSSESx",
+//                     "precio": 200,
+//                     "descripcion": "sii",
+//                     "imagenes": [
+//                       "/img/test.jpg",
+//                       "/img/test.jpg"
+//                     ],
+//                     "id": "778",
+//                     "cantidad": 8
+//                 }
+//             ]
+//         },
+//     ],
+//     "productos": [
+//         {
+//             "nombre": "Zucaritas",
+//             "estrellas": 3,
+//             "precio": 300,
+//             "descripcion": "Muy ricas, sisi muy muy ricas",
+//             "id": "777",
+//             "categorias": [
+//                 "Comida",
+//                 "Dulce",
+//                 "Cereales"
+//             ],
+//             "especificacion": [
+//                 "Cereal dulce de maíz",
+//                 "0 proteína 100% lípidos",
+//                 "Totalmente mortal para el cuerpo"
+//             ],
+//             "imagenes": [
+//                 "/img/test.jpg",
+//                 "/img/test.jpg"
+//             ]
+//         }
+//     ]
+// }));
 
-
-// Cargamos al usuario actual
-
-/*
-localStorage.setItem("usuarioActual", JSON.stringify(
-{
-    "nombre": "Salvador",
-    "apellido": "Vanoli",
-    "nickname": "salvaelpro777",
-    "tipo": "proveedor",
-    "email": "salva@salva.com",
-    "fecha": "2004-05-01",
-    "foto": "img/test.jpg",
-    "web": "salva.com",
-    "empresa": "salvaEnterprise",
-    "id": "0",
-    "ordenes": [
-        {
-            "id": 0,
-            "fecha": "2024-09-24",
-            "productos": [
-                {
-                    "nombre": "Zucaritas",
-                    "precio": 300,
-                    "descripcion": "Muy ricas, sisi muy muy ricas",
-                    "imagenes": [
-                      "/img/test.jpg",
-                      "/img/test.jpg"
-                    ],
-                    "id": "777",
-                    "cantidad": 1
-                },
-                {
-                    "nombre": "WATAFAK",
-                    "precio": 200,
-                    "descripcion": "sii",
-                    "imagenes": [
-                      "/img/test.jpg",
-                      "/img/test.jpg"
-                    ],
-                    "id": "778",
-                    "cantidad": 5
-                }
-            ]
-        },
-        {
-            "id": 1,
-            "fecha": "2024-09-27",
-            "productos": [
-                {
-                    "nombre": "Zucaritas",
-                    "precio": 400,
-                    "descripcion": "Muy ricas, sisi muy muy ricas",
-                    "imagenes": [
-                      "/img/test.jpg",
-                      "/img/test.jpg"
-                    ],
-                    "id": "777",
-                    "cantidad": 6
-                },
-                {
-                    "nombre": "SSSSSSSSSSSESx",
-                    "precio": 200,
-                    "descripcion": "sii",
-                    "imagenes": [
-                      "/img/test.jpg",
-                      "/img/test.jpg"
-                    ],
-                    "id": "778",
-                    "cantidad": 8
-                }
-            ]
-        },
-    ],
-    "productos": [
-        {
-            "nombre": "Zucaritas",
-            "estrellas": 3,
-            "precio": 300,
-            "descripcion": "Muy ricas, sisi muy muy ricas",
-            "id": "777",
-            "categorias": [
-                "Comida",
-                "Dulce",
-                "Cereales"
-            ],
-            "especificacion": [
-                "Cereal dulce de maíz",
-                "0 proteína 100% lípidos",
-                "Totalmente mortal para el cuerpo"
-            ],
-            "imagenes": [
-                "/img/test.jpg",
-                "/img/test.jpg"
-            ]
-        }
-    ]
-}));
-*/
 
 const usuarioActual = JSON.parse(localStorage.getItem("usuarioActual"));
-console.log(usuarioActual);
+// console.log(usuarioActual);
 
 
 
@@ -331,16 +356,21 @@ console.log(usuarioActual);
 
 let carritoActual = JSON.parse(localStorage.getItem('carritoActual'));
 
-console.log(carritoActual);
+// console.log(carritoActual);
 
 
 function checkUsuarioActual(){
     if (usuarioActual == undefined){
-        let inputs = seccion1.querySelectorAll("input");
-        inputs.forEach(input => {
-            input.setAttribute("disabled", true);
-        });
-        mostrarAlerta("Aún no tienes la sesión iniciada. Serás redirigido a inicio en unos segundos.", "alert-primary", '<i class="fa-solid fa-circle-info me-3"></i>');
+        encabezado1.remove();
+        seccion1.remove();
+        encabezado2.remove();
+        seccion2.remove();
+        encabezado3.remove();
+        seccion3.remove();
+        const texto = document.createElement("div");
+        texto.classList.add("text-center", "fs-1", "m-5");
+        texto.innerHTML = "Aún no tienes la sesión iniciada. Serás redirigido a inicio en unos segundos.";
+        document.body.appendChild(texto);
         setTimeout(function () {
             window.location.href = "index.html";
         }, 5000);
@@ -405,10 +435,62 @@ function agregarOrdenCompra() {
 
     const fechaActual = new Date().toJSON().slice(0, 10);
 
+    const nombre = document.querySelector("#nombre").value;
+    const apellido = document.querySelector("#apellido").value;
+    const direccion1 = document.querySelector("#direccion1").value;
+    const direccion2 = document.querySelector("#direccion2").value;
+    const departamento = document.querySelector("#departamento").value;
+    const ciudad = document.querySelector("#ciudad").value;
+    const codPostal = document.querySelector("#codPostal").value;
+    const numTelefono = document.querySelector("#numTelefono").value;
+
+    let tipoEnvio;
+    let precioEnvio;
+    if (document.querySelector("#envioGratis").checked) {
+        tipoEnvio = document.querySelector("#envioGratis").value;
+        precioEnvio = 0;
+    } else {
+        tipoEnvio = document.querySelector("#envioVip").value;
+        precioEnvio = 20;
+    }
+
+    const detallesEnvio = {
+        "nombre": nombre,
+        "apellido": apellido,
+        "direccion1": direccion1,
+        "direccion2": direccion2,
+        "departamento": departamento,
+        "ciudad": ciudad,
+        "codPostal": codPostal,
+        "numTelefono": numTelefono,
+        "tipoEnvio": tipoEnvio,
+        "precioEnvio": precioEnvio
+    }
+
+    let formaPago;
+
+    if (document.querySelector("#pagoTarjeta").checked){
+        const numTarjeta = document.querySelector("#numTarjeta").value;
+        const fecVencimiento = document.querySelector("#fecVencimiento").value;
+        const cvv = document.querySelector("#cvv").value;
+        const nomTitular = document.querySelector("#nomTitular").value;
+        formaPago = {
+            "tipoPago": "credito",
+            "numTarjeta": numTarjeta,
+            "fecVencimiento": fecVencimiento,
+            "cvv": cvv,
+            "nomTitular": nomTitular
+        }
+    } else {
+        // Manejar el pago con PayPal
+    }
+
     const nuevaOrden = {
         "id": idOrden,
         "fecha": fechaActual,
-        "productos": carritoActual
+        "productos": carritoActual,
+        "detallesEnvio": detallesEnvio,
+        "formaPago": formaPago
     }
 
     usuarioActual.ordenes.push(nuevaOrden);
@@ -416,6 +498,35 @@ function agregarOrdenCompra() {
     localStorage.setItem("usuarioActual", JSON.stringify(usuarioActual));
     localStorage.setItem("carritoActual", "[]");
 
+}
+
+function fechaValida(){
+    let partesFecha = document.querySelector("#fecVencimiento").value.split('/');
+
+    if (partesFecha.length != 2){
+        return false;
+    }
+
+    for (let i = 0; i < partesFecha.length; i++){
+        partesFecha[i] = Number.parseInt(partesFecha[i])
+    }
+
+    const date = new Date();
+    const MM = Number.parseInt(date.getMonth()) + 1;
+    const year = date.getFullYear().toString();
+
+    // console.log(partesFecha);
+
+    const YY = Number.parseInt(year.slice(2));
+
+    /*
+    console.log("MM: " + MM + "\nYY: " + YY);
+
+    console.log("CONDICION 1: " + partesFecha[1] > YY);
+    console.log("CONDICION 2: " + (partesFecha[1] == YY && partesFecha[0] > MM));
+    */
+
+    return !(partesFecha[1] < YY || (partesFecha[1] == YY && partesFecha[0] < MM));
 }
 
 function disableInputs() {
@@ -431,28 +542,33 @@ form3.addEventListener("submit", function(e) {
     // let formulariosValidos = true;
     let mensajeError = "";
     if (form3.checkValidity()) {
-        if (form2.checkValidity()) {
-            if (form1.checkValidity()) {
-                disableInputs();
-                agregarOrdenCompra();
-                mostrarAlerta("¡Compra realizada de manera exitosa! Serás redirigido al inicio.", "alert-success", '<i class="fa-solid fa-circle-check me-3"></i>');
-                setTimeout(function () {
-                    window.location.href = "index.html";
-                }, 5000);
+        if (fechaValida()) {
+            if (form2.checkValidity()) {
+                if (form1.checkValidity()) {
+                    disableInputs();
+                    agregarOrdenCompra();
+                    mostrarAlerta("¡Compra realizada de manera exitosa! Serás redirigido al inicio.", "alert-success", '<i class="fa-solid fa-circle-check me-3"></i>');
+                    setTimeout(function () {
+                        window.location.href = "index.html";
+                    }, 5000);
+                } else {
+                    mensajeError = "Se encontraron errores de validación en el Carrito de Compra."
+                    // formulariosValidos = false;
+                }
             } else {
-                mensajeError = "Se encontraron errores de validación en el Carrito de Compra."
                 // formulariosValidos = false;
+                if (mensajeError == ""){
+                    mensajeError = mensajeError.slice(0, -1);
+                    mensajeError += " y en los Detalles del envío.";
+                } else {
+                    mensajeError = "Se encontraron errores de validación en los Detalles del envío."
+                }
             }
         } else {
-            // formulariosValidos = false;
-            if (mensajeError == ""){
-                mensajeError = mensajeError.slice(0, -1);
-                mensajeError += " y en los Detalles del envío.";
-            } else {
-                mensajeError = "Se encontraron errores de validación en los Detalles del envío."
-            }
+            mostrarAlerta("La fecha ingresada es inválida.", "alert-warning", '<i class="fa-solid fa-triangle-exclamation me-3"></i>');
+            const fecha = document.querySelector("#fecVencimiento");
+            fecha.value = "";
         }
-        // Chequear los otros 2, agregarlos al cuarto formulario, mensaje de exito, y submit
     } else {
         if (document.querySelector("#alertaFormulario") == undefined){
             mostrarAlerta("Aún hay campos incompletos o con valores inválidos.", "alert-warning", '<i class="fa-solid fa-triangle-exclamation me-3"></i>');
@@ -492,7 +608,6 @@ atras2.addEventListener("click", function(e) {
 
 
 
-
 async function getRegiones() {
     const urlRegionesUruguay = "https://gist.githubusercontent.com/fedebabrauskas/b708c2a1b7a29af94927ad0e8d6d6a27/raw/b0c544d53c82de298ccedb824f8dd5e5ef5477e7/localidades.json"
     try {
@@ -501,7 +616,7 @@ async function getRegiones() {
             throw new Error("Response status: " + response.status);
         }
         const json = await response.json();
-        console.log(json);
+        // console.log(json);
         return json;
     } catch (error) {
         console.log(error.message);
@@ -527,7 +642,7 @@ async function cargarCiudades() {
     });
 }
 
-if (usuarioActual != undefined && carritoActual != undefined && carritoActual.length != 0) {
+if (usuarioActual != undefined) {
     cargarElementosCarrito(carritoActual);
 }
 
@@ -548,16 +663,115 @@ departamentos.addEventListener("change", async function(e){
 
 departamentos.value = "";
 
+// document.addEventListener("DOMContentLoaded", async function(e) {
 
-/* DUDOSO
-document.addEventListener("DOMContentLoaded", async function(e) {
+//     // Cargamos al usuario actual
 
+//     localStorage.setItem("usuarioActual", JSON.stringify(
+//     {
+//         "nombre": "Salvador",
+//         "apellido": "Vanoli",
+//         "nickname": "salvaelpro777",
+//         "tipo": "proveedor",
+//         "email": "salva@salva.com",
+//         "fecha": "2004-05-01",
+//         "foto": "img/test.jpg",
+//         "web": "salva.com",
+//         "empresa": "salvaEnterprise",
+//         "id": "0",
+//         "ordenes": [
+//             {
+//                 "id": 0,
+//                 "fecha": "2024-09-24",
+//                 "productos": [
+//                     {
+//                         "nombre": "Zucaritas",
+//                         "precio": 300,
+//                         "descripcion": "Muy ricas, sisi muy muy ricas",
+//                         "imagenes": [
+//                           "/img/test.jpg",
+//                           "/img/test.jpg"
+//                         ],
+//                         "id": "777",
+//                         "cantidad": 1
+//                     },
+//                     {
+//                         "nombre": "WATAFAK",
+//                         "precio": 200,
+//                         "descripcion": "sii",
+//                         "imagenes": [
+//                           "/img/test.jpg",
+//                           "/img/test.jpg"
+//                         ],
+//                         "id": "778",
+//                         "cantidad": 5
+//                     }
+//                 ]
+//             },
+//             {
+//                 "id": 1,
+//                 "fecha": "2024-09-27",
+//                 "productos": [
+//                     {
+//                         "nombre": "Zucaritas",
+//                         "precio": 400,
+//                         "descripcion": "Muy ricas, sisi muy muy ricas",
+//                         "imagenes": [
+//                           "/img/test.jpg",
+//                           "/img/test.jpg"
+//                         ],
+//                         "id": "777",
+//                         "cantidad": 6
+//                     },
+//                     {
+//                         "nombre": "SSSSSSSSSSSESx",
+//                         "precio": 200,
+//                         "descripcion": "sii",
+//                         "imagenes": [
+//                           "/img/test.jpg",
+//                           "/img/test.jpg"
+//                         ],
+//                         "id": "778",
+//                         "cantidad": 8
+//                     }
+//                 ]
+//             },
+//         ],
+//         "productos": [
+//             {
+//                 "nombre": "Zucaritas",
+//                 "estrellas": 3,
+//                 "precio": 300,
+//                 "descripcion": "Muy ricas, sisi muy muy ricas",
+//                 "id": "777",
+//                 "categorias": [
+//                     "Comida",
+//                     "Dulce",
+//                     "Cereales"
+//                 ],
+//                 "especificacion": [
+//                     "Cereal dulce de maíz",
+//                     "0 proteína 100% lípidos",
+//                     "Totalmente mortal para el cuerpo"
+//                 ],
+//                 "imagenes": [
+//                     "/img/test.jpg",
+//                     "/img/test.jpg"
+//                 ]
+//             }
+//         ]
+//     }));
     
+//     // Cargamos al carrito actual
+    
+//     localStorage.setItem("carritoActual", '[{"nombre":"Zucaritas","precio":300,"descripcion":"Muy ricas, sisi muy muy ricas","imagenes":["/img/test.jpg","/img/test.jpg"],"id":"777","cantidad":7},{"nombre":"Laptop","precio":7000,"descripcion":"Super potente master","imagenes":["img/Zucaritas.webp"],"id":"69","cantidad":4}]')
 
+//     checkUsuarioActual();
 
+//     if (usuarioActual != undefined) {
+//         cargarElementosCarrito(usuarioActual, carritoActual);
+//     }
 
+//     departamentos.value = "";
 
-
-});
-
-*/
+// });
