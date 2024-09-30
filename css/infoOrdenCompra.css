@@ -54,29 +54,26 @@ a.nav-link{
 	text-align: left;
 }
 
+
+
 .rectangle-1 {
-	width: 80%;
-	height: 351px;
-	padding: 8px 8px 8px 8px;
-	background: #FFFFFF;
-	border-color: #939393;
+    width: 90%; /* Cambia de 80% a 90% para más espacio en móviles */
+	border-color: #AAAAAA;
 	border-width: 1px;
 	border-style: solid;
+    max-height: 80vh; /* Añadir un límite de altura */
+    padding: 16px; /* Ajustar el padding */
     margin: auto;
-    overflow-y: scroll; /* Habilita el scrollbar vertical */
+    overflow-y: auto; /* Habilita el scroll solo si es necesario */
 }
 
 .rectangle-2 {
-	width: 100%;
-	height: 50%;
-	padding: 8px 8px 8px 8px;
-	background: #FFFFFF;
-	border-color: #e8e8e8;
+    width: 100%; /* Mantiene el ancho completo */
+    padding: 12px; /* Ajustar el padding */
+    margin: 8px 0; /* Espaciado entre productos */
+	
 	border-width: 1px;
-	border-style: solid;
-    margin: auto;
 }
-
 .rectangle-3 {
 	width: 80%;
 	height: 60%;
@@ -88,11 +85,53 @@ a.nav-link{
     margin: auto;
 }
 
+/* Estilo por defecto para el rectangle-2 */
+.rectangle-2 .row {
+    display: flex; /* Usa Flexbox */
+    align-items: flex-start; /* Alinea los elementos en la parte superior */
+}
+
+/* Media Query para pantallas menores a 760px */
+@media (max-width: 760px) {
+    .rectangle-2 .row {
+        flex-direction: column; /* Cambia la dirección del flex a columna */
+        align-items: center; /* Centra los elementos */
+    }
+
+    .col-md-2,
+    .col-md-4 {
+        flex: none; /* Evita que estos elementos crezcan */
+        margin-bottom: 10px; /* Agrega espacio entre elementos */
+    }
+
+    .col-md-4 {
+        text-align: center; /* Centra el texto para los elementos que están a la derecha */
+    }
+
+    .stepper-container {
+        flex-direction: row; /* Mantén la cantidad y el input en la misma línea */
+        justify-content: center; /* Centra el contenido */
+    }
+
+    /* Opcional: Ajustar tamaños para móviles */
+    .fotosProductos {
+        width: 80px; /* Ajusta el tamaño de la imagen si es necesario */
+        height: auto; /* Mantiene la proporción */
+    }
+
+    .nombresProductos,
+    .numProducto {
+        margin: 0; /* Elimina márgenes superiores */
+    }
+}
+
+
 @media only screen and (max-width: 600px) {
     .rectangle-1 {
     width: 90%;
     }
 }
+
 
 @media only screen and (max-width: 600px) {
     .rectangle-3 {
