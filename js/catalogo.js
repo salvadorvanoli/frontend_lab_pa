@@ -13,3 +13,7 @@ prod.addEventListener('click', function() {
     cargarProducto();
     window.open("'../infoProducto.html'", "_blank"); 
 });
+
+function cargarCatalogo(){
+    
+};
