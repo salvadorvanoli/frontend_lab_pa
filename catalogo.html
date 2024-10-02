@@ -48,7 +48,8 @@
         <header class="header-1 col align-self-end">
             <div class="text-center">
                 <select class="select-1">
-                    <option selected value="1">Ordenar alfabéticamente (↑)</option>
+                    <option selected value="99">Seleccione un filtro...</option>
+                    <option value="1">Ordenar alfabéticamente (↑)</option>
                     <option value="2">Ordenar por precio (↓)</option>
                     <option value="3">Ordenar por cantidad de compras (↑)</option>
                 </select>
@@ -163,8 +164,7 @@
 <script src="js/infoProducto.js"></script>
 <script>
 
-    /*
-    let productos = [
+    /*let productos = [
         {
             "nombre": "Zucaritas",
             "estrellas": 3,
@@ -182,27 +182,26 @@
                 "Totalmente mortal para el cuerpo"
             ],
             "imagenes": [
-                "/img/test.jpg",
-                "/img/test.jpg"
+                "img/Zucaritas.webp"
             ],
             "comentarios": [
                 {
                     "usuario": "Vale20m",
                     "estrellas": 3,
                     "comentario": "Una re pija esto 0 proteína",
-                    "foto": "/img/Flamin-Go.webp",
+                    "foto": "img/Flamin-Go.webp",
                     "fecha": "04/05/2004",
                     "respuestas": [
                         {
                             "usuario": "kingstolas",
                             "comentario": "Callate o te tiro un cuchillo",
-                            "foto": "/img/Flamin-Go.webp",
+                            "foto": "img/Flamin-Go.webp",
                             "fecha": "05/05/2004"
                         },
                         {
                             "usuario": "Santurio",
                             "comentario": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                            "foto": "/img/Flamin-Go.webp",
+                            "foto": "img/Flamin-Go.webp",
                             "fecha": "01/05/2008"
                         }
                     ]
@@ -211,17 +210,117 @@
                     "usuario": "BlckDev",
                     "estrellas": 5,
                     "comentario": "Mmm q ñicooo",
-                    "foto": "/img/Flamin-Go.webp",
+                    "foto": "img/Flamin-Go.webp",
                     "fecha": "20/09/2024",
                     "respuestas": []
-                },
-            ]
+                }
+            ],
+            "tienda": "Supermercado A",
+            "cantidadCompras": 150 // Agregado para ordenación
+        },
+        {
+            "nombre": "Galletas Oreo",
+            "estrellas": 5,
+            "precio": 250,
+            "descripcion": "Deliciosas galletas de chocolate",
+            "id": "778",
+            "categorias": [
+                "Comida",
+                "Dulce",
+                "Galletas"
+            ],
+            "especificacion": [
+                "Galletas con crema",
+                "0 proteína, 100% placer",
+                "Recomendadas para el snack"
+            ],
+            "imagenes": [
+                "img/oreo.jpg",
+                "img/oreo1.jpg"
+            ],
+            "comentarios": [],
+            "tienda": "Dulces S.A.",
+            "cantidadCompras": 300 // Agregado para ordenación
+        },
+        {
+            "nombre": "Cereal Integral",
+            "estrellas": 4,
+            "precio": 400,
+            "descripcion": "Cereal nutritivo y delicioso",
+            "id": "779",
+            "categorias": [
+                "Comida",
+                "Saludable",
+                "Cereales"
+            ],
+            "especificacion": [
+                "Alto en fibra",
+                "Bajo en azúcares",
+                "Ideal para el desayuno"
+            ],
+            "imagenes": [
+                "img/cereal.jpg",
+                "img/cereal.jpg"
+            ],
+            "comentarios": [],
+            "tienda": "Saludable Ltda.",
+            "cantidadCompras": 80 // Agregado para ordenación
+        },
+        {
+            "nombre": "Chocolate amargo",
+            "estrellas": 4,
+            "precio": 150,
+            "descripcion": "Chocolate de alta calidad",
+            "id": "780",
+            "categorias": [
+                "Comida",
+                "Dulce",
+                "Chocolate"
+            ],
+            "especificacion": [
+                "70% cacao",
+                "Sin azúcares añadidos",
+                "Perfecto para los amantes del chocolate"
+            ],
+            "imagenes": [
+                "img/chocolate.jpg",
+                "img/chocolate.jpg"
+            ],
+            "comentarios": [],
+            "tienda": "Chocolatería Premium",
+            "cantidadCompras": 200 // Agregado para ordenación
+        },
+        {
+            "nombre": "Pasta integral",
+            "estrellas": 3,
+            "precio": 200,
+            "descripcion": "Pasta nutritiva y deliciosa",
+            "id": "781",
+            "categorias": [
+                "Comida",
+                "Saludable",
+                "Pasta"
+            ],
+            "especificacion": [
+                "Hecha de trigo integral",
+                "Rica en fibra",
+                "Ideal para una comida saludable"
+            ],
+            "imagenes": [
+                "img/pasta.jpg",
+                "img/pasta.jpg"
+            ],
+            "comentarios": [],
+            "tienda": "Pastas Gourmet",
+            "cantidadCompras": 120 // Agregado para ordenación
         }
     ];
 
+
+    // Guardar en localStorage
     localStorage.setItem('productos', JSON.stringify(productos));
     alert('Datos guardados en localStorage');
     */
-
+   
 </script>
 </html>

@@ -13,16 +13,58 @@ producto.addEventListener('click', function() {
     cargarProducto();
 });
 
-function cargarCatalogo() {
-    const prod = JSON.parse(localStorage.getItem('productos')) || [];
+const prod = JSON.parse(localStorage.getItem('productos')) || [];
 
+// Función para reordenar el arreglo de productos
+function reOrdenar(selectedOption, productos) {
+    switch (selectedOption) {
+        case "1":
+            // Ordenar alfabéticamente ascendente por 'nombre'
+            productos.sort(function(a, b) {
+                return a.nombre.toLowerCase().localeCompare(b.nombre.toLowerCase());
+            });
+            console.log('Ordenado alfabéticamente (ascendente)');
+            break;
 
-    if (prod.length === 0){ /* aunque parezca raro es con tres '=' */
+        case "2":
+            // Ordenar por precio descendente
+            productos.sort(function(a, b) {
+                return b.precio - a.precio;
+            });
+            console.log('Ordenado por precio (descendente)');
+            break;
+
+        case "3":
+            // Ordenar por cantidad de compras ascendente
+            if (typeof productos[0].cantidadCompras === 'undefined') {
+                console.log('La propiedad cantidadCompras no existe en los productos.');
+                break;
+            }
+            productos.sort(function(a, b) {
+                return a.cantidadCompras - b.cantidadCompras;
+            });
+            console.log('Ordenado por cantidad de compras (ascendente)');
+            break;
+
+        case "4":
+            // Implementa más opciones de ordenación si es necesario
+            break;
+
+        default:
+            console.log('Opción no válida');
+            break;
+    }
+    return productos;
+}
+
+// Función para cargar el catálogo
+function cargarCatalogo(prod) {
+    const contenedorPadre = document.getElementById("prods");
+    contenedorPadre.innerHTML = ''; // Limpiar el contenedor antes de agregar los productos
+
+    if (prod.length === 0) {
         return;
     }
-
-    const contenedorPadre = document.getElementById("prods");
-
 
     prod.forEach(element => {
         const nuevoRectangulo = document.createElement("article");
@@ -39,7 +81,7 @@ function cargarCatalogo() {
         const nuevoPrecio = document.createElement("div");
         const nuevoCarrito = document.createElement("div");
 
-        nuevaImagen.src = element.nuevaImagen; // inchequeable part 1: hay mas de una imagen(?
+        nuevaImagen.src = element.imagenes[0]; // Cambiado para usar el primer elemento de la lista de imágenes
 
         let estrellasMarcadas = element.estrellas;
 
@@ -51,16 +93,15 @@ function cargarCatalogo() {
             } else {
                 star.classList.add("fa", "fa-star");
             }
-
             nuevoConjuntoEstrellas.appendChild(star);
         }
 
-        //agregar contenido al div
+        // Agregar contenido al div
         nuevoTitulo.innerHTML = element.nombre;
         nuevoPrecio.innerHTML = element.precio;
-        nuevaTienda.innerHTML = element.tienda; // inchequeable part 2: no existe tal atributo
+        nuevaTienda.innerHTML = element.tienda || "Tienda no disponible"; // Asegúrate de que este atributo esté en tu objeto
 
-        //agregar clases o atributos si es necesario
+        // Agregar clases o atributos si es necesario
         nuevoRectangulo.classList.add("rectangle-1", "row");
 
         nuevaImagen.classList.add("col-3", "image-1");
@@ -73,11 +114,11 @@ function cargarCatalogo() {
         
         nuevaTienda.classList.add("tienda-x", "col-12");
 
-        padrePrecioCarrito.classList.add("row", "precio-carrito");
+        padrePrecioCarrito.classList.add("row", "col-12", "precio-carrito");
         nuevoPrecio.classList.add("col-6", "precio");
         nuevoCarrito.classList.add("col", "carrito", "fa-solid", "fa-cart-shopping");
 
-        //meterlos contenedores en el contenedor principal
+        // Meter los contenedores en el contenedor principal
         padreItemEstrellas.appendChild(nuevoTitulo);
         padreItemEstrellas.appendChild(nuevoConjuntoEstrellas);
     
@@ -95,4 +136,14 @@ function cargarCatalogo() {
     });
 }
 
-cargarCatalogo();
+// Escucha el evento de cambio del select
+document.querySelector('.select-1').addEventListener('change', function() {
+    let selectedOption = this.value; // Obtener el valor seleccionado
+    const ordenado = reOrdenar(selectedOption, [...prod]); // Crear una copia del arreglo para no modificarlo directamente
+    cargarCatalogo(ordenado); // Cargar el catálogo después de ordenar
+});
+
+// Cargar el catálogo al cargar la página
+document.addEventListener("DOMContentLoaded", function() {
+    cargarCatalogo(prod);
+});
