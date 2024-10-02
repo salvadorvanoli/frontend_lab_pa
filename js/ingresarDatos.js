@@ -157,6 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 localStorage.setItem('usuarios', JSON.stringify(usuariosRegistrados));
 
                 alert('Registro exitoso.');
+                window.location.href = 'iniciarSesion.html';
             } else {
                 alert('Por favor, corrija los errores antes de continuar.');
             }
@@ -179,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Validar la URL
+
 function validarUrl(url) {
     const regex = /^(https?:\/\/)?[a-zA-Z0-9.-]+(\.[a-zA-Z0-9.-]+){2}([\/\w .-]*)*\/?$/;
     const puntos = (url.match(/\./g) || []).length; 

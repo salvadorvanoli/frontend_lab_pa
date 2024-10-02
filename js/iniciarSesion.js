@@ -1,21 +1,26 @@
 document.addEventListener('DOMContentLoaded', function() {
     const buttonIniciarSesion = document.querySelector('.button-iniciarSesion');
-    
+    const errorMensajeDiv = document.getElementById('error-mensaje'); 
+
     buttonIniciarSesion.onclick = function() {
         const emailOrNickname = document.getElementById('floatingInput').value.trim();
         const password = document.getElementById('floatingRepeatPassword').value.trim();
-        const usuarioActual = JSON.parse(localStorage.getItem('usuarioActual'));
+        const usuariosRegistrados = JSON.parse(localStorage.getItem('usuarios')) || [];
+        
+        errorMensajeDiv.style.display = 'none'; 
+        errorMensajeDiv.textContent = '';
+
+        
+        const usuarioActual = usuariosRegistrados.find(usuario => 
+            (usuario.email === emailOrNickname || usuario.nickname === emailOrNickname) && usuario.contraseña === password
+        );
 
         if (usuarioActual) {
-            const existe = (usuarioActual.email === emailOrNickname || usuarioActual.nickname === emailOrNickname) && usuarioActual.contraseña === password;
-
-            if (existe) {
-                alert('Inicio de sesión exitoso!');
-            } else {
-                alert('Correo electrónico/nickname o contraseña incorrectos.');
-            }
+            alert('Inicio de sesión exitoso!');
+            window.location.href = 'infoUsuario.html';
         } else {
-            alert('No se encontró ningún usuario registrado.');
+            errorMensajeDiv.textContent = 'Correo electrónico/nickname o contraseña incorrectos.';
+            errorMensajeDiv.style.display = 'block';
         }
     };
 });
