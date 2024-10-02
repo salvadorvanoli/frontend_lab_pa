@@ -50,15 +50,18 @@
     
             <!-- email -->
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
                 <label for="floatingInput">Correo electrónico</label>
+                <div class="invalid-feedback" id="emailWarning"></div> <!-- Para el mensaje de advertencia -->
             </div>
-    
-            <!-- nickname -->
+            
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInputNickname" placeholder="Nickname">
+                <input type="text" class="form-control" id="floatingInputNickname" placeholder="Nickname" required>
                 <label for="floatingInputNickname">Nickname</label>
+                <div class="invalid-feedback" id="nicknameWarning"></div> <!-- Para el mensaje de advertencia -->
             </div>
+            
+
     
             <div class="row g-2">
                 <div class="col-md-6">

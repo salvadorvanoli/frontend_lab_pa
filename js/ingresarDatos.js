@@ -3,151 +3,179 @@ document.addEventListener('DOMContentLoaded', function() {
     const buttonCancelar = document.getElementById('button-cancelar');
     const sitioWebInput = document.getElementById('floatingInputSitioWeb');
     const companiaInput = document.getElementById('floatingInputCompania');
+    const nombreInput = document.getElementById('floatingInputNombre');
+    const apellidoInput = document.getElementById('floatingInputApellido');
+    const passwordInput = document.getElementById('floatingPassword');
+    const repeatPasswordInput = document.getElementById('floatingRepeatPassword');
+    const fechaInput = document.getElementById('floatingDate');
 
-    // Habilitar/deshabilitar los campos
+    const errores = {};
+
+    function validarCampoTexto(input, minLength, fieldName) {
+        if (input.value.trim().length < minLength) {
+            errores[fieldName] = `${fieldName} debe tener al menos ${minLength} caracteres.`;
+            input.classList.add('is-invalid');
+        } else {
+            delete errores[fieldName];
+            input.classList.remove('is-invalid');
+        }
+        mostrarErrores();
+    }
+
+    function validarContraseñas() {
+        const contraseña = passwordInput.value;
+        const repetirContraseña = repeatPasswordInput.value;
+
+        if (contraseña.length < 8) {
+            errores['contraseña'] = 'La contraseña debe tener al menos 8 caracteres.';
+            passwordInput.classList.add('is-invalid');
+        } else {
+            delete errores['contraseña'];
+            passwordInput.classList.remove('is-invalid');
+        }
+
+        if (contraseña !== repetirContraseña) {
+            errores['repetirContraseña'] = 'Las contraseñas no coinciden.';
+            repeatPasswordInput.classList.add('is-invalid');
+        } else {
+            delete errores['repetirContraseña'];
+            repeatPasswordInput.classList.remove('is-invalid');
+        }
+
+        mostrarErrores();
+    }
+
+    function validarFecha() {
+        const fechaActual = new Date().toISOString().split('T')[0];
+        if (fechaInput.value > fechaActual) {
+            errores['fecha'] = 'La fecha no puede ser posterior a la actual.';
+            fechaInput.classList.add('is-invalid');
+        } else {
+            delete errores['fecha'];
+            fechaInput.classList.remove('is-invalid');
+        }
+        mostrarErrores();
+    }
+
+    function validarSitioWeb() {
+        const sitioWeb = sitioWebInput.value.trim();
+        if (sitioWeb && !validarUrl(sitioWeb)) {
+            errores['sitioWeb'] = 'La URL del sitio web no es válida. Debe tener exactamente 2 puntos.';
+            sitioWebInput.classList.add('is-invalid');
+        } else {
+            delete errores['sitioWeb'];
+            sitioWebInput.classList.remove('is-invalid');
+        }
+        mostrarErrores();
+    }
+
+    function mostrarErrores() {
+        const errorDiv = document.getElementById('error-mensajes');
+        errorDiv.innerHTML = '';
+        for (let key in errores) {
+            const errorMensaje = document.createElement('p');
+            errorMensaje.textContent = errores[key];
+            errorDiv.appendChild(errorMensaje);
+        }
+    }
+
+    // Validaciones en tiempo real
+    nombreInput.addEventListener('input', function() {
+        validarCampoTexto(nombreInput, 3, 'Nombre');
+    });
+
+    apellidoInput.addEventListener('input', function() {
+        validarCampoTexto(apellidoInput, 3, 'Apellido');
+    });
+
+    passwordInput.addEventListener('input', validarContraseñas);
+    repeatPasswordInput.addEventListener('input', validarContraseñas);
+
+    fechaInput.addEventListener('change', validarFecha);
+    sitioWebInput.addEventListener('input', validarSitioWeb);
+    companiaInput.addEventListener('input', function() {
+        validarCampoTexto(companiaInput, 1, 'Compañía');
+    });
+
+    // Habilitar/deshabilitar los campos según el tipo de usuario
     function toggleInputs() {
         const tipoUsuarioElement = document.querySelector('input[name="tipoUsuario"]:checked');
         const tipoUsuario = tipoUsuarioElement ? tipoUsuarioElement.value : undefined;
 
         if (tipoUsuario === 'Cliente') {
             sitioWebInput.disabled = true; 
-            companiaInput.disabled = true;   
-        } else {
+            companiaInput.disabled = true;
+            sitioWebInput.required = false;
+            companiaInput.required = false;
+            delete errores['sitioWeb'];
+            delete errores['compania'];
+        } else if (tipoUsuario === 'Proveedor') {
             sitioWebInput.disabled = false;
-            companiaInput.disabled = false; 
+            companiaInput.disabled = false;
+            sitioWebInput.required = true;
+            companiaInput.required = true;
+            validarSitioWeb();
         }
+        mostrarErrores();
     }
 
-    const buttonElegirImagen = document.getElementById('buttonElegirImagen');
-    const inputImagen = document.getElementById('inputImagen');
-    const iconoUsuario = document.getElementById('icono-usuario2');
-
-    buttonElegirImagen.onclick = function() {
-        inputImagen.click(); // abrir el selectr de archivos
-    };
-
-    // Para reemplazar el icono con la imagen (queda raro)
-    inputImagen.onchange = function(event) {
-        const archivo = event.target.files[0];
-        if (archivo) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = document.createElement('img');
-                img.src = e.target.result; 
-                img.style.width = '100%'; 
-                img.style.height = '100%'; 
-                img.style.borderRadius = '100%'; 
-                img.style.objectFit = 'cover'; 
-                img.style.display = 'block'; 
-                img.style.margin = 'auto'; 
-                img.style.maxWidth = '150px'; 
-                img.style.maxHeight = '150px'; 
-
-                iconoUsuario.replaceWith(img); 
-            };
-            reader.readAsDataURL(archivo);
-        }
-    };
-
-    // radios de tipo de usuario
     const radios = document.querySelectorAll('input[name="tipoUsuario"]');
     radios.forEach(radio => {
         radio.addEventListener('change', toggleInputs);
     });
 
     toggleInputs();
-
+    
+    // Al hacer clic en registrar
     if (buttonRegistrar) {
         buttonRegistrar.onclick = function() {
-            const nombre = document.getElementById('floatingInputNombre').value.trim();
-            const apellido = document.getElementById('floatingInputApellido').value.trim();
-            const contraseña = document.getElementById('floatingPassword').value;
-            const repetirContraseña = document.getElementById('floatingRepeatPassword').value;
-            const fecha = document.getElementById('floatingDate').value;
-            const sitioWeb = sitioWebInput.value.trim();
-            const compania = companiaInput.value.trim();
-            const credencialesTemp = JSON.parse(localStorage.getItem('credencialesTemp'));
-            const email = credencialesTemp.email;
-            const nickname = credencialesTemp.nickname;
-
-            const tipoUsuarioElement = document.querySelector('input[name="tipoUsuario"]:checked');
-            const tipoUsuario = tipoUsuarioElement ? tipoUsuarioElement.value : undefined;
-
-            if (!nombre || !apellido || !contraseña || !repetirContraseña || !fecha || !tipoUsuario) {
-                alert('Por favor, complete todos los campos requeridos.');
-                return;
-            }
-            if (nombre.length < 3) {
-                alert('El nombre no puede ser menor a 3 caracteres.');
-                return;
-            }
-            if (apellido.length < 3) {
-                alert('El apellido no puede ser menor a 3 caracteres.');
-                return;
-            }
-            if (contraseña.length < 8 || repetirContraseña.length < 8) {
-                alert('La contraseña debe tener como mínimo 8 caracteres.');
-                return;
-            }
-            if (contraseña !== repetirContraseña) {
-                alert('Las contraseñas no coinciden.');
-                return;
-            }
-
-            if (tipoUsuario !== 'Cliente' && sitioWeb && !validarUrl(sitioWeb)) {
-                alert('La URL del sitio web no es válida. Debe tener exactamente 2 puntos.');
-                return;
-            }
-            if (tipoUsuario !== 'Cliente' && !sitioWeb || !compania) {
-                alert('Por favor, complete todos los campos requeridos.');
-                return;
-            }
-
-            const usuario = {
-                nombre: nombre,
-                apellido: apellido,
-                nickname: nickname,
-                email: email,
-                contraseña: contraseña,
-                fecha: fecha,
-                sitioWeb: sitioWeb,
-                compania: compania,
-                tipo: tipoUsuario
-            };
-
-            let usuariosRegistrados = JSON.parse(localStorage.getItem('usuarios')) || [];
+            validarCampoTexto(nombreInput, 3, 'Nombre');
+            validarCampoTexto(apellidoInput, 3, 'Apellido');
+            validarContraseñas();
+            validarFecha();
+            validarSitioWeb();
             
-            usuariosRegistrados.push(usuario); 
+            if (Object.keys(errores).length === 0) {
+                const credencialesTemp = JSON.parse(localStorage.getItem('credencialesTemp'));
+                const email = credencialesTemp.email;
+                const nickname = credencialesTemp.nickname;
 
-            localStorage.setItem('usuarios', JSON.stringify(usuariosRegistrados));
+                const usuario = {
+                    nombre: nombreInput.value.trim(),
+                    apellido: apellidoInput.value.trim(),
+                    nickname: nickname,
+                    email: email,
+                    contraseña: passwordInput.value,
+                    fecha: fechaInput.value,
+                    sitioWeb: sitioWebInput.value.trim() || null,
+                    compania: companiaInput.value.trim() || null,
+                    tipo: document.querySelector('input[name="tipoUsuario"]:checked').value
+                };
 
-            alert('Registro exitoso.');
+                let usuariosRegistrados = JSON.parse(localStorage.getItem('usuarios')) || [];
+                usuariosRegistrados.push(usuario);
+                localStorage.setItem('usuarios', JSON.stringify(usuariosRegistrados));
+
+                alert('Registro exitoso.');
+            } else {
+                alert('Por favor, corrija los errores antes de continuar.');
+            }
         };
-    } else {
-        console.error('El botón de registrar no se encontró.');
     }
-
+    
     // Cancelar
     if (buttonCancelar) {
         buttonCancelar.onclick = function() {
             // Reiniciar los campos
-            document.getElementById('floatingInputNombre').value = '';
-            document.getElementById('floatingInputApellido').value = '';
-            document.getElementById('floatingPassword').value = '';
-            document.getElementById('floatingRepeatPassword').value = '';
-            document.getElementById('floatingDate').value = '';
+            nombreInput.value = '';
+            apellidoInput.value = '';
+            passwordInput.value = '';
+            repeatPasswordInput.value = '';
+            fechaInput.value = '';
             sitioWebInput.value = '';
             companiaInput.value = '';
-
-            // Desmarcar los radio
-            radios.forEach(radio => {
-                radio.checked = false;
-            });
-
-            alert('Registro cancelado.');
+            mostrarErrores();
         };
-    } else {
-        console.error('El botón de cancelar no se encontró.');
     }
 });
 
