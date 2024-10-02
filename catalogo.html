@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo</title>
+    <link href='https://fonts.googleapis.com/css?family=Source Sans 3' rel='stylesheet'> <!-- Importamos la letra -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/catalogo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-md ">
+        <div class="container-fluid text-center">
+            <a class="navbar-brand me-5" href="#">
+                <img src="img/Flamin-Go.webp" alt="Flamin-Go" class="flamin-go-pic">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent"> <!-- d-flex justify-content-around -->
+                <form class="d-flex me-lg-4" role="search">
+                    <input class="form-control me-2 barra-busqueda" type="search" placeholder="Buscar..." aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                </form>
+                <ul class="d-flex align-items-md-center justify-content-between w-75 navbar-nav ms-lg-5 ms-3 me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Catálogo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-circle-user" id="icono-usuario"></i></a>
+                    </li>
+                    <li class="nav-item text-nowrap">
+                        <a class="nav-link px-3" id="carrito-button" href="#"><i class="fa-solid fa-cart-shopping"></i>&nbsp;&nbsp;Carrito</a> <!-- aria-disabled="true" para desactivar -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Ordenar por -->
+    <div class="row container-fluid w-100 justify-content-end align-items-center">
+        <header class="header-1 col align-self-end">
+            <div class="text-center">
+                <select class="select-1">
+                    <option selected value="99">Seleccione Un Filtro (Sin orden)</option>
+                    <option value="1">Ordenar Alfabéticamente (↑)</option>
+                    <option value="2">Ordenar por Precio (↓)</option>
+                    <option value="3">Ordenar por Cantidad de compras (↑)</option>
+                </select>
+            </div>
+        </header>
+    </div>
+    
+
+    <div class="container-fluid w-100">
+        <div class="row">
+
+            <!-- Aside -->
+            <aside class="aside-1 scrolleable col-3 row">
+                <div class="dropdown show col-12 dropdown-div">
+                    <a class="btn btn-secondary dropdown-toggle dropdown-style" href="#" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+                        Dropdown link
+                    </a>
+                    
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <div class="dropdown-item">
+                            <input type="checkbox" value="action1"> Action
+                            <div class="sub-options">
+                                <label>
+                                    <input type="checkbox" value="subaction1"> Subaction 1
+                                </label>
+                                <label>
+                                    <input type="checkbox" value="subaction2"> Subaction 2
+                                </label>
+                            </div>
+                        </div>
+                        <div class="dropdown-item">
+                            <input type="checkbox" value="action2"> Another action
+                            <div class="sub-options">
+                                <label>
+                                    <input type="checkbox" value="subaction3"> Subaction 3
+                                </label>
+                                <label>
+                                    <input type="checkbox" value="subaction4"> Subaction 4
+                                </label>
+                            </div>
+                        </div>
+                        <div class="dropdown-item">
+                            <input type="checkbox" value="action3"> Something else here
+                            <div class="sub-options">
+                                <label>
+                                    <input type="checkbox" value="subaction5"> Subaction 5
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            
+            
+            
+            <!-- Productos -->
+            <main id="prods" class="col-12 col-md">
+                <article id="producto1" class="rectangle-1 row">
+                    <img src="https://i.kym-cdn.com/entries/icons/original/000/036/023/bale-1.jpg" class="col-3 image-1">
+                    <div class="col-9 row todo-lodemas">
+                        <div class="row col-12 item-estrellas" >
+                            <div class="col item-1">Item 1</div>
+                            <div class="col conjunto_estrellas">
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star"></span>
+                                <span class="fa fa-star"></span>
+                            </div>
+                        </div>
+                        <div class="tienda-x col-12">Tienda x</div>
+                        <div class="row col-12 precio-carrito">
+                            <div class="col-6 precio">100</div>
+                            <div class="col carrito fa-solid fa-cart-shopping"></div>
+                        </div>
+                    </div>
+                    
+                </article>
+            </main>
+
+            <!-- Navegacion -->
+            <div class="container-fluid col-12 d-flex justify-content-center">
+                <nav class="navegador" aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                        </li>
+                        <li class="page-item activa">
+                            <a class="page-link navigator-page" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link navigator-page" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link navigator-page" href="#">3</a>
+                        </li>
+                        <li class="page-item ">
+                            <a class="page-link navigator-page" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- footer -->
+            <footer class="row col-12">
+                <br>
+                <br>
+                <br>
+                <hr>
+                <br>
+                <br>
+                <br>
+                <div class="col-4">
+                    <img class="imagen-utec" src="img/utec.webp">
+                
+                    <p class="color-rosa">Calle Dr Evaristo Ciganda 461, 80000 San José de Mayo, Departamento de San José</p>
+                    <p class="color-marron">©Flamin-Go</p>
+                </div>
+                <div class="col-12 col-md footer-segundaParte">
+                    <h6 class="color-marron">Navegar</h6>
+                    <br>
+                    <h6 class="color-rosa">Inicio</h6>                
+                    <h6 class="color-rosa">Catálogo</h6>               
+                    <h6 class="color-rosa">Perfil</h6>
+                    <h6 class="color-rosa">Carrito</h6>
+                </div>
+            </footer>
+        </div>    
+    </div>
+</body>
+<script src="https://kit.fontawesome.com/d795c6c237.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/catalogo.js"></script>
+<script src="js/infoProducto.js"></script>
+<script>
+
+    let productos = [
+        {
+            "nombre": "Zucaritas",
+            "estrellas": 3,
+            "precio": 300,
+            "descripcion": "Muy ricas, sisi muy muy ricas",
+            "id": "777",
+            "categorias": [
+                "Comida",
+                "Dulce",
+                "Cereales"
+            ],
+            "especificacion": [
+                "Cereal dulce de maíz",
+                "0 proteína 100% lípidos",
+                "Totalmente mortal para el cuerpo"
+            ],
+            "imagenes": [
+                "img/Zucaritas.webp"
+            ],
+            "comentarios": [
+                {
+                    "usuario": "Vale20m",
+                    "estrellas": 3,
+                    "comentario": "Una re pija esto 0 proteína",
+                    "foto": "img/Flamin-Go.webp",
+                    "fecha": "04/05/2004",
+                    "respuestas": [
+                        {
+                            "usuario": "kingstolas",
+                            "comentario": "Callate o te tiro un cuchillo",
+                            "foto": "img/Flamin-Go.webp",
+                            "fecha": "05/05/2004"
+                        },
+                        {
+                            "usuario": "Santurio",
+                            "comentario": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                            "foto": "img/Flamin-Go.webp",
+                            "fecha": "01/05/2008"
+                        }
+                    ]
+                },
+                {
+                    "usuario": "BlckDev",
+                    "estrellas": 5,
+                    "comentario": "Mmm q ñicooo",
+                    "foto": "img/Flamin-Go.webp",
+                    "fecha": "20/09/2024",
+                    "respuestas": []
+                }
+            ],
+            "tienda": "Supermercado A",
+            "cantidadCompras": 150 // Agregado para ordenación
+        },
+        {
+            "nombre": "Galletas Oreo",
+            "estrellas": 5,
+            "precio": 250,
+            "descripcion": "Deliciosas galletas de chocolate",
+            "id": "778",
+            "categorias": [
+                "Comida",
+                "Dulce",
+                "Galletas"
+            ],
+            "especificacion": [
+                "Galletas con crema",
+                "0 proteína, 100% placer",
+                "Recomendadas para el snack"
+            ],
+            "imagenes": [
+                "img/oreo.webp",
+                "img/oreo1.webp"
+            ],
+            "comentarios": [],
+            "tienda": "Dulces S.A.",
+            "cantidadCompras": 300 // Agregado para ordenación
+        },
+        {
+            "nombre": "Cereal Integral",
+            "estrellas": 4,
+            "precio": 400,
+            "descripcion": "Cereal nutritivo y delicioso",
+            "id": "779",
+            "categorias": [
+                "Comida",
+                "Saludable",
+                "Cereales"
+            ],
+            "especificacion": [
+                "Alto en fibra",
+                "Bajo en azúcares",
+                "Ideal para el desayuno"
+            ],
+            "imagenes": [
+                "img/cereal.webp",
+                "img/cereal1.webp"
+            ],
+            "comentarios": [],
+            "tienda": "Saludable Ltda.",
+            "cantidadCompras": 80 // Agregado para ordenación
+        },
+        {
+            "nombre": "Chocolate amargo",
+            "estrellas": 4,
+            "precio": 150,
+            "descripcion": "Chocolate de alta calidad",
+            "id": "780",
+            "categorias": [
+                "Comida",
+                "Dulce",
+                "Chocolate"
+            ],
+            "especificacion": [
+                "70% cacao",
+                "Sin azúcares añadidos",
+                "Perfecto para los amantes del chocolate"
+            ],
+            "imagenes": [
+                "img/chocolate.webp",
+                "img/chocolate1.webp"
+            ],
+            "comentarios": [],
+            "tienda": "Chocolatería Premium",
+            "cantidadCompras": 200 // Agregado para ordenación
+        },
+        {
+            "nombre": "Pasta integral",
+            "estrellas": 3,
+            "precio": 200,
+            "descripcion": "Pasta nutritiva y deliciosa",
+            "id": "781",
+            "categorias": [
+                "Comida",
+                "Saludable",
+                "Pasta"
+            ],
+            "especificacion": [
+                "Hecha de trigo integral",
+                "Rica en fibra",
+                "Ideal para una comida saludable"
+            ],
+            "imagenes": [
+                "img/pasta.webp",
+            ],
+            "comentarios": [],
+            "tienda": "Pastas Gourmet",
+            "cantidadCompras": 120 // Agregado para ordenación
+        }
+    ];
+
+
+    // Guardar en localStorage
+    localStorage.setItem('productos', JSON.stringify(productos));
+    alert('Datos guardados en localStorage');
+    
+
+</script>
+</html>
