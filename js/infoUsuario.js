@@ -131,9 +131,9 @@ document.getElementById("ver-orden-btn").addEventListener("click", () => {
     window.location.href = "infoOrdenCompra.html";
 });
 
-if(usuarioActual.tipo == "proveedor"){
+if(usuarioActual.tipo == "Proveedor"){
     document.getElementById("agregar-producto-btn").addEventListener("click", () => {
-        window.location.href = ""; // PONER HTML DE AGREGAR PRODUCTO
+        window.location.href = "registrarProducto.html";
     });
 }
 
