@@ -44,7 +44,7 @@ a.nav-link{
 
 .select-1 {
     float: right;
-	width: 200px;
+	width: 280px;
     height: 32px;
     padding: 4px 8px 4px 8px;
     background: #F7F6F6;
@@ -147,37 +147,41 @@ a.nav-link{
     border-radius: 12px 12px 12px 12px;
 }
 
-.dropdown-div{
+.dropdown-div {
     width: 225px;
     padding: 0px;
 }
 
-.dropdown-style{
+.dropdown-style {
     width: 100%;
     padding: 0px;
     background-color: #E6E6E6;
-    border-color:#E6E6E6;
+    border-color: #E6E6E6;
     border-bottom-color: #000000;
     border-radius: 0%;
     color: #000000;
     text-align: start;
 }
 
-.dropdown-style:hover{
+.dropdown-style:hover {
     background-color: #cecece;
-    border-color:#E6E6E6;
+    border-color: #E6E6E6;
     border-bottom-color: #000000;
     color: #313131;
 }
 
-.dropdown-style:first-child:active{
-    background-color: #b1b0b0;
-    border-color:#E6E6E6;
-    border-bottom-color: #000000;
-    color: #4b4a4a;
+.dropdown-item {
+    position: relative; /* Necesario para posicionar las subopciones */
 }
 
+.sub-options {
+    padding-left: 20px; /* Indentación para las subopciones */
+    display: none; /* Inicialmente ocultar subopciones */
+}
 
+.dropdown-item > input[type="checkbox"]:checked ~ .sub-options {
+    display: block; /* Mostrar subopciones si el checkbox está marcado */
+}
 .image-1 {
     width: 22%;
     height: 90%;
@@ -212,7 +216,7 @@ a.nav-link{
     color: #A45D7F;
     font-family: "Open Sans";
     font-weight: bold;
-    font-size: 50px;
+    font-size: 40px;
     text-align: left;
     float:left;
     padding: 0px;
@@ -339,12 +343,19 @@ a.nav-link{
     border-color: #A45D7F; 
 }
 
-@media (max-width: 971px) {
+@media (max-width: 1207px) {
     
     .conjunto_estrellas{
-        font-size: 18px;
+        font-size: 22px;
     }
     
+}
+
+@media (max-width: 941px) {
+    
+    .conjunto_estrellas{
+        font-size: 17px;
+    }
 }
 
 @media (max-width: 768px) {

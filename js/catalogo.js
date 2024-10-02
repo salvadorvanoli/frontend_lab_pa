@@ -1,7 +1,18 @@
-document.querySelectorAll('.dropdown-item input[type="checkbox"]').forEach(function (checkbox) {
-    checkbox.addEventListener('click', function (e) {
-        e.stopPropagation(); 
+//categorias
+
+// Manejar el cambio de estado de los checkboxes
+document.querySelectorAll('.dropdown-item > input[type="checkbox"]').forEach(checkbox => {
+    checkbox.addEventListener('change', function(event) {
+        const subOptions = this.nextElementSibling; // Obtener el siguiente elemento (sub-opciones)
+        if (subOptions) {
+            subOptions.style.display = this.checked ? 'block' : 'none'; // Mostrar u ocultar subopciones
+        }
     });
+});
+
+// Mantener el dropdown abierto al hacer clic en el toggle
+document.querySelector('.dropdown-toggle').addEventListener('click', function(event) {
+    event.preventDefault(); // Evitar que se cierre al hacer clic
 });
 
 //productoSeleccionado 

@@ -44,11 +44,11 @@
     </nav>
 
     <!-- Ordenar por -->
-    <div class="row container-fluid w-100 padre-header justify-content-end align-items-center">
+    <div class="row container-fluid w-100 justify-content-end align-items-center">
         <header class="header-1 col align-self-end">
             <div class="text-center">
                 <select class="select-1">
-                    <option selected value="99">Seleccione Un Filtro</option>
+                    <option selected value="99">Seleccione Un Filtro (Sin orden)</option>
                     <option value="1">Ordenar Alfabéticamente (↑)</option>
                     <option value="2">Ordenar por Precio (↓)</option>
                     <option value="3">Ordenar por Cantidad de compras (↑)</option>
@@ -64,23 +64,46 @@
             <!-- Aside -->
             <aside class="aside-1 scrolleable col-3 row">
                 <div class="dropdown show col-12 dropdown-div">
-                    <a class="btn btn-secondary dropdown-toggle dropdown-style" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="btn btn-secondary dropdown-toggle dropdown-style" href="#" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false">
                         Dropdown link
                     </a>
-                
+                    
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <label class="dropdown-item">
+                        <div class="dropdown-item">
                             <input type="checkbox" value="action1"> Action
-                        </label>
-                        <label class="dropdown-item">
+                            <div class="sub-options">
+                                <label>
+                                    <input type="checkbox" value="subaction1"> Subaction 1
+                                </label>
+                                <label>
+                                    <input type="checkbox" value="subaction2"> Subaction 2
+                                </label>
+                            </div>
+                        </div>
+                        <div class="dropdown-item">
                             <input type="checkbox" value="action2"> Another action
-                        </label>
-                        <label class="dropdown-item">
+                            <div class="sub-options">
+                                <label>
+                                    <input type="checkbox" value="subaction3"> Subaction 3
+                                </label>
+                                <label>
+                                    <input type="checkbox" value="subaction4"> Subaction 4
+                                </label>
+                            </div>
+                        </div>
+                        <div class="dropdown-item">
                             <input type="checkbox" value="action3"> Something else here
-                        </label>
+                            <div class="sub-options">
+                                <label>
+                                    <input type="checkbox" value="subaction5"> Subaction 5
+                                </label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </aside>
+            
+            
             
             <!-- Productos -->
             <main id="prods" class="col-12 col-md">
