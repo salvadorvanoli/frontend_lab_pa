@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (usuarioActual) {
             alert('Inicio de sesión exitoso!');
-            window.location.href = 'infoUsuario.html';
+            window.location.href = 'menuPrincipal.html';
         } else {
             errorMensajeDiv.textContent = 'Correo electrónico/nickname o contraseña incorrectos.';
             errorMensajeDiv.style.display = 'block';
