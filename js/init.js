@@ -23,7 +23,7 @@ let productos = [
             {
                 "usuario": "Vale20m",
                 "estrellas": 3,
-                "comentario": "Una re pija esto 0 proteína",
+                "comentario": "No me gusta esto 0 proteína",
                 "foto": "/img/Flamin-Go.webp",
                 "fecha": "04/05/2004",
                 "respuestas": [
