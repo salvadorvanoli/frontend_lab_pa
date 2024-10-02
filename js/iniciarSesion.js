@@ -24,3 +24,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const aRegistrarse = document.getElementById('aRegistrarse');
+
+    aRegistrarse.onclick = function() {
+        window.location.href = 'registrar.html';
+    };
+});
