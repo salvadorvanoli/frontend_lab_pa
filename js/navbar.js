@@ -5,3 +5,7 @@ document.getElementById("icono-usuario").addEventListener("click", () => {
         window.location.href = "iniciarSesion.html";
     }
 });
+
+document.getElementById("icono-usuario").addEventListener("hover", () => {
+    
+});

@@ -169,6 +169,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const email = credencialesTemp.email;
                 const nickname = credencialesTemp.nickname;
 
+                let imgInput = document.getElementById("buttonElegirImagen");
+
                 const usuario = {
                     nombre: nombreInput.value.trim(),
                     apellido: apellidoInput.value.trim(),
@@ -178,7 +180,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     fecha: fechaInput.value,
                     sitioWeb: sitioWebInput.value.trim() || null,
                     compania: companiaInput.value.trim() || null,
-                    tipo: document.querySelector('input[name="tipoUsuario"]:checked').value
+                    tipo: document.querySelector('input[name="tipoUsuario"]:checked').value,
+                    img: "img/oreo.webp",
+                    ordenes: [],
+                    productos: []
                 };
 
                 let usuariosRegistrados = JSON.parse(localStorage.getItem('usuarios')) || [];

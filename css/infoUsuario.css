@@ -7,6 +7,10 @@ h1 {
     margin-left: 10%;
 }
 
+input, select {
+    margin: 10px;
+}
+
 #fotoPerfilUsuario {
     width: 200px;
     height: 200px;
