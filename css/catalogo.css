@@ -234,7 +234,7 @@ a.nav-link{
     width: 10%;
 }
 
-.conjunto_estrellas {
+.conjunto_estrellas{
     width: 100%;
     height: 100%;
     float:left;
@@ -295,11 +295,6 @@ a.nav-link{
 
 .color-blanco{
     color: #E6E6E6;
-}
-
-.letra-invisible{
-    visibility: hidden;
-    font-size: 0.25%;
 }
 
 .imagen-utec{
@@ -373,6 +368,7 @@ a.nav-link{
     .rectangle-1{
         height: 80%;
     }
+
 
     /*footer*/
     .footer-segundaParte{
