@@ -255,15 +255,20 @@ a.nav-link{
     justify-content: space-between;
 }
 
-.precio{
+.precio-tag{
     width: 35%;
     height: 85%;
     color: #A45D7F;
     font-family: "DM Sans";
     font-weight: 400;
-    font-size: 60px;
+    font-size: 50px;
     text-align: left;
     padding: 0;
+    margin-right: 50%;
+}
+
+.tag{
+    font-size: 30px;
 }
 
 .carrito{
@@ -275,6 +280,11 @@ a.nav-link{
     margin-top: 18px;
     font-size: 300%;
     text-align: right;
+    justify-content: end;
+}
+
+.carrito:hover{
+    color: #9e5551;
 }
 
 .precio-carrito{
@@ -289,12 +299,16 @@ a.nav-link{
     margin-top: 20px;
 }
 
+.background-rosa{
+    background:#A45D7F ;
+}
+
 .color-rosa{
     color:#A45D7F
 }
 
-.background-rosa{
-    background:#A45D7F ;
+.color-negro{
+    color:#232323;
 }
 
 .color-marron{

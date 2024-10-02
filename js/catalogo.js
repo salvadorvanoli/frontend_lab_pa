@@ -78,19 +78,22 @@ function cargarCatalogo(prod) {
     }
 
     prod.forEach(element => {
-        const nuevoRectangulo = document.createElement("article");
+        const Rectangulo = document.createElement("article");
         const nuevaImagen = document.createElement("img");
-        const nuevoDemas = document.createElement("div");
+        const Demas = document.createElement("div");
 
         const padreItemEstrellas = document.createElement("div");
-        const nuevoTitulo = document.createElement("div");
-        const nuevoConjuntoEstrellas = document.createElement("div");
+        const Titulo = document.createElement("div");
+        const ConjuntoEstrellas = document.createElement("div");
 
         const nuevaTienda = document.createElement("div");
 
         const padrePrecioCarrito = document.createElement("div");
-        const nuevoPrecio = document.createElement("div");
-        const nuevoCarrito = document.createElement("div");
+        const PadrePrecioTag = document.createElement("div");
+        const Precio = document.createElement("div");
+        const Tag = document.createElement("div");
+        const PadreCarrito = document.createElement("div");
+        const Carrito = document.createElement("div");
 
         nuevaImagen.src = element.imagenes[0]; // Cambiado para usar el primer elemento de la lista de imágenes
 
@@ -104,46 +107,62 @@ function cargarCatalogo(prod) {
             } else {
                 star.classList.add("fa", "fa-star");
             }
-            nuevoConjuntoEstrellas.appendChild(star);
+            ConjuntoEstrellas.appendChild(star);
         }
 
         // Agregar contenido al div
-        nuevoTitulo.innerHTML = element.nombre;
-        nuevoPrecio.innerHTML = element.precio;
+        Tag.innerHTML = "$UYU";
+        Titulo.innerHTML = element.nombre;
+        Precio.innerHTML = element.precio;
         nuevaTienda.innerHTML = element.tienda || "Tienda no disponible"; // Asegúrate de que este atributo esté en tu objeto
 
         // Agregar clases o atributos si es necesario
-        nuevoRectangulo.classList.add("rectangle-1", "row");
+        Rectangulo.classList.add("rectangle-1", "row");
 
         nuevaImagen.classList.add("col-3", "image-1");
         
-        nuevoDemas.classList.add("col-9", "row", "todo-lodemas");
+        Demas.classList.add("col-9", "row", "todo-lodemas");
 
         padreItemEstrellas.classList.add("row", "col-12", "item-estrellas");
-        nuevoTitulo.classList.add("col", "item-1");
-        nuevoConjuntoEstrellas.classList.add("col", "conjunto_estrellas");
+        Titulo.classList.add("col", "item-1");
+        ConjuntoEstrellas.classList.add("col", "conjunto_estrellas");
         
         nuevaTienda.classList.add("tienda-x", "col-12");
 
         padrePrecioCarrito.classList.add("row", "col-12", "precio-carrito");
-        nuevoPrecio.classList.add("col-6", "precio");
-        nuevoCarrito.classList.add("col", "carrito", "fa-solid", "fa-cart-shopping");
+        PadrePrecioTag.classList.add("col-10", "precio-tag", "row");
+        Precio.classList.add("col");
+        Tag.classList.add("col", "color-negro","tag");
+        
+        PadreCarrito.classList.add("col-2","row");
+        Carrito.classList.add("col", "carrito", "fa-solid", "fa-cart-shopping");
+
+        Carrito.addEventListener('click', function() {
+            let array = [element]
+            cargarElementosCarrito(array);
+            console.log("se añadio rey"); 
+        });
 
         // Meter los contenedores en el contenedor principal
-        padreItemEstrellas.appendChild(nuevoTitulo);
-        padreItemEstrellas.appendChild(nuevoConjuntoEstrellas);
+        padreItemEstrellas.appendChild(Titulo);
+        padreItemEstrellas.appendChild(ConjuntoEstrellas);
     
-        padrePrecioCarrito.appendChild(nuevoPrecio);
-        padrePrecioCarrito.appendChild(nuevoCarrito);
+        PadreCarrito.appendChild(Carrito);
 
-        nuevoDemas.appendChild(padreItemEstrellas);
-        nuevoDemas.appendChild(nuevaTienda);
-        nuevoDemas.appendChild(padrePrecioCarrito);
+        PadrePrecioTag.appendChild(Precio);
+        PadrePrecioTag.appendChild(Tag)
 
-        nuevoRectangulo.appendChild(nuevaImagen);
-        nuevoRectangulo.appendChild(nuevoDemas);
+        padrePrecioCarrito.appendChild(PadrePrecioTag);
+        padrePrecioCarrito.appendChild(PadreCarrito);
 
-        contenedorPadre.appendChild(nuevoRectangulo);
+        Demas.appendChild(padreItemEstrellas);
+        Demas.appendChild(nuevaTienda);
+        Demas.appendChild(padrePrecioCarrito);
+
+        Rectangulo.appendChild(nuevaImagen);
+        Rectangulo.appendChild(Demas);
+
+        contenedorPadre.appendChild(Rectangulo);
     });
 }
 
@@ -158,3 +177,4 @@ document.querySelector('.select-1').addEventListener('change', function() {
 document.addEventListener("DOMContentLoaded", function() {
     cargarCatalogo(prod);
 });
+
