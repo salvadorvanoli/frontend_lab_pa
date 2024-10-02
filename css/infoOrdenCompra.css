@@ -183,13 +183,13 @@ a.nav-link{
 }
 
 .descripcionProductos {
-    max-width: 100%; /* Asegura que no traspase el contenedor */
-    overflow: hidden; /* Esconde el texto que sobrepasa el contenedor */
+    max-width: 100%;
+    overflow: hidden; 
     text-overflow: ellipsis; /* Muestra "..." al final */
-    display: block; /* Asegura que se comporte como bloque */
-    line-height: 1.5; /* Ajusta la altura de línea */
-    max-height: 3em; /* 2 líneas + un poco de espacio */
-    position: relative; /* Para el pseudo-elemento */
+    display: block; 
+    line-height: 1.5;
+    max-height: 3em;
+    position: relative; 
     font-weight: 400;
     font-size: 14px;
     color: #606060;
@@ -207,17 +207,17 @@ a.nav-link{
 	text-transform: uppercase;
 }
 .descripcionProductos::after {
-    content: '...'; /* Muestra puntos suspensivos */
+    content: '...';
     position: absolute;
-    bottom: 0; /* Coloca el pseudo-elemento en la parte inferior */
-    right: 0; /* Alinea a la derecha */
-    background: white; /* Fondo blanco para que cubra el texto subyacente */
-    padding-left: 4px; /* Espaciado a la izquierda para evitar que se superponga */
+    bottom: 0;
+    right: 0;
+    background: white;
+    padding-left: 4px;
 }
 
 .stepper-container {
     display: flex;
-    flex-direction: column; /* Coloca los elementos en columna */
+    flex-direction: column; 
     background-color: white;
     padding: 10px;
     border-radius: 5px;
