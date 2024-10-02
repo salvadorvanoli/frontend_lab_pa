@@ -56,6 +56,7 @@ a.nav-link{
     margin:auto;
     text-align: center;
     align-items: center;
+	vertical-align: middle;
 }
 
 @media only screen and (max-width: 600px) {
@@ -108,4 +109,8 @@ a.nav-link{
 	font-weight: 500;
 	font-size: 18px;
 	text-align: center;
+}
+
+main {
+	height: 100vh;
 }
