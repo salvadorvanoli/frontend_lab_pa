@@ -557,7 +557,7 @@ form3.addEventListener("submit", function(e) {
                 }
             } else {
                 // formulariosValidos = false;
-                if (mensajeError == ""){
+                if (mensajeError != ""){
                     mensajeError = mensajeError.slice(0, -1);
                     mensajeError += " y en los Detalles del envío.";
                 } else {
