@@ -71,7 +71,6 @@ function cargarCatalogo() {
         nuevoTitulo.classList.add("col", "item-1");
         nuevoConjuntoEstrellas.classList.add("col", "conjunto_estrellas");
         
-        
         nuevaTienda.classList.add("tienda-x", "col-12");
 
         padrePrecioCarrito.classList.add("row", "precio-carrito");
