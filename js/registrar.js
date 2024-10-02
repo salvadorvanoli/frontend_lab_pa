@@ -83,3 +83,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const IniciarSesion = document.getElementById('IniciarSesion');
+
+    IniciarSesion.onclick = function() {
+        window.location.href = 'iniciarSesion.html';
+    };
+});
