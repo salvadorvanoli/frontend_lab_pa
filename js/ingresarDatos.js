@@ -49,8 +49,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function validarFecha() {
         const fechaActual = new Date().toISOString().split('T')[0];
+        
         if (fechaInput.value > fechaActual) {
             errores['fecha'] = 'La fecha no puede ser posterior a la actual.';
+            fechaInput.classList.add('is-invalid');
+        } else if (fechaInput.value == "" || fechaInput.value == null) {
+            errores['fecha'] = 'Se debe ingresar una fecha';
             fechaInput.classList.add('is-invalid');
         } else {
             delete errores['fecha'];
@@ -61,8 +65,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function validarSitioWeb() {
         const sitioWeb = sitioWebInput.value.trim();
-        if (sitioWeb && !validarUrl(sitioWeb)) {
-            errores['sitioWeb'] = 'La URL del sitio web no es válida. Debe tener exactamente 2 puntos.';
+        if (!sitioWeb || !validarUrl(sitioWeb) || ! document.querySelector('input[value="Cliente"]').checked) {
+            errores['sitioWeb'] = 'La URL del sitio web no es válida. Debe tener dos 2 puntos o más.';
             sitioWebInput.classList.add('is-invalid');
         } else {
             delete errores['sitioWeb'];
@@ -129,13 +133,14 @@ document.addEventListener('DOMContentLoaded', function() {
             sitioWebInput.required = false;
             companiaInput.required = false;
             delete errores['sitioWeb'];
-            delete errores['compania'];
+            delete errores['Compañía'];
         } else if (tipoUsuario === 'Proveedor') {
             sitioWebInput.disabled = false;
             companiaInput.disabled = false;
             sitioWebInput.required = true;
             companiaInput.required = true;
             validarSitioWeb();
+            validarCampoTexto(companiaInput, 1, 'Compañía');
         }
         mostrarErrores();
     }
@@ -154,7 +159,10 @@ document.addEventListener('DOMContentLoaded', function() {
             validarCampoTexto(apellidoInput, 3, 'Apellido');
             validarContraseñas();
             validarFecha();
-            validarSitioWeb();
+            if(!document.querySelector('input[value="Cliente"]').checked) {
+                validarSitioWeb();
+                validarCampoTexto(companiaInput, 1, 'Compañía');
+            }
             
             if (Object.keys(errores).length === 0) {
                 const credencialesTemp = JSON.parse(localStorage.getItem('credencialesTemp'));
@@ -239,5 +247,5 @@ document.addEventListener('DOMContentLoaded', function() {
 function validarUrl(url) {
     const regex = /^(https?:\/\/)?[a-zA-Z0-9.-]+(\.[a-zA-Z0-9.-]+){2}([\/\w .-]*)*\/?$/;
     const puntos = (url.match(/\./g) || []).length; 
-    return regex.test(url) && puntos === 2; 
+    return regex.test(url) && puntos >= 2; 
 }
