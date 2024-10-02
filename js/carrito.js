@@ -427,10 +427,13 @@ form2.addEventListener("submit", function(e) {
 
 function agregarOrdenCompra() {
     let idOrden = 0;
-    usuarioActual.ordenes.forEach(orden => {
-        if (idOrden <= orden.id){
-            idOrden = orden.id + 1;
-        }
+    const usuarios = JSON.parse(localStorage.getItem("usuarios"));
+    usuarios.forEach(usuario => {
+        usuario.ordenes.forEach(orden => {
+            if (idOrden <= orden.id){
+                idOrden = orden.id + 1;
+            }
+        });
     });
 
     const fechaActual = new Date().toJSON().slice(0, 10);
