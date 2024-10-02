@@ -91,7 +91,7 @@ function cargarCatalogo(prod) {
         const padrePrecioCarrito = document.createElement("div");
         const PadrePrecioTag = document.createElement("div");
         const Precio = document.createElement("div");
-        const Tag = document.createElement("div");
+        // const Tag = document.createElement("div");
         const PadreCarrito = document.createElement("div");
         const Carrito = document.createElement("div");
 
@@ -111,9 +111,9 @@ function cargarCatalogo(prod) {
         }
 
         // Agregar contenido al div
-        Tag.innerHTML = "$UYU";
+        // Tag.innerHTML = "$UYU";
         Titulo.innerHTML = element.nombre;
-        Precio.innerHTML = element.precio;
+        Precio.innerHTML = "UYU " + element.precio;
         nuevaTienda.innerHTML = element.tienda || "Tienda no disponible"; // Asegúrate de que este atributo esté en tu objeto
 
         // Agregar clases o atributos si es necesario
@@ -132,7 +132,7 @@ function cargarCatalogo(prod) {
         padrePrecioCarrito.classList.add("row", "col-12", "precio-carrito");
         PadrePrecioTag.classList.add("col-10", "precio-tag", "row");
         Precio.classList.add("col");
-        Tag.classList.add("col", "color-negro","tag");
+        // Tag.classList.add("col", "color-negro","tag");
         
         PadreCarrito.classList.add("col-2","row");
         Carrito.classList.add("col", "carrito", "fa-solid", "fa-cart-shopping");
@@ -150,7 +150,7 @@ function cargarCatalogo(prod) {
         PadreCarrito.appendChild(Carrito);
 
         PadrePrecioTag.appendChild(Precio);
-        PadrePrecioTag.appendChild(Tag)
+        // PadrePrecioTag.appendChild(Tag)
 
         padrePrecioCarrito.appendChild(PadrePrecioTag);
         padrePrecioCarrito.appendChild(PadreCarrito);
