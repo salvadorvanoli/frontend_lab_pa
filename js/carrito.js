@@ -427,10 +427,13 @@ form2.addEventListener("submit", function(e) {
 
 function agregarOrdenCompra() {
     let idOrden = 0;
-    usuarioActual.ordenes.forEach(orden => {
-        if (idOrden <= orden.id){
-            idOrden = orden.id + 1;
-        }
+    const usuarios = JSON.parse(localStorage.getItem("usuarios"));
+    usuarios.forEach(usuario => {
+        usuario.ordenes.forEach(orden => {
+            if (idOrden <= orden.id){
+                idOrden = orden.id + 1;
+            }
+        });
     });
 
     const fechaActual = new Date().toJSON().slice(0, 10);
@@ -557,7 +560,7 @@ form3.addEventListener("submit", function(e) {
                 }
             } else {
                 // formulariosValidos = false;
-                if (mensajeError == ""){
+                if (mensajeError != ""){
                     mensajeError = mensajeError.slice(0, -1);
                     mensajeError += " y en los Detalles del envío.";
                 } else {
