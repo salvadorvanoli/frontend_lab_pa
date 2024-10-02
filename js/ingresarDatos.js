@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function validarSitioWeb() {
         const sitioWeb = sitioWebInput.value.trim();
-        if (!sitioWeb || !validarUrl(sitioWeb) || ! document.querySelector('input[value="Cliente"]').checked) {
+        if (!sitioWeb || !validarUrl(sitioWeb) || document.querySelector('input[value="Cliente"]').checked) {
             errores['sitioWeb'] = 'La URL del sitio web no es válida. Debe tener dos 2 puntos o más.';
             sitioWebInput.classList.add('is-invalid');
         } else {
@@ -183,7 +183,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     tipo: document.querySelector('input[name="tipoUsuario"]:checked').value,
                     img: "img/oreo.webp",
                     ordenes: [],
-                    productos: []
+                    productos: [],
+                    id: 0 // A futuro debe traer el id de la base de datos (cantidad de usuarios + 1)
                 };
 
                 let usuariosRegistrados = JSON.parse(localStorage.getItem('usuarios')) || [];

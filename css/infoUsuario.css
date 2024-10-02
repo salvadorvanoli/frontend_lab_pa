@@ -7,7 +7,7 @@ h1 {
     margin-left: 10%;
 }
 
-input, select {
+.formElement {
     margin: 10px;
 }
 
