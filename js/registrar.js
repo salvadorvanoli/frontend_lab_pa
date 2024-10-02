@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return regex.test(email);
     }
 
-    // Verificar si el email ya existe en tiempo real
+    // Verificar email
     emailInput.addEventListener('input', function() {
         const email = emailInput.value.trim();
         const usuariosRegistrados = JSON.parse(localStorage.getItem('usuarios')) || [];
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Verificar si el nickname ya existe en tiempo real
+    // Verificar nickname
     nicknameInput.addEventListener('input', function() {
         const nickname = nicknameInput.value.trim();
         const usuariosRegistrados = JSON.parse(localStorage.getItem('usuarios')) || [];
@@ -46,18 +46,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Manejo del evento onclick para el botón de registrar
     buttonRegistrar.onclick = function() {
         const email = emailInput.value.trim();
         const nickname = nicknameInput.value.trim();
 
-        // Verificar que ambos campos están completos
+
         if (!email || !nickname) {
             alert('Por favor, completa todos los campos.');
             return;
         }
 
-        // Verificar que el email tiene un formato válido
+
         if (!esCorreoValido(email)) {
             alert('Por favor, introduce un correo electrónico válido.');
             emailInput.classList.add('is-invalid');
@@ -66,13 +65,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const usuariosRegistrados = JSON.parse(localStorage.getItem('usuarios')) || [];
 
-        // Verificar si ya existe un usuario con el mismo email o nickname
+
         const usuarioExistente = usuariosRegistrados.find(user => user.email === email || user.nickname === nickname);
 
         if (usuarioExistente) {
             alert('Ya existe un usuario registrado con ese email o nickname.');
         } else {
-            // Guardar las credenciales temporales
+    
             const credencialesTemp = {
                 email: email,
                 nickname: nickname

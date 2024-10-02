@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const repeatPasswordInput = document.getElementById('floatingRepeatPassword');
     const fechaInput = document.getElementById('floatingDate');
 
+    
+    
     const errores = {};
 
     function validarCampoTexto(input, minLength, fieldName) {
@@ -69,11 +71,29 @@ document.addEventListener('DOMContentLoaded', function() {
         mostrarErrores();
     }
 
+    function validarNombreSinNumeros(nombre) {
+        const regex = /\d/; // Verifica si hay dígitos en la cadena
+        return !regex.test(nombre); // Devuelve true si no hay dígitos
+    }
+
+    function validarNombre() {
+        const nombre = nombreInput.value.trim();
+        if (!validarNombreSinNumeros(nombre)) {
+            errores['nombre'] = 'El nombre no puede contener números.';
+            nombreInput.classList.add('is-invalid');
+        } else {
+            delete errores['nombre'];
+            nombreInput.classList.remove('is-invalid');
+        }
+        mostrarErrores();
+    }
+
     function mostrarErrores() {
         const errorDiv = document.getElementById('error-mensajes');
-        errorDiv.innerHTML = '';
+        errorDiv.innerHTML = ''; // Limpiar mensajes anteriores
         for (let key in errores) {
             const errorMensaje = document.createElement('p');
+            errorMensaje.classList.add('text-danger'); // Clase de Bootstrap para texto rojo
             errorMensaje.textContent = errores[key];
             errorDiv.appendChild(errorMensaje);
         }
@@ -82,6 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Validaciones en tiempo real
     nombreInput.addEventListener('input', function() {
         validarCampoTexto(nombreInput, 3, 'Nombre');
+        validarNombre(); // Llamada a la función de validación de números
     });
 
     apellidoInput.addEventListener('input', function() {
@@ -180,6 +201,40 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    const buttonElegirImagen = document.getElementById('buttonElegirImagen');
+    const inputImagen = document.getElementById('inputImagen');
+    const iconoUsuario = document.getElementById('icono-usuario2'); 
+    
+    buttonElegirImagen.onclick = function() {
+        inputImagen.click(); 
+    };
+
+    // 
+    inputImagen.onchange = function(event) {
+        const archivo = event.target.files[0];
+        if (archivo) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                
+                const img = document.createElement('img');
+                img.src = e.target.result; 
+                img.style.width = '100%'; 
+                img.style.height = '100%'; 
+                img.style.borderRadius = '50%'; 
+                img.style.objectFit = 'cover'; 
+                img.style.display = 'block'; 
+                img.style.margin = 'auto'; 
+                img.style.maxWidth = '150px'; 
+                img.style.maxHeight = '150px'; 
+
+                
+                iconoUsuario.replaceWith(img);
+            };
+            reader.readAsDataURL(archivo);
+        }
+    };
+});
 
 function validarUrl(url) {
     const regex = /^(https?:\/\/)?[a-zA-Z0-9.-]+(\.[a-zA-Z0-9.-]+){2}([\/\w .-]*)*\/?$/;
