@@ -201,6 +201,7 @@ a.nav-link{
     width: 75.5%;
     height: 100%;
     padding-right: 0px;
+    padding-bottom: 12px;
 }
 
 .item-estrellas{
@@ -312,10 +313,6 @@ a.nav-link{
 
 .scrolleable{
     overflow-y:scroll;
-}
-
-.footer-segundaParte-{
-    margin-left: 40px;
 }
 
 .navigator-menu{

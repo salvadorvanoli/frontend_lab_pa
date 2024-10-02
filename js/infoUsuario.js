@@ -1,5 +1,45 @@
-let usuarioActual = JSON.parse(localStorage.getItem("usuarioActual")) || usuarios[0];
+let usuarioActual = JSON.parse(localStorage.getItem("usuarioActual")) || null;
 
+if(usuarioActual == null) {
+    window.location.href = "iniciarSesion.html";
+}
+
+if(usuarioActual.tipo == "Proveedor") {
+    document.getElementById("proveedor-section").innerHTML = `
+        <h2>
+            Información Proveedor
+        </h2>
+
+        <div class="container-md container-fluid">
+            <div class="row">
+                <div id="info-proveedor-container">
+                    <div class="form-group d-flex align-items-center">
+                        <div class="mr-2 w-100">
+                            <input type="text" class="form-control" id="inputSitioWeb" placeholder="" disabled>
+                            <input type="text" class="form-control mt-3" id="inputCompañía" placeholder="" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="productos-proveedor-container">
+            
+        </div>
+
+        <div class="container-md container-fluid">
+            <div class="row">
+                <div id="boton-agregar-producto">
+                    <div class="form-group d-flex align-items-center">
+                        <div class="mr-2 w-100">
+                            <button type="button" class="btn btn-primary botonRosado" id="agregar-producto-btn">Agregar producto</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
 
 // Esta función a futuro trae los productos de un proveedor, dado su id, de la base de datos
 function getProductos(id) {
@@ -53,7 +93,7 @@ function cargarDatos() {
         contador++;
     }
 
-    if(usuarioActual.tipo == "proveedor") {
+    if(usuarioActual.tipo == "Proveedor") {
         document.getElementById("inputSitioWeb").value = usuarioActual.web;
         document.getElementById("inputCompañía").value = usuarioActual.empresa;
     }
@@ -199,4 +239,9 @@ document.getElementById("inputFile").addEventListener("change", function(event) 
     } else {
         mostrarAlerta("Por favor, selecciona un archivo de imagen válido (PNG, JPG, JPEG, WEBP).");
     }
+});
+
+document.getElementById("cerrar-sesion").addEventListener("click", () => {
+    localStorage.removeItem("usuarioActual");
+    location.reload();
 });

@@ -109,3 +109,7 @@ a.nav-link{
 	font-size: 18px;
 	text-align: center;
 }
+
+main {
+	height: 100vh;
+}

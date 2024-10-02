@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito</title>
+    <link href='https://fonts.googleapis.com/css?family=Source Sans 3' rel='stylesheet'> <!-- Importamos la letra -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/registrarProducto.css">
+	<link rel="stylesheet" href="styles.css" >
+	<style>
+		
+	
+
+		.dropdown {
+		    position: relative;
+		    display: inline-block;
+		}
+
+		.dropdown-content {
+		    display: none;
+		    position: absolute;
+		    background-color: #a9a9a9; /* Fondo gris */
+		    width: 300px;
+		    z-index: 100; /* Asegura que el menú esté por encima de otros elementos */
+		    border: 1px solid black;
+		    overflow: visible; /* Asegura que el contenido no se oculte si sale del área */
+		}
+
+		.dropdown-content a {
+		    color: black;
+		    padding: 12px 16px;
+		    text-decoration: none;
+		    display: block;
+		}
+
+		
+		.dropdown-content a:hover {
+		    background-color: #f1f1f1;
+		}
+
+	
+		.dropdown:hover .dropdown-content {
+		    display: block;
+		}
+
+		
+		.nested-dropdown {
+		    position: relative;
+		}
+
+		
+		.nested-dropdown-content {
+		    display: none;
+		    position: absolute;
+		    background-color: #f9f9f9;
+		    min-width: 160px;
+		    left: 100%; /* Alinea el submenú a la derecha del elemento padre */
+		    top: 0; /* Comienza desde la parte superior del padre */
+		    z-index: 200; /* Asegura que el submenú esté por encima */
+		}
+
+		
+		.nested-dropdown:hover .nested-dropdown-content {
+		    display: block;
+		}
+
+		
+		.dropbtn {
+		    background-color: #d3d3d3; /* Fondo gris claro */
+		    color: black; /* Color del texto */
+		    padding: 0 40px;
+		    font-size: 14px;
+		    border: 1px solid black;
+		    cursor: pointer;
+		    width: 100%;
+		    height: 30px;
+		    margin: 0;
+		    line-height: 30px;
+		    text-align: left;
+		}
+
+		.dropbtnW {
+		    background-color: white; 
+		    color: black; 
+		    padding: 0 40px; 
+		    font-size: 14px; 
+		    border: 1px solid black;
+		    cursor: pointer;
+		    width: 100%; 
+		    height: 30px; 
+		    margin: 0; 
+		    line-height: 30px;
+		    text-align: left; 
+		}
+
+
+
+	</style>
+	    
+</head>
+	<!-- NAVBAR -->
+	<nav class="navbar navbar-expand-md ms-5 me-5">
+		<div class="container-fluid text-center">
+			<a class="navbar-brand me-5" href="#">
+				<img src="img/Flamin-Go.webp" alt="Flamin-Go" class="flamin-go-pic" onclick="window.location.href='index.html';">
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent"> <!-- d-flex justify-content-around -->
+				<form class="d-flex me-lg-4" role="search">
+					<input class="form-control me-2 barra-busqueda" type="search" placeholder="Buscar..." aria-label="Search">
+					<button class="btn btn-outline-success" type="submit">Buscar</button>
+				</form>
+				<ul class="d-flex align-items-md-center justify-content-between w-75 navbar-nav ms-lg-5 ms-3 me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="catalogo.html">Catálogo</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="infoUsuario.html"><i class="fa-solid fa-circle-user" id="icono-usuario"></i></a>
+					</li>
+					<li class="nav-item text-nowrap">
+						<a class="nav-link px-3" id="carrito-button" href="carrito.html"><i class="fa-solid fa-cart-shopping"></i>&nbsp;&nbsp;Carrito</a> <!-- aria-disabled="true" para desactivar -->
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+  
+	<!--Formulario a llenar-->
+	<div class="container-md container-fluid">
+	    <div class="row">
+	        <div class="col-md-4 col-12 mt-4">
+	            <h2 class="registrar_producto">Registrar producto</h2>
+	        </div>
+	    </div>
+	    <div class="row">
+	        <div class="col-md-4 col-12 mt-2">
+	            <input type="text" id="tituloProducto" class="form-control" placeholder="Título del producto">
+	        </div>
+	        <div class="col-md-4 col-12 mt-2">
+	            <input type="text" id="numeroReferencia" class="form-control" placeholder="Número de referencia">
+	        </div>
+	        <div class="col-md-2 col-12 mt-2">
+	            <input type="text" id="precioProducto" class="form-control" placeholder="Precio ($UY)">
+	        </div>
+	    </div>
+	    <div class="row">
+	       <div class="col-md-8 col-12 mt-2 mt-md-4">
+	            <input type="text" id="descripcionProducto" class="form-control" placeholder="Descripción">
+	        </div>
+	    </div>
+	</div>
+
+				
+		
+		<!-- Especificaciones y selección de producto-->    
+		<div class="container-md container-fluid">
+		    <div class="row">
+		        <!-- Especificaciones Table -->
+				<div class="col-md-8 col-12 mt-4">
+				    <div class="tabla">
+				        <table style="width: 100%; height: 100%; border-collapse: collapse;">
+				            <thead>
+				                <tr>
+				                    <th style="border: 1px solid #C0C0C0; padding: 8px; background-color: #d3d3d3; text-align: center; font-size: 20px;">Especificación</th>
+				                </tr>
+				            </thead>
+				            <tbody>
+				                <tr>
+				                    <td style="border: 1px solid #C0C0C0; padding: 8px;">
+				                        <input type="text" class="form-control" style="border: none; outline: none;"/>
+				                    </td>
+				                </tr>
+				                <tr>
+				                    <td style="border: 1px solid #C0C0C0; padding: 8px;">
+				                        <input type="text" class="form-control" style="border: none; outline: none;"/>
+				                    </td>
+				                </tr>
+				                <tr>
+				                    <td style="border: 1px solid #C0C0C0; padding: 8px;">
+				                        <input type="text" class="form-control" style="border: none; outline: none;"/>
+				                    </td>
+				                </tr>
+				            </tbody>
+				        </table>
+				    </div>
+				</div>
+
+
+		        
+		        <!-- Product Images and Button -->
+				<div class="col-12 col-md-5 col-lg-3 mt-4"> 
+				    
+				        <div class="rectangulo">          
+				            
+
+				        </div>
+				    </div>
+					<div class="row mt-2"> 
+					   <div class="col-md-5 offset-lg-8 col-12 offset-0 d-flex mb-4 mb-lg-0 mt-md-0">
+					        <button class="adjuntar">Adjuntar imagen</button>
+					    </div>
+					</div>
+
+				</div>
+
+
+		    </div>
+		</div>
+
+
+
+
+		<div class="container-md container-fluid">
+		    <div class="row">
+		        <div class="col-md-12">
+		            <h2 class="elegir_categoria">Seleccionar categoría</h2>
+		        </div>
+		    </div>
+		  <div class="row">
+		    <div class="col-md-8 col-12">
+		        <div class="vertical-menu-1">
+		            <div class="row">
+		                <!-- Primera fila dentro de una columna -->
+		                <div class="col-md-12 col-12">
+		                    <div class="row">
+		                        <div class="dropdown">
+		                            <button class="dropbtn" onclick="agregarCategoria('Electrónica')">&#9654; Electrónica</button>
+		                            <div class="dropdown-content">
+		                                <div class="nested-dropdown">
+		                                    <a href="#" onclick="agregarCategoria('Celulares')">&#9654;Celulares</a>
+		                                    <div class="nested-dropdown-content">
+		                                        <a href="#" onclick="agregarCategoria('Iphone')">Iphone</a>
+		                                        <a href="#" onclick="agregarCategoria('Samsung')">Samsung</a>
+		                                        <a href="#" onclick="agregarCategoria('Xiaomi')">Xiaomi</a>
+		                                    </div>
+		                                </div>
+		                                <div class="nested-dropdown">
+		                                    <a href="#" onclick="agregarCategoria('Laptops')">&#9654;Laptops</a>
+		                                    <div class="nested-dropdown-content">
+		                                        <a href="#" onclick="agregarCategoria('Lenovo')">Lenovo</a>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+
+		                <!-- Segunda fila dentro de una columna -->
+		                <div class="col-md-12 col-12">
+		                    <div class="row">
+		                        <div class="dropdown">
+		                            <button class="dropbtn" onclick="agregarCategoria('Moda')">&#9654;Moda</button>
+		                            <div class="dropdown-content">
+		                                <div class="nested-dropdown">
+		                                    <a href="#" onclick="agregarCategoria('Mujer')">&#9654;Vestimenta femenina</a>
+		                                    <div class="nested-dropdown-content">
+		                                        <a href="#" onclick="agregarCategoria('Vestidos')">Vestidos</a>
+		                                        <a href="#" onclick="agregarCategoria('Buzos')">Buzos</a>
+		                                    </div>
+		                                </div>
+		                                <div class="nested-dropdown">
+		                                    <a href="#" onclick="agregarCategoria('Hombre')">&#9654;Vestimenta masculina</a>
+		                                    <div class="nested-dropdown-content">
+		                                        <a href="#" onclick="agregarCategoria('Pantalón')">Pantalón</a>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+
+		                <!-- Tercera fila dentro de una columna -->
+		                <div class="col-md-12 col-12">
+		                    <div class="row">
+		                        <div class="dropdown">
+		                            <button class="dropbtnW" onclick="agregarCategoria('Hogar y cocina')">Hogar y cocina</button>
+		                        </div>
+		                    </div>
+		                </div>
+
+		                <!-- Cuarta fila dentro de una columna -->
+		                <div class="col-md-12 col-12">
+		                    <div class="row">
+		                        <div class="dropdown">
+		                            <button class="dropbtn" onclick="agregarCategoria('Belleza y salud')">&#9654;Belleza y salud</button>
+		                            <div class="dropdown-content">
+		                                <div class="nested-dropdown">
+		                                    <a href="#" onclick="agregarCategoria('Maquillaje')">Maquillaje</a>
+		                                </div>
+		                                <div class="nested-dropdown">
+		                                    <a href="#" onclick="agregarCategoria('Suplementos')">&#9654;Suplementos</a>
+		                                    <div class="nested-dropdown-content">
+		                                        <a href="#" onclick="agregarCategoria('Vitaminas')">Vitaminas</a>
+		                                        <a href="#" onclick="agregarCategoria('Dieta')">Dieta</a>
+		                                    </div>
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+
+		                <!-- Quinta fila dentro de una columna -->
+		                <div class="col-md-12 col-12">
+		                    <div class="row">
+		                        <div class="dropdown">
+		                            <button class="dropbtn" onclick="agregarCategoria('Libros, música y películas')">&#9654;Libros, música y películas</button>
+		                            <div class="dropdown-content">
+		                                <div class="nested-dropdown">
+		                                    <a href="#" onclick="agregarCategoria('Libros')">Libros</a>
+		                                </div>
+		                                <div class="nested-dropdown">
+		                                    <a href="#" onclick="agregarCategoria('Música')">&#9654;Música</a>
+		                                    <div class="nested-dropdown-content">
+		                                        <a href="#" onclick="agregarCategoria('Discos')">Discos</a>
+		                                    </div>
+		                                </div>
+		                                <div class="nested-dropdown">
+		                                    <a href="#" onclick="agregarCategoria('Películas')">Películas</a>
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+
+		                <!-- Sexta fila dentro de una columna -->
+		                <div class="col-md-12 col-12">
+		                    <div class="row">
+		                        <div class="dropdown">
+		                            <button class="dropbtnW" onclick="agregarCategoria('Automotriz')">Automotriz</button>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+			
+			
+			<div class="col-12 col-md-5 col-lg-3 mt-4 mt-lg-0">
+			    <div class="verCategorias">
+			        <ul class="list-group list-group-flush text-start">
+			           
+			        </ul>            
+			    </div>          
+			</div>
+
+
+			
+			
+			
+		  </div>
+		</div>
+		<div class="container-md container-fluid">
+		    <div class="row">
+		       <div class="col-md-12 col-12 mt-md-4 mt-ms-4 mt-4 mt-md-0 mt-sm-0 offset-lg-7">
+				<button class="btn cancelar ms-0 me-5 mb-3 mt-2 mt-md-0 ms-lg-4 mb-md-0">Cancelar</button>
+
+		            <button class="btn registrar  mb-3 mb-md-0" id="registrarProducto">Registrar</button>
+		        </div>
+		    </div>
+		</div>
+
+
+		<script>
+		    // Espera a que el documento esté completamente cargado
+		    document.addEventListener('DOMContentLoaded', function() {
+		        // Selecciona todos los enlaces dentro de .dropdown-content
+		        const links = document.querySelectorAll('.dropdown-content a');
+
+		        links.forEach(link => {
+		            link.addEventListener('click', function(event) {
+		                event.preventDefault(); // Previene que el enlace desplace la página
+		               
+		            });
+		        });
+		    });
+
+		    
+		</script>
+
+
+
+
+	<!-- MODAL -->
+	<div class="modal fade" id="modalCarrito" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <h5 class="modal-title" id="modalTitle">¡Producto agregado con éxito!</h5>
+	            </div>
+	            <div class="modal-body">
+	                <p>¿Qué deseas hacer ahora?</p>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-secondary" onclick="reloadPage()">Agregar otro producto</button>
+	                <button type="button" class="btn btn-primary" onclick="window.location.href='infoProducto.html'">Ver detalles del producto</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+	<script>
+	    function reloadPage() {
+	        location.reload();
+	    }
+
+	    window.onload = function() {
+	        window.scrollTo(0, 0);
+	    };
+	</script>
+
+
+	
+
+	
+	
+	
+	
+</body>
+
+<!-- Cargar Popper.js y Bootstrap -->
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+<!-- Cargar Font Awesome -->
+<script src="https://kit.fontawesome.com/d795c6c237.js" crossorigin="anonymous"></script>
+<script src="js/init.js"></script>
+<!-- Tu script personalizado -->
+<script src="js/registrarProducto.js"></script>
+<script src="js/infoProducto.js"></script>
+<script src="js/iniciarSesion.js"></script>
+</html>
+
