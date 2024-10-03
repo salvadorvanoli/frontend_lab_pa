@@ -76,9 +76,20 @@ let usuarios = [
                 "descripcion": "Muy ricas, sisi muy muy ricas",
                 "id": "777",
                 "categorias": [
-                    "Comida",
-                    "Dulce",
-                    "Cereales"
+                    {
+                        "nombre": "Comida",
+                        "hijas": [
+                            {
+                                "nombre": "Dulce",
+                                "hijas": [
+                                    {
+                                        "nombre": "Cereales",
+                                        "hijas": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
                 ],
                 "especificacion": [
                     "Cereal dulce de maíz",
@@ -119,7 +130,7 @@ let categorias = [
                 "nombre": "Saludable",
                 "hijas": [
                     {
-                        "nombre": "Cereales",
+                        "nombre": "Cereales Fitness",
                         "hijas": []
                     },
                     {
@@ -323,7 +334,7 @@ let productos = [
         "categorias": {
             "Comida": {
                 "Saludable": [
-                    "Cereales"
+                    "Cereales Fitness"
                 ]
             }
         },
