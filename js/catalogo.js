@@ -115,7 +115,7 @@ function cargarCategorias(categorias) {
             const button = document.createElement('button');
             button.classList.add('dropbtn');
             button.innerHTML = `&#9654; ${categoria}`;
-            
+
             dropdownDiv.appendChild(button);
 
             if (subcategorias && Object.keys(subcategorias).length > 0) {
@@ -126,6 +126,9 @@ function cargarCategorias(categorias) {
                     const subcategoriaLink = document.createElement('a');
                     subcategoriaLink.href = "#";
                     subcategoriaLink.innerHTML = `&#9654; ${subcategoria}`;
+                    subcategoriaLink.addEventListener('click', function() {
+                        agregarCategoria(subcategoria, subcategoriaLink); // Cambia esto si necesitas el nombre de la categoría padre
+                    });
 
                     dropdownContent.appendChild(subcategoriaLink);
                 });
