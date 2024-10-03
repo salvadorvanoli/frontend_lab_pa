@@ -254,22 +254,27 @@ function cargarCatalogo(prod) {
 // Escucha el evento de cambio del select
 document.querySelector('.select-1').addEventListener('change', function() {
     let selectedOption = this.value; // Obtener el valor seleccionado
-    // Filtrar productos primero
-    const productosFiltrados = prod.filter(producto => {
-        // Verifica que 'producto.categorias' exista
-        if (!producto.categorias || !producto.categorias.Comida) {
-            console.warn(`El producto ${producto.nombre} no tiene categorías válidas.`);
-            return false; // Excluye productos sin categorías válidas
-        }
 
-        // Extraer las categorías del producto
-        const categoriasProducto = Object.keys(producto.categorias.Comida);
-        
-        // Compara las categorías del producto con las seleccionadas
-        return categoriasSeleccionadas.some(categoriaSeleccionada =>
-            categoriasProducto.includes(categoriaSeleccionada)
-        );
-    });
+    let productosFiltrados = prod; // Asignar todos los productos como predeterminado
+
+    // Filtrar si hay categorías seleccionadas
+    if (categoriasSeleccionadas.length > 0) {
+        productosFiltrados = prod.filter(producto => {
+            // Verifica que 'producto.categorias' exista
+            if (!producto.categorias || !producto.categorias.Comida) {
+                console.warn(`El producto ${producto.nombre} no tiene categorías válidas.`);
+                return false; // Excluye productos sin categorías válidas
+            }
+
+            // Extraer las categorías del producto
+            const categoriasProducto = Object.keys(producto.categorias.Comida);
+            
+            // Compara las categorías del producto con las seleccionadas
+            return categoriasSeleccionadas.some(categoriaSeleccionada =>
+                categoriasProducto.includes(categoriaSeleccionada)
+            );
+        });
+    }
 
     const ordenado = reOrdenar(selectedOption, [...productosFiltrados]); // Ordenar solo los productos filtrados
     cargarCatalogo(ordenado); // Cargar el catálogo después de ordenar
