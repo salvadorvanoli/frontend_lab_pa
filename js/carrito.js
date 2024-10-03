@@ -38,7 +38,7 @@ function manejarCarritoVacio() {
     const texto = document.createElement("div");
     texto.classList.add("text-center", "fs-1", "m-5");
     texto.innerHTML = "No hay productos en el carrito actualmente";
-    document.body.appendChild(texto);
+    document.querySelector("main").appendChild(texto);
 }
 
 function cargarElementosCarrito(array){
@@ -83,12 +83,17 @@ function cargarElementosCarrito(array){
             carrito.appendChild(itemCarrito);
 
             contenedoresSecundarios.forEach(contenedor => {
-
+                let imagen;
                 let itemContenedor = document.createElement("div");
+                if (Array.isArray(element.imagenes)){
+                    imagen = element.imagenes[0];
+                } else {
+                    imagen = element.imagenes;
+                }
                 itemContenedor.innerHTML =
                     `<div class="row my-3 d-flex align-items-center producto-secundario${element.id}">
                         <div class="col-4 d-flex align-items-center justify-content-center">
-                            <img class="w-75" src="${element.imagenes[0]}" alt="Zucaritas">
+                            <img class="w-75" src="${imagen}" alt="Zucaritas">
                         </div>
                         <div class="col-4">
                             <div class="row titulo-producto">
@@ -190,7 +195,7 @@ function eliminarItem(id){
         const texto = document.createElement("div");
         texto.classList.add("text-center", "fs-1", "m-5");
         texto.innerHTML = "No hay productos en el carrito actualmente";
-        document.body.appendChild(texto);
+        document.querySelector("main").appendChild(texto);
     }
 
     localStorage.setItem("carritoActual", JSON.stringify(carritoActual));
@@ -370,7 +375,7 @@ function checkUsuarioActual(){
         const texto = document.createElement("div");
         texto.classList.add("text-center", "fs-1", "m-5");
         texto.innerHTML = "Aún no tienes la sesión iniciada. Serás redirigido a inicio en unos segundos.";
-        document.body.appendChild(texto);
+        document.querySelector("main").appendChild(texto);
         setTimeout(function () {
             window.location.href = "index.html";
         }, 5000);
@@ -426,14 +431,16 @@ form2.addEventListener("submit", function(e) {
 
 
 function agregarOrdenCompra() {
-    let idOrden = 0;
+    let idOrden = 1;
     const usuarios = JSON.parse(localStorage.getItem("usuarios"));
     usuarios.forEach(usuario => {
-        usuario.ordenes.forEach(orden => {
-            if (idOrden <= orden.id){
-                idOrden = orden.id + 1;
-            }
-        });
+        if (usuario.hasOwnProperty("ordenes")){
+            usuario.ordenes.forEach(orden => {
+                if (idOrden <= orden.id){
+                    idOrden = orden.id + 1;
+                }
+            });
+        }
     });
 
     const fechaActual = new Date().toJSON().slice(0, 10);
@@ -488,6 +495,8 @@ function agregarOrdenCompra() {
         // Manejar el pago con PayPal
     }
 
+    carritoActual = JSON.parse(localStorage.getItem("carritoActual"));
+
     const nuevaOrden = {
         "id": idOrden,
         "fecha": fechaActual,
@@ -496,9 +505,20 @@ function agregarOrdenCompra() {
         "formaPago": formaPago
     }
 
+    if (!usuarioActual.hasOwnProperty("ordenes")){
+        usuarioActual.ordenes = [];
+    }
+
     usuarioActual.ordenes.push(nuevaOrden);
 
     localStorage.setItem("usuarioActual", JSON.stringify(usuarioActual));
+    for (let i = 0; i < usuarios.length; i++){
+        if (usuarios[i].nickname == usuarioActual.nickname){
+            usuarios[i] = usuarioActual;
+            break;
+        }
+    }
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
     localStorage.setItem("carritoActual", "[]");
 
 }
@@ -511,7 +531,7 @@ function fechaValida(){
     }
 
     for (let i = 0; i < partesFecha.length; i++){
-        partesFecha[i] = Number.parseInt(partesFecha[i])
+        partesFecha[i] = Number.parseInt(partesFecha[i]);
     }
 
     const date = new Date();
