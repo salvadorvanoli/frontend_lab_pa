@@ -1,4 +1,5 @@
-//const categorias = JSON.parse(localStorage.getItem('categorias')) || [];
+// Asumiendo que las categorías están almacenadas en el localStorage  
+const categor = JSON.parse(localStorage.getItem('categorias')) || [];
 const prod = JSON.parse(localStorage.getItem('productos')) || [];
 
 // Manejar el cambio de estado de las categorías
@@ -23,51 +24,6 @@ document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
     });
 });
 
-// Producto seleccionado
-let producto = document.getElementById("producto1");
-
-producto.addEventListener('click', function() {
-    productoSeleccionado = producto.nombre;
-    cargarProducto();
-});
-
-// Función para reordenar el arreglo de productos
-function reOrdenar(selectedOption, productos) {
-    switch (selectedOption) {
-        case "1":
-            // Ordenar alfabéticamente ascendente por 'nombre'
-            productos.sort(function(a, b) {
-                return a.nombre.toLowerCase().localeCompare(b.nombre.toLowerCase());
-            });
-            break;
-
-        case "2":
-            // Ordenar por precio descendente
-            productos.sort(function(a, b) {
-                return b.precio - a.precio;
-            });
-            break;
-
-        case "3":
-            // Ordenar por cantidad de compras ascendente
-            if (typeof productos[0].cantidadCompras === 'undefined') {
-                break;
-            }
-            productos.sort(function(a, b) {
-                return a.cantidadCompras - b.cantidadCompras;
-            });
-            break;
-
-        case "4":
-            // Implementa más opciones de ordenación si es necesario
-            break;
-
-        default:
-            break;
-    }
-    return productos;
-}
-
 let categoriasSeleccionadas = [];
 
 // Función para manejar la selección de una categoría
@@ -89,38 +45,38 @@ function agregarCategoria(categoria, boton) {
 // Función para filtrar productos por categorías seleccionadas
 function filtrarProductosPorCategoria() {
     // Si no hay categorías seleccionadas, carga todos los productos
-    if (categoriasSeleccionadas.length === 0) {
-        cargarCatalogo(prod);
-        return;
+    let productosFiltrados = prod;
+    if (categoriasSeleccionadas.length > 0) {
+        productosFiltrados = prod.filter(producto => {
+            // Verificar que 'producto.categorias' exista
+            if (!producto.categorias) {
+                console.warn(`El producto ${producto.nombre} no tiene categorías válidas.`);
+                return false; // Excluir productos sin categorías válidas
+            }
+
+            // Verificar si el producto pertenece a alguna de las categorías seleccionadas
+            return categoriasSeleccionadas.some(categoriaSeleccionada => {
+                // Comprobar si el producto tiene la categoría seleccionada o alguna subcategoría
+                return producto.categorias.Comida && 
+                       (producto.categorias.Comida[categoriaSeleccionada] || 
+                       Object.keys(producto.categorias.Comida).some(subcat => 
+                           producto.categorias.Comida[subcat].includes(categoriaSeleccionada)
+                       ));
+            });
+        });
     }
-
-    const productosFiltrados = prod.filter(producto => {
-        // Verifica que 'producto.categorias' exista
-        if (!producto.categorias || !producto.categorias.Comida) {
-            console.warn(`El producto ${producto.nombre} no tiene categorías válidas.`);
-            return false; // Excluye productos sin categorías válidas
-        }
-
-        // Extraer las categorías del producto
-        const categoriasProducto = Object.keys(producto.categorias.Comida);
-        
-        // Compara las categorías del producto con las seleccionadas
-        return categoriasSeleccionadas.some(categoriaSeleccionada =>
-            categoriasProducto.includes(categoriaSeleccionada)
-        );
-    });
 
     cargarCatalogo(productosFiltrados); // Cargar los productos filtrados
 }
 
 // Función para cargar las categorías desde localStorage
-function cargarCategorias(categorias) {
+function cargarCategorias(categor) {
     const contenedorPadre = document.getElementById("aside");
 
     // Limpiar el contenedor de categorías antes de agregar nuevas
     contenedorPadre.innerHTML = '';
 
-    categorias.forEach(categoria => {
+    categor.forEach(categoria => {
         const dropdownDiv = document.createElement('div');
         dropdownDiv.classList.add('dropdown');
 
@@ -138,11 +94,25 @@ function cargarCategorias(categorias) {
             const subcategoriaLink = document.createElement('a');
             subcategoriaLink.href = "#";
             subcategoriaLink.innerHTML = `&#9654; ${subcategoria.nombre}`;
-            subcategoriaLink.addEventListener('click', function() {
-                agregarCategoria(subcategoria.nombre, subcategoriaLink);
+            subcategoriaLink.addEventListener('click', function(event) {
+                event.preventDefault(); // Evitar el comportamiento por defecto del enlace
+                agregarCategoria(subcategoria.nombre, subcategoriaLink); // Seleccionar subcategoría
             });
 
             dropdownContent.appendChild(subcategoriaLink);
+
+            // Manejar subcategorías de subcategorías
+            subcategoria.hijas.forEach(subsubcategoria => {
+                const subsubcategoriaLink = document.createElement('a');
+                subsubcategoriaLink.href = "#";
+                subsubcategoriaLink.innerHTML = `&emsp;&emsp;&#9654; ${subsubcategoria.nombre}`;
+                subsubcategoriaLink.addEventListener('click', function(event) {
+                    event.preventDefault(); // Evitar el comportamiento por defecto del enlace
+                    agregarCategoria(subsubcategoria.nombre, subsubcategoriaLink); // Seleccionar subsubcategoría
+                });
+
+                dropdownContent.appendChild(subsubcategoriaLink);
+            });
         });
 
         dropdownDiv.appendChild(dropdownContent);
@@ -152,18 +122,53 @@ function cargarCategorias(categorias) {
 
 // Llamar a cargarCategorias cuando sea necesario, por ejemplo al cargar la página
 document.addEventListener("DOMContentLoaded", function() {
-    cargarCategorias(categorias);
+    cargarCategorias(categor);
+    cargarCatalogo(prod); // Carga el catálogo inicialmente
+    
+    // Manejar el cambio de ordenamiento
+    document.querySelector('.select-1').addEventListener('change', function() {
+        const ordenSeleccionado = this.value;
+        ordenarProductos(ordenSeleccionado); // Llama a la función de ordenar productos
+    });
 });
 
-// ... (el resto del código sigue igual)
+// Función para ordenar productos
+function ordenarProductos(orden) {
+    let productosFiltrados = prod; // Usar todos los productos inicialmente
 
-function verInfoProducto(id) {
-    for(let item of prod) {
-        if(item.id == id){
-            localStorage.setItem("productoSeleccionado", JSON.stringify(item));
-            window.location.href = "infoProducto.html";
-        }
+    // Filtrar productos por categorías seleccionadas si hay alguna
+    if (categoriasSeleccionadas.length > 0) {
+        productosFiltrados = prod.filter(producto => {
+            // Verificar que 'producto.categorias' exista
+            if (!producto.categorias) {
+                console.warn(`El producto ${producto.nombre} no tiene categorías válidas.`);
+                return false; // Excluir productos sin categorías válidas
+            }
+
+            // Verificar si el producto pertenece a alguna de las categorías seleccionadas
+            return categoriasSeleccionadas.some(categoriaSeleccionada => {
+                // Comprobar si el producto tiene la categoría seleccionada o alguna subcategoría
+                return producto.categorias.Comida && 
+                       (producto.categorias.Comida[categoriaSeleccionada] || 
+                       Object.keys(producto.categorias.Comida).some(subcat => 
+                           producto.categorias.Comida[subcat].includes(categoriaSeleccionada)
+                       ));
+            });
+        });
     }
+
+    // Ordenar los productos según la opción seleccionada
+    if (orden === "1") {
+        productosFiltrados.sort((a, b) => a.precio - b.precio); // Ordenar por precio ascendente
+    } else if (orden === "2") {
+        productosFiltrados.sort((a, b) => b.precio - a.precio); // Ordenar por precio descendente
+    } else if (orden === "3") {
+        productosFiltrados.sort((a, b) => a.nombre.localeCompare(b.nombre)); // Ordenar por nombre ascendente
+    } else if (orden === "4") {
+        productosFiltrados.sort((a, b) => b.nombre.localeCompare(a.nombre)); // Ordenar por nombre descendente
+    }
+
+    cargarCatalogo(productosFiltrados); // Cargar los productos ordenados
 }
 
 // Función para cargar el catálogo
@@ -254,38 +259,3 @@ function cargarCatalogo(prod) {
         contenedorPadre.appendChild(Rectangulo);
     });
 }
-
-// Escucha el evento de cambio del select
-document.querySelector('.select-1').addEventListener('change', function() {
-    let selectedOption = this.value; // Obtener el valor seleccionado
-
-    let productosFiltrados = prod; // Asignar todos los productos como predeterminado
-
-    // Filtrar si hay categorías seleccionadas
-    if (categoriasSeleccionadas.length > 0) {
-        productosFiltrados = prod.filter(producto => {
-            // Verifica que 'producto.categorias' exista
-            if (!producto.categorias || !producto.categorias.Comida) {
-                console.warn(`El producto ${producto.nombre} no tiene categorías válidas.`);
-                return false; // Excluye productos sin categorías válidas
-            }
-
-            // Extraer las categorías del producto
-            const categoriasProducto = Object.keys(producto.categorias.Comida);
-            
-            // Compara las categorías del producto con las seleccionadas
-            return categoriasSeleccionadas.some(categoriaSeleccionada =>
-                categoriasProducto.includes(categoriaSeleccionada)
-            );
-        });
-    }
-
-    const ordenado = reOrdenar(selectedOption, [...productosFiltrados]); // Ordenar solo los productos filtrados
-    cargarCatalogo(ordenado); // Cargar el catálogo después de ordenar
-});
-
-// Cargar el catálogo al cargar la página
-document.addEventListener("DOMContentLoaded", function() {
-    cargarCategorias(categorias);
-    cargarCatalogo(prod); // Carga el catálogo inicialmente
-});
