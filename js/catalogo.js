@@ -1,4 +1,4 @@
-// const categorias = JSON.parse(localStorage.getItem('categorias')) || [];
+//const categorias = JSON.parse(localStorage.getItem('categorias')) || [];
 const prod = JSON.parse(localStorage.getItem('productos')) || [];
 
 // Manejar el cambio de estado de las categorías
@@ -79,7 +79,7 @@ function agregarCategoria(categoria, boton) {
         categoriasSeleccionadas = categoriasSeleccionadas.filter(cat => cat !== categoria);
         boton.classList.remove('categoria-seleccionada'); // Quitar la clase CSS
     }
-    
+
     // Reiniciar la opción de ordenamiento a "99"
     document.querySelector('.select-1').value = "99"; 
 
@@ -88,7 +88,6 @@ function agregarCategoria(categoria, boton) {
 
 // Función para filtrar productos por categorías seleccionadas
 function filtrarProductosPorCategoria() {
-
     // Si no hay categorías seleccionadas, carga todos los productos
     if (categoriasSeleccionadas.length === 0) {
         cargarCatalogo(prod);
@@ -121,27 +120,26 @@ function cargarCategorias(categorias) {
     // Limpiar el contenedor de categorías antes de agregar nuevas
     contenedorPadre.innerHTML = '';
 
-    Object.keys(categorias).forEach(categoria => {
-        const subcategorias = categorias[categoria];
-        
+    categorias.forEach(categoria => {
         const dropdownDiv = document.createElement('div');
         dropdownDiv.classList.add('dropdown');
 
         const button = document.createElement('button');
         button.classList.add('dropbtn');
-        button.innerHTML = `&#9654; ${categoria}`;
+        button.innerHTML = `&#9654; ${categoria.nombre}`;
 
         dropdownDiv.appendChild(button);
 
         const dropdownContent = document.createElement('div');
         dropdownContent.classList.add('dropdown-content');
 
-        Object.keys(subcategorias).forEach(subcategoria => {
+        // Manejar subcategorías
+        categoria.hijas.forEach(subcategoria => {
             const subcategoriaLink = document.createElement('a');
             subcategoriaLink.href = "#";
-            subcategoriaLink.innerHTML = `&#9654; ${subcategoria}`;
+            subcategoriaLink.innerHTML = `&#9654; ${subcategoria.nombre}`;
             subcategoriaLink.addEventListener('click', function() {
-                agregarCategoria(subcategoria, subcategoriaLink);
+                agregarCategoria(subcategoria.nombre, subcategoriaLink);
             });
 
             dropdownContent.appendChild(subcategoriaLink);
@@ -156,6 +154,8 @@ function cargarCategorias(categorias) {
 document.addEventListener("DOMContentLoaded", function() {
     cargarCategorias(categorias);
 });
+
+// ... (el resto del código sigue igual)
 
 function verInfoProducto(id) {
     for(let item of prod) {

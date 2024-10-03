@@ -94,19 +94,44 @@ let usuarios = [
     }
 ]
 
-let categorias = {
-    "Comida": {
-        "Dulce": [
-            "Cereales",
-            "Galletas",
-            "Chocolate"
-        ],
-        "Saludable": [
-            "Cereales",
-            "Pasta"
+let categorias = [
+    {
+        "nombre": "Comida",
+        "hijas": [
+            {
+                "nombre": "Dulce",
+                "hijas": [
+                    {
+                        "nombre": "Cereales",
+                        "hijas": []
+                    },
+                    {
+                        "nombre": "Galletas",
+                        "hijas": []
+                    },
+                    {
+                        "nombre": "Chocolate",
+                        "hijas": []
+                    }
+                ]
+            },
+            {
+                "nombre": "Saludable",
+                "hijas": [
+                    {
+                        "nombre": "Cereales",
+                        "hijas": []
+                    },
+                    {
+                        "nombre": "Pasta",
+                        "hijas": []
+                    }
+                ]
+            }
         ]
     }
-};
+];
+
 
 let productos = [
     {
