@@ -3,10 +3,12 @@ const checkboxes = document.querySelectorAll('.dropdown-item > input[type="check
 if (checkboxes.length > 0) {
     checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', function(event) {
-            const subOptions = this.nextElementSibling; // Obtener el siguiente elemento (sub-opciones)
+            const subOptions = this.nextElementSibling;
             if (subOptions) {
-                subOptions.style.display = this.checked ? 'block' : 'none'; // Mostrar u ocultar subopciones
+                subOptions.style.display = this.checked ? 'block' : 'none';
             }
+            // Llama a filtrar productos después de que se cambie el estado del checkbox
+            agregarCategoria(this.value, this); // Asegúrate de que el valor del checkbox sea la categoría correcta
         });
     });
 }
@@ -74,27 +76,36 @@ const categorias = JSON.parse(localStorage.getItem("categorias")) || [];
 let categoriasSeleccionadas = [];
 
 // Función para manejar la selección de una categoría
+// Función para manejar la selección de una categoría
 function agregarCategoria(categoria, boton) {
     if (!categoriasSeleccionadas.includes(categoria)) {
         categoriasSeleccionadas.push(categoria);
-        boton.classList.add('categoria-seleccionada'); // Marcar como seleccionada
+        boton.classList.add('categoria-seleccionada');
     } else {
         categoriasSeleccionadas = categoriasSeleccionadas.filter(cat => cat !== categoria);
-        boton.classList.remove('categoria-seleccionada'); // Quitar la marca de seleccionada
+        boton.classList.remove('categoria-seleccionada');
     }
-    filtrarProductosPorCategoria(); // Filtrar productos según las categorías seleccionadas
+    filtrarProductosPorCategoria(); // Filtrar productos
 }
 
 // Función para filtrar productos por categorías seleccionadas
 function filtrarProductosPorCategoria() {
+    console.log("Categorías seleccionadas:", categoriasSeleccionadas);
+
     if (categoriasSeleccionadas.length === 0) {
-        cargarCatalogo(prod); // Mostrar todos los productos si no hay categorías seleccionadas
+        cargarCatalogo(prod);
         return;
     }
 
-    const productosFiltrados = prod.filter(producto =>
-        categoriasSeleccionadas.includes(producto.categoria)
-    );
+    const productosFiltrados = prod.filter(producto => {
+        return producto.categorias.some(categoria => 
+            categoriasSeleccionadas.some(categoriaSeleccionada => 
+                categoria.includes(categoriaSeleccionada)
+            )
+        );
+    });
+
+    console.log("Productos filtrados:", productosFiltrados);
     cargarCatalogo(productosFiltrados);
 }
 
@@ -232,7 +243,6 @@ function cargarCatalogo(prod) {
 
         contenedorPadre.appendChild(Rectangulo);
     });
-    cargarCategorias(categorias);
 }
 
 // Escucha el evento de cambio del select
@@ -244,5 +254,6 @@ document.querySelector('.select-1').addEventListener('change', function() {
 
 // Cargar el catálogo al cargar la página
 document.addEventListener("DOMContentLoaded", function() {
-    cargarCatalogo(prod);
+    cargarCategorias(categorias);
+    cargarCatalogo(prod); // Carga el catálogo inicialmente
 });

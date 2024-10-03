@@ -227,35 +227,34 @@
 <script src="js/carrito.js"></script>
 
 <script>
-    
+    /*
     let categorias1 = [
-        {
-            "Comida": {
-                "Dulce": {
-                    "Cereales": [],
-                    "Galletas": [],
-                    "Chocolate": []
-                },
-                "Saludable": {
-                    "Cereales": [],
-                    "Pasta": []
-                },
-                "Salado": [] // Sin subcategorías para "Salado"
-            }
+    {
+        "Comida": {
+            "Dulce": {
+                "Cereales": [],
+                "Galletas": [],
+                "Chocolate": []
+            },
+            "Saludable": {
+                "Cereales": [],
+                "Pasta": []
+            },
+            "Salado": [] // Sin subcategorías para "Salado"
         }
-    ];
+    }];
 
-    let productos = [{
 
+        let productos = [
+        {
             "nombre": "Zucaritas",
             "estrellas": 3,
             "precio": 300,
+            "tienda": "DD Market",
             "descripcion": "Muy ricas, sisi muy muy ricas",
             "id": "777",
             "categorias": [
-                "Comida",
-                "Dulce",
-                "Cereales"
+                "Comida/Dulce/Cereales"
             ],
             "especificacion": [
                 "Cereal dulce de maíz",
@@ -263,16 +262,16 @@
                 "Totalmente mortal para el cuerpo"
             ],
             "imagenes": [
-                "img/Zucaritas.webp",
+                "img/Zucaritas.webp"
             ]
         },
         {
             "nombre": "Cereal Dulce",
-            "categoria": "Cereales",
-            "subcategoria": "Dulce",
+            "categorias": [
+                "Comida/Dulce/Cereales"
+            ],
             "precio": 150,
             "imagenes": [
-                "img/cereal.webp", 
                 "img/cereal1.webp"
             ],
             "estrellas": 4,
@@ -280,8 +279,9 @@
         },
         {
             "nombre": "Oreo",
-            "categoria": "Galletas",
-            "subcategoria": "Dulce",
+            "categorias": [
+                "Comida/Dulce/Galletas"
+            ],
             "precio": 200,
             "imagenes": [
                 "img/oreo.webp", 
@@ -292,8 +292,9 @@
         },
         {
             "nombre": "Pasta Integral",
-            "categoria": "Pasta",
-            "subcategoria": "Saludable",
+            "categorias": [
+                "Comida/Saludable/Pasta"
+            ],
             "precio": 180,
             "imagenes": [
                 "img/pasta.webp"
@@ -303,8 +304,9 @@
         },
         {
             "nombre": "Chocolate Amargo",
-            "categoria": "Chocolate",
-            "subcategoria": "Dulce",
+            "categorias": [
+                "Comida/Dulce/Chocolate"
+            ],
             "precio": 250,
             "imagenes": [
                 "img/chocolate.webp", 
@@ -315,12 +317,12 @@
         },
         {
             "nombre": "Cereal Saludable",
-            "categoria": "Cereales",
-            "subcategoria": "Saludable",
+            "categorias": [
+                "Comida/Saludable/Cereales"
+            ],
             "precio": 220,
             "imagenes": [
-                "img/cereal.webp", 
-                "img/cereal1.webp"
+                "img/cereal.webp"
             ],
             "estrellas": 4,
             "tienda": "Tienda E"
@@ -332,6 +334,8 @@
     localStorage.setItem("productos", JSON.stringify(productos));
     localStorage.setItem("categorias", JSON.stringify(categorias1));
     alert("se cargaron ñe");
+    
+    */
     
 </script>
 
