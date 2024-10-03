@@ -295,6 +295,9 @@ let productos = [
 ];
 
 localStorage.setItem("categorias", JSON.stringify(categorias)); // BORRAR SI SE QUIEREN AGREGAR MÁS
+if(!JSON.parse(localStorage.getItem("productos"))){
+    localStorage.setItem("productos", JSON.stringify(productos));
+}
 
 function mostrarAlerta(mensaje) {
     let alertaExistente = document.getElementById("alerta");
