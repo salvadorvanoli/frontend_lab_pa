@@ -95,71 +95,206 @@ function cargarProducto(){
     }
 }
 
-function cargarComentarios() {
+function obtenerNuevoId() {
+    let maxId = 0;
 
-    let comentarios = "";
+    // Recorre todos los comentarios y respuestas para encontrar el ID más alto
+    productos.forEach(producto => {
+        producto.comentarios.forEach(comentario => {
+            maxId = Math.max(maxId, comentario.id);
+            comentario.respuestas.forEach(respuesta => {
+                maxId = Math.max(maxId, respuesta.id);
+            });
+        });
+    });
 
-    for(let comentario of productoSeleccionado.comentarios) {
+    return maxId + 1;
+}
 
-        let respuestasComentarios = `
-        `;
+function cargarRespuestas(respuestas, nivel = 1, contador) {
+    let respuestasComentarios = "";
 
-        for(let respuesta of comentario.respuestas) {
-            respuestasComentarios += `
-                <div class="carta-comentarios row">
-                    <div class="informacion-usuario col-md-3 col-12">
-                        <img src="${respuesta.foto}" alt="Perfil usuario" class="imagen-usuario">
-                        <div>
-                            <h4>${respuesta.usuario}</h4>
-                            <p class="fecha">${respuesta.fecha}</p>
-                        </div>
+    for (let respuesta of respuestas) {
+        respuestasComentarios += `
+            <div class="carta-comentarios row" style="margin-left: ${nivel * 20}px;">
+                <div class="informacion-usuario col-md-3 col-12">
+                    <img src="${respuesta.foto}" alt="Perfil usuario" class="imagen-usuario">
+                    <div>
+                        <h4>${respuesta.usuario}</h4>
+                        <p class="fecha">${respuesta.fecha}</p>
+                        <button class="btn btn-primary mt-2" onclick="mostrarCajaRespuesta(${contador}, ${respuesta.id})">Responder</button>
                     </div>
-                    <div class="texto-comentario col-md-8 col-12">
-                        ${respuesta.comentario}
-                    </div>
-
                 </div>
-            `;
-        }
-
-        let estrellas = `
+                <div class="texto-comentario col-md-8 col-12">
+                    ${respuesta.comentario}
+                </div>
+            </div>
         `;
 
-        for(let i=0; i<comentario.estrellas; i++) {
+        // Si hay respuestas anidadas, llama recursivamente a cargarRespuestas
+        if (respuesta.respuestas && respuesta.respuestas.length > 0) {
+            respuestasComentarios += cargarRespuestas(respuesta.respuestas, nivel + 1, contador);
+        }
+    }
+
+    return respuestasComentarios;
+}
+
+function mostrarCajaRespuesta(contador, id) {
+    document.getElementById("respuesta" + contador).classList.remove("d-none");
+    document.getElementById("botonesComentario" + contador).innerHTML = `
+        <button class="btn btn-success" onclick="aceptarComentario(${contador}, ${id})">Aceptar</button>
+        <button class="btn btn-danger" onclick="cancelarComentario(${contador})">Cancelar</button>
+    `;
+}
+
+function cancelarComentario(contador) {
+    document.getElementById("respuesta" + contador).classList.add("d-none");
+}
+
+function aceptarComentario(contador, id) {
+    function buscarComentario(comentarios) {
+        for (let comentario of comentarios) {
+            if (comentario.id === id) {
+                return comentario;
+            }
+            let respuestaEncontrada = buscarComentario(comentario.respuestas);
+            if (respuestaEncontrada) {
+                return respuestaEncontrada;
+            }
+        }
+        return null;
+    }
+
+    let usuarioActual = JSON.parse(localStorage.getItem("usuarioActual"));
+    
+    for (let producto of productos) {
+        if (producto.id == productoSeleccionado.id) {
+
+            let comentario = buscarComentario(producto.comentarios);
+            if (comentario) {
+                // Obtenemos la fecha actual
+                const fechaActual = new Date();
+                const dia = String(fechaActual.getDate()).padStart(2, '0'); // Asegura que el día tenga dos dígitos
+                const mes = String(fechaActual.getMonth() + 1).padStart(2, '0'); // +1 porque getMonth() empieza en 0
+                const anio = fechaActual.getFullYear();
+                const fechaFormateada = `${dia}/${mes}/${anio}`;
+                const nuevoComentario = document.getElementById("comentarioInput" + contador).value.trim();
+
+                if (nuevoComentario) {
+                    // Agregamos la nueva respuesta al comentario
+                    comentario.respuestas.push({
+                        usuario: usuarioActual.nombre,
+                        comentario: nuevoComentario,
+                        foto: usuarioActual.img,
+                        fecha: fechaFormateada,
+                        id: obtenerNuevoId(), // Asegúrate de que esta función retorne un ID único
+                        respuestas: []
+                    });
+
+                    // Guardamos los cambios en localStorage
+                    localStorage.setItem("productos", JSON.stringify(productos));
+                    localStorage.setItem("productoSeleccionado", JSON.stringify(producto));
+
+                    // Recargamos la página para mostrar los nuevos comentarios
+                    location.reload();
+                } else {
+                    alert("El comentario no puede estar vacío");
+                }
+            }
+        }
+    }
+}
+
+function cargarComentarios() {
+    let comentarios = "";
+    let contador = 0;
+
+    for (let comentario of productoSeleccionado.comentarios) {
+        let estrellas = "";
+
+        for (let i = 0; i < comentario.estrellas; i++) {
             estrellas += `<i class="fas fa-star" style="color: #7A7A7A;"></i>`;
         }
 
-        for(let i=0; i<(5 - comentario.estrellas); i++){
+        for (let i = 0; i < (5 - comentario.estrellas); i++) {
             estrellas += `<i class="fas fa-star" style="color: #EBEBEB;"></i>`;
         }
 
         comentarios += `
             <div class="comentario-respuesta-container container-md container-fluid">
-                    <div class="carta-comentarios row">
-                        <div class="informacion-usuario col-md-3 col-12">
-                            <img src="img/Flamin-Go.webp" alt="Perfil usuario" class="imagen-usuario">
-                            <div>
-                                <h4>${comentario.usuario}</h4>
-                                <p class="fecha">${comentario.fecha}</p>
-                                <div class="estrellas">
-                                    ${estrellas}
-                                </div>
+                <div class="carta-comentarios row">
+                    <div class="informacion-usuario col-md-3 col-12">
+                        <img src="${comentario.foto}" alt="Perfil usuario" class="imagen-usuario">
+                        <div>
+                            <h4>${comentario.usuario}</h4>
+                            <p class="fecha">${comentario.fecha}</p>
+                            <div class="estrellas">
+                                ${estrellas}
                             </div>
+                            <button class="btn btn-primary mt-2" onclick="mostrarCajaRespuesta(${contador}, ${comentario.id})">Responder</button>
                         </div>
-                        <div class="texto-comentario col-md-8 col-12">
-                            ${comentario.comentario}
-                        </div>
-    
                     </div>
+                    <div class="texto-comentario col-md-8 col-12">
+                        ${comentario.comentario}
+                    </div>
+                </div>
 
-                    <div class="respuestas-comentario">
-                        ${respuestasComentarios}
+                <div class="respuestas-comentario">
+                    ${cargarRespuestas(comentario.respuestas, 1, contador)}
+                </div>
+
+                <div class="caja-comentario card p-3 mt-3 mb-3 d-none" id="respuesta${contador}">
+                    <div class="form-group">
+                        <label for="comentarioInput${contador}">Escribe tu comentario:</label>
+                        <input type="text" class="form-control" id="comentarioInput${contador}" placeholder="Escribe aquí...">
                     </div>
+                    <div class="mt-3" id="botonesComentario${contador}">
+                        <button class="btn btn-success" onclick="aceptarComentario(${contador}, ${comentario.id})">Aceptar</button>
+                        <button class="btn btn-danger" onclick="cancelarComentario(${contador})">Cancelar</button>
+                    </div>
+                </div>
             </div>
         `;
+
+        contador++;
     }
 
     return comentarios;
+}
+
+function agregarComentario(){
+    let texto = document.getElementById("comentarioInput").value;
+    let cantEstrellas = document.getElementById("cantEstrellas").value;
+    let usuarioActual = JSON.parse(localStorage.getItem("usuarioActual"));
+    const fechaActual = new Date();
+    const dia = String(fechaActual.getDate()).padStart(2, '0'); // Asegura que el día tenga dos dígitos
+    const mes = String(fechaActual.getMonth() + 1).padStart(2, '0'); // +1 porque getMonth() empieza en 0
+    const anio = fechaActual.getFullYear();
+    const fechaFormateada = `${dia}/${mes}/${anio}`;
+
+    if(texto == "" || texto == null || texto == undefined) {
+        mostrarAlerta("No se puede agregar un comentario vacío");
+        return;
+    }
+
+    if(cantEstrellas < 0 || cantEstrellas > 5) {
+        mostrarAlerta("La cantidad de estrellas no es válida");
+        return;
+    }
+
+    productoSeleccionado.comentarios.push({
+    usuario: usuarioActual.nombre,
+    comentario: texto,
+    foto: usuarioActual.img,
+    fecha: fechaFormateada,
+    estrellas: cantEstrellas,
+    id: obtenerNuevoId(),
+    respuestas: []});
+
+    localStorage.setItem("productoSeleccionado", JSON.stringify(productoSeleccionado));
+    localStorage.setItem("productos", JSON.stringify());
+    location.reload();
 }
 
 cargarProducto();
