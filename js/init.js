@@ -6,7 +6,7 @@ let productos = [
         "descripcion": "Muy ricas, sisi muy muy ricas",
         "id": "777",
         "categorias": [
-            "Comida",
+            "Comida" ,
             "Dulce",
             "Cereales"
         ],
