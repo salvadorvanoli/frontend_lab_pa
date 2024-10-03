@@ -157,6 +157,15 @@ document.addEventListener("DOMContentLoaded", function() {
     cargarCategorias(categorias);
 });
 
+function verInfoProducto(id) {
+    for(let item of prod) {
+        if(item.id == id){
+            localStorage.setItem("productoSeleccionado", JSON.stringify(item));
+            window.location.href = "infoProducto.html";
+        }
+    }
+}
+
 // Función para cargar el catálogo
 function cargarCatalogo(prod) {
     const contenedorPadre = document.getElementById("prods");
@@ -204,6 +213,9 @@ function cargarCatalogo(prod) {
 
         // Agregar clases o atributos si es necesario
         Rectangulo.classList.add("rectangle-1", "row");
+        Rectangulo.onclick = function() {
+            verInfoProducto(element.id);
+        };
 
         nuevaImagen.classList.add("col-3", "image-1");
         Demas.classList.add("col-9", "row", "todo-lodemas");

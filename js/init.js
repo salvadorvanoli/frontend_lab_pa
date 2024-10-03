@@ -116,13 +116,25 @@ let productos = [
         "tienda": "DD Market",
         "descripcion": "Muy ricas, sisi muy muy ricas",
         "id": "777",
-        "categorias": {
-            "Comida": {
-                "Dulce": [
-                    "Cereales"
+        "categorias": [
+            {
+                "nombre": "Comida",
+                "hijas": [
+                    {
+                        "nombre": "Dulce",
+                        "hijas": [
+                            {
+                                "nombre": "Cereales",
+                                "hijas": []
+                            }
+                        ]
+                    }
                 ]
-            }
-        },
+            },
+            //{
+                //Otra posible categoría
+            //}
+        ],
         "especificacion": [
             "Cereal dulce de maíz",
             "0 proteína 100% lípidos",
