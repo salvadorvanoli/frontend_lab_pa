@@ -153,6 +153,14 @@ function cancelarComentario(contador) {
 }
 
 function aceptarComentario(contador, id) {
+
+    let usuarioActual = JSON.parse(localStorage.getItem("usuarioActual")) || null;
+
+    if(usuarioActual == null || usuarioActual == ""){
+        mostrarAlerta("No se puede escribir un comentario si no se tiene la sesión iniciada");
+        return;
+    }
+
     function buscarComentario(comentarios) {
         for (let comentario of comentarios) {
             if (comentario.id === id) {
@@ -165,8 +173,6 @@ function aceptarComentario(contador, id) {
         }
         return null;
     }
-
-    let usuarioActual = JSON.parse(localStorage.getItem("usuarioActual"));
     
     for (let producto of productos) {
         if (producto.id == productoSeleccionado.id) {
@@ -264,9 +270,15 @@ function cargarComentarios() {
 }
 
 function agregarComentario(){
+    let usuarioActual = JSON.parse(localStorage.getItem("usuarioActual")) || null;
+
+    if(usuarioActual == null || usuarioActual == ""){
+        mostrarAlerta("No se puede escribir un comentario si no se tiene la sesión iniciada");
+        return;
+    }
+
     let texto = document.getElementById("comentarioInput").value;
     let cantEstrellas = document.getElementById("cantEstrellas").value;
-    let usuarioActual = JSON.parse(localStorage.getItem("usuarioActual"));
     const fechaActual = new Date();
     const dia = String(fechaActual.getDate()).padStart(2, '0'); // Asegura que el día tenga dos dígitos
     const mes = String(fechaActual.getMonth() + 1).padStart(2, '0'); // +1 porque getMonth() empieza en 0
@@ -340,3 +352,29 @@ document.getElementById("agregar-al-carrito").addEventListener("click", () => {
 
     localStorage.setItem("carritoActual", JSON.stringify(carritoActual));
 });
+
+function revisarProductoComprado(){
+    let bool = false;
+    let usuarioActual = JSON.parse(localStorage.getItem("usuarioActual")) || null;
+    if(usuarioActual != null){
+        for(let orden of usuarioActual.ordenes){
+            for(let item of orden.productos){
+                if(item.id == productoSeleccionado.id) {
+                    bool = true;
+                }
+            }
+        }
+    }
+    
+    if(!bool){
+        document.getElementById("respuesta").style.display = "none";
+        const botonesResponder = document.querySelectorAll('button.btn.btn-primary.mt-2');
+
+        botonesResponder.forEach(boton => {
+            boton.disabled = true;
+            boton.style.display = "none";
+        });
+    }
+}
+
+revisarProductoComprado();
