@@ -119,3 +119,7 @@ h2 {
     }
 
 }
+
+.contenedor-responsive {
+    overflow: auto;
+}

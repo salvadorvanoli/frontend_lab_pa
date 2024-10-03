@@ -23,21 +23,62 @@ let productos = [
             {
                 "usuario": "Vale20m",
                 "estrellas": 3,
-                "comentario": "Una re pija esto 0 proteína",
+                "comentario": "No me gusta esto 0 proteína",
                 "foto": "/img/Flamin-Go.webp",
                 "fecha": "04/05/2004",
+                "id": 1,
                 "respuestas": [
                     {
                         "usuario": "kingstolas",
                         "comentario": "Callate o te tiro un cuchillo",
                         "foto": "/img/Flamin-Go.webp",
-                        "fecha": "05/05/2004"
+                        "fecha": "05/05/2004",
+                        "id": 2,
+                        "respuestas": [
+                            {
+                                "usuario": "kingstolas",
+                                "comentario": "Callate o te tiro un cuchillo",
+                                "foto": "/img/Flamin-Go.webp",
+                                "fecha": "05/05/2004",
+                                "id": 3,
+                                "respuestas": [
+                                    {
+                                        "usuario": "kingstolas",
+                                        "comentario": "Callate o te tiro un cuchillo",
+                                        "foto": "/img/Flamin-Go.webp",
+                                        "id": 4,
+                                        "fecha": "05/05/2004",
+                                        "respuestas": []
+                                    }
+                                ]
+                            }
+                        ]
                     },
                     {
                         "usuario": "Santurio",
                         "comentario": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                         "foto": "/img/Flamin-Go.webp",
-                        "fecha": "01/05/2008"
+                        "fecha": "01/05/2008",
+                        "id": 5,
+                        "respuestas": [
+                            {
+                                "usuario": "kingstolas",
+                                "comentario": "Callate o te tiro un cuchillo",
+                                "foto": "/img/Flamin-Go.webp",
+                                "fecha": "05/05/2004",
+                                "id": 6,
+                                "respuestas": [
+                                    {
+                                        "usuario": "kingstolas",
+                                        "comentario": "Callate o te tiro un cuchillo",
+                                        "foto": "/img/Flamin-Go.webp",
+                                        "id": 7,
+                                        "fecha": "05/05/2004",
+                                        "respuestas": []
+                                    }
+                                ]
+                            }
+                        ]
                     }
                 ]
             },
@@ -47,6 +88,7 @@ let productos = [
                 "comentario": "Mmm q ñicooo",
                 "foto": "/img/Flamin-Go.webp",
                 "fecha": "20/09/2024",
+                "id": 8,
                 "respuestas": []
             },
         ]

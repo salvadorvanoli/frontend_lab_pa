@@ -15,8 +15,8 @@ if(usuarioActual.tipo == "Proveedor") {
                 <div id="info-proveedor-container">
                     <div class="form-group d-flex align-items-center">
                         <div class="mr-2 w-100">
-                            <input type="text" class="form-control formElement" id="inputSitioWeb" placeholder="" disabled>
-                            <input type="text" class="form-control mt-3 formElement" id="inputCompañía" placeholder="" disabled>
+                            <input type="text" class="form-control" id="inputSitioWeb" placeholder="" disabled>
+                            <input type="text" class="form-control mt-2 mb-2" id="inputCompañía" placeholder="" disabled>
                         </div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@ if(usuarioActual.tipo == "Proveedor") {
                 <div id="boton-agregar-producto">
                     <div class="form-group d-flex align-items-center">
                         <div class="mr-2 w-100">
-                            <button type="button" class="btn btn-primary botonRosado formElement" id="agregar-producto-btn">Agregar producto</button>
+                            <button type="button" class="btn btn-primary botonRosado mt-2" id="agregar-producto-btn">Agregar producto</button>
                         </div>
                     </div>
                 </div>
@@ -44,6 +44,90 @@ if(usuarioActual.tipo == "Proveedor") {
 // Esta función a futuro trae los productos de un proveedor, dado su id, de la base de datos
 function getProductos(id) {
     let productos = [
+        {
+        "nombre": "Zucaritas",
+        "estrellas": 3,
+        "precio": 300,
+        "descripcion": "Muy ricas, sisi muy muy ricas",
+        "id": "777",
+        "categorias": [
+            "Comida",
+            "Dulce",
+            "Cereales"
+        ],
+        "especificacion": [
+            "Cereal dulce de maíz",
+            "0 proteína 100% lípidos",
+            "Totalmente mortal para el cuerpo"
+        ],
+        "imagenes": [
+            "/img/test.jpg",
+            "/img/test.jpg"
+        ]
+        },
+        {
+        "nombre": "Zucaritas",
+        "estrellas": 3,
+        "precio": 300,
+        "descripcion": "Muy ricas, sisi muy muy ricas",
+        "id": "777",
+        "categorias": [
+            "Comida",
+            "Dulce",
+            "Cereales"
+        ],
+        "especificacion": [
+            "Cereal dulce de maíz",
+            "0 proteína 100% lípidos",
+            "Totalmente mortal para el cuerpo"
+        ],
+        "imagenes": [
+            "/img/test.jpg",
+            "/img/test.jpg"
+        ]
+        },
+        {
+        "nombre": "Zucaritas",
+        "estrellas": 3,
+        "precio": 300,
+        "descripcion": "Muy ricas, sisi muy muy ricas",
+        "id": "777",
+        "categorias": [
+            "Comida",
+            "Dulce",
+            "Cereales"
+        ],
+        "especificacion": [
+            "Cereal dulce de maíz",
+            "0 proteína 100% lípidos",
+            "Totalmente mortal para el cuerpo"
+        ],
+        "imagenes": [
+            "/img/test.jpg",
+            "/img/test.jpg"
+        ]
+        },
+        {
+        "nombre": "Zucaritas",
+        "estrellas": 3,
+        "precio": 300,
+        "descripcion": "Muy ricas, sisi muy muy ricas",
+        "id": "777",
+        "categorias": [
+            "Comida",
+            "Dulce",
+            "Cereales"
+        ],
+        "especificacion": [
+            "Cereal dulce de maíz",
+            "0 proteína 100% lípidos",
+            "Totalmente mortal para el cuerpo"
+        ],
+        "imagenes": [
+            "/img/test.jpg",
+            "/img/test.jpg"
+        ]
+        },
         {
         "nombre": "Zucaritas",
         "estrellas": 3,
@@ -108,8 +192,8 @@ function cargarDatos() {
                         </div>
                         <div class="col-md-8 col-12">
                             <div>
-                                <h4>${producto.nombre}</h4>
-                                <p class="">${producto.descripcion}</p>
+                                <h4 class="titulo-producto">${producto.nombre}</h4>
+                                <p class="descripcion-producto">${producto.descripcion}</p>
                                 <div class="precio-producto">
                                     $${producto.precio}
                                 </div>
