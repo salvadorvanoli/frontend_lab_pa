@@ -1,100 +1,3 @@
-let productos = [
-    {
-        "nombre": "Zucaritas",
-        "estrellas": 3,
-        "precio": 300,
-        "descripcion": "Muy ricas, sisi muy muy ricas",
-        "id": "777",
-        "categorias": [
-            "Comida" ,
-            "Dulce",
-            "Cereales"
-        ],
-        "especificaciones": [
-            "Cereal dulce de maíz",
-            "0 proteína 100% lípidos",
-            "Totalmente mortal para el cuerpo"
-        ],
-        "imagenes": [
-            "/img/test.jpg",
-            "/img/test.jpg"
-        ],
-        "comentarios": [
-            {
-                "usuario": "Vale20m",
-                "estrellas": 3,
-                "comentario": "No me gusta esto 0 proteína",
-                "foto": "/img/Flamin-Go.webp",
-                "fecha": "04/05/2004",
-                "id": 1,
-                "respuestas": [
-                    {
-                        "usuario": "kingstolas",
-                        "comentario": "Callate o te tiro un cuchillo",
-                        "foto": "/img/Flamin-Go.webp",
-                        "fecha": "05/05/2004",
-                        "id": 2,
-                        "respuestas": [
-                            {
-                                "usuario": "kingstolas",
-                                "comentario": "Callate o te tiro un cuchillo",
-                                "foto": "/img/Flamin-Go.webp",
-                                "fecha": "05/05/2004",
-                                "id": 3,
-                                "respuestas": [
-                                    {
-                                        "usuario": "kingstolas",
-                                        "comentario": "Callate o te tiro un cuchillo",
-                                        "foto": "/img/Flamin-Go.webp",
-                                        "id": 4,
-                                        "fecha": "05/05/2004",
-                                        "respuestas": []
-                                    }
-                                ]
-                            }
-                        ]
-                    },
-                    {
-                        "usuario": "Santurio",
-                        "comentario": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "foto": "/img/Flamin-Go.webp",
-                        "fecha": "01/05/2008",
-                        "id": 5,
-                        "respuestas": [
-                            {
-                                "usuario": "kingstolas",
-                                "comentario": "Callate o te tiro un cuchillo",
-                                "foto": "/img/Flamin-Go.webp",
-                                "fecha": "05/05/2004",
-                                "id": 6,
-                                "respuestas": [
-                                    {
-                                        "usuario": "kingstolas",
-                                        "comentario": "Callate o te tiro un cuchillo",
-                                        "foto": "/img/Flamin-Go.webp",
-                                        "id": 7,
-                                        "fecha": "05/05/2004",
-                                        "respuestas": []
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            {
-                "usuario": "BlckDev",
-                "estrellas": 5,
-                "comentario": "Mmm q ñicooo",
-                "foto": "/img/Flamin-Go.webp",
-                "fecha": "20/09/2024",
-                "id": 8,
-                "respuestas": []
-            },
-        ]
-    }
-];
-
 let usuarios = [
     {
         "nombre": "Salvador",
@@ -190,6 +93,223 @@ let usuarios = [
         ]
     }
 ]
+
+let categorias = {
+    "Comida": {
+        "Dulce": [
+            "Cereales",
+            "Galletas",
+            "Chocolate"
+        ],
+        "Saludable": [
+            "Cereales",
+            "Pasta"
+        ]
+    }
+};
+
+let productos = [
+    {
+        "nombre": "Zucaritas",
+        "estrellas": 3,
+        "precio": 300,
+        "tienda": "DD Market",
+        "descripcion": "Muy ricas, sisi muy muy ricas",
+        "id": "777",
+        "categorias": [
+            {
+                "nombre": "Comida",
+                "hijas": [
+                    {
+                        "nombre": "Dulce",
+                        "hijas": [
+                            {
+                                "nombre": "Cereales",
+                                "hijas": []
+                            }
+                        ]
+                    }
+                ]
+            },
+            //{
+                //Otra posible categoría
+            //}
+        ],
+        "especificacion": [
+            "Cereal dulce de maíz",
+            "0 proteína 100% lípidos",
+            "Totalmente mortal para el cuerpo"
+        ],
+        "imagenes": [
+            "img/Zucaritas.webp"
+        ],
+        "comentarios": [
+            {
+                "usuario": "Vale20m",
+                "estrellas": 3,
+                "comentario": "No me gusta esto 0 proteína",
+                "foto": "/img/Flamin-Go.webp",
+                "fecha": "04/05/2004",
+                "id": 1,
+                "respuestas": [
+                    {
+                        "usuario": "kingstolas",
+                        "comentario": "Callate o te tiro un cuchillo",
+                        "foto": "/img/Flamin-Go.webp",
+                        "fecha": "05/05/2004",
+                        "id": 2,
+                        "respuestas": [
+                            {
+                                "usuario": "kingstolas",
+                                "comentario": "Callate o te tiro un cuchillo",
+                                "foto": "/img/Flamin-Go.webp",
+                                "fecha": "05/05/2004",
+                                "id": 3,
+                                "respuestas": [
+                                    {
+                                        "usuario": "kingstolas",
+                                        "comentario": "Callate o te tiro un cuchillo",
+                                        "foto": "/img/Flamin-Go.webp",
+                                        "id": 4,
+                                        "fecha": "05/05/2004",
+                                        "respuestas": []
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "usuario": "Santurio",
+                        "comentario": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "foto": "/img/Flamin-Go.webp",
+                        "fecha": "01/05/2008",
+                        "id": 5,
+                        "respuestas": [
+                            {
+                                "usuario": "kingstolas",
+                                "comentario": "Callate o te tiro un cuchillo",
+                                "foto": "/img/Flamin-Go.webp",
+                                "fecha": "05/05/2004",
+                                "id": 6,
+                                "respuestas": [
+                                    {
+                                        "usuario": "kingstolas",
+                                        "comentario": "Callate o te tiro un cuchillo",
+                                        "foto": "/img/Flamin-Go.webp",
+                                        "id": 7,
+                                        "fecha": "05/05/2004",
+                                        "respuestas": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "usuario": "BlckDev",
+                "estrellas": 5,
+                "comentario": "Mmm q ñicooo",
+                "foto": "/img/Flamin-Go.webp",
+                "fecha": "20/09/2024",
+                "id": 8,
+                "respuestas": []
+            },
+        ]
+    },
+    {
+        "nombre": "Cereal Dulce",
+        "categorias": {
+            "Comida": {
+                "Dulce": [
+                    "Cereales"
+                ]
+            },
+        },
+        "precio": 150,
+        "imagenes": [
+            "img/cereal1.webp"
+        ],
+        "estrellas": 4,
+        "tienda": "Tienda A",
+        "comentarios": []
+    },
+    {
+        "nombre": "Oreo",
+        "categorias": {
+            "Comida": {
+                "Dulce": [
+                    "Galletas"
+                ]
+            },
+        },
+        "precio": 200,
+        "imagenes": [
+            "img/oreo.webp", 
+            "img/oreo1.webp"
+        ],
+        "estrellas": 5,
+        "tienda": "Tienda B",
+        "comentarios": []
+    },
+    {
+        "nombre": "Pasta Integral",
+        "categorias": {
+            "Comida": {
+                "Saludable": [
+                    "Pasta"
+                ]
+            },
+        },
+        "precio": 180,
+        "imagenes": [
+            "img/pasta.webp"
+        ],
+        "estrellas": 3,
+        "tienda": "Tienda C",
+        "comentarios": []
+    },
+    {
+        "nombre": "Chocolate Amargo",
+        "categorias": {
+            "Comida": {
+                "Dulce": [
+                    "Chocolate"
+                ]
+            },
+        },
+        "precio": 250,
+        "imagenes": [
+            "img/chocolate.webp", 
+            "img/chocolate1.webp"
+        ],
+        "estrellas": 5,
+        "tienda": "Tienda D",
+        "comentarios": []
+    },
+    {
+        "nombre": "Cereal Saludable",
+        "categorias": {
+            "Comida": {
+                "Saludable": [
+                    "Cereales"
+                ]
+            },
+        },
+        "precio": 220,
+        "imagenes": [
+            "img/cereal.webp"
+        ],
+        "estrellas": 4,
+        "tienda": "Tienda E",
+        "comentarios": []
+    }
+];
+
+localStorage.setItem("categorias", JSON.stringify(categorias)); // BORRAR SI SE QUIEREN AGREGAR MÁS
+if(!JSON.parse(localStorage.getItem("productos"))){
+    localStorage.setItem("productos", JSON.stringify(productos));
+}
 
 function mostrarAlerta(mensaje) {
     let alertaExistente = document.getElementById("alerta");

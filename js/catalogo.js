@@ -1,4 +1,4 @@
-const categorias = JSON.parse(localStorage.getItem('categorias')) || [];
+// const categorias = JSON.parse(localStorage.getItem('categorias')) || [];
 const prod = JSON.parse(localStorage.getItem('productos')) || [];
 
 // Manejar el cambio de estado de las categorías
@@ -39,7 +39,6 @@ function reOrdenar(selectedOption, productos) {
             productos.sort(function(a, b) {
                 return a.nombre.toLowerCase().localeCompare(b.nombre.toLowerCase());
             });
-            console.log('Ordenado alfabéticamente (ascendente)');
             break;
 
         case "2":
@@ -47,19 +46,16 @@ function reOrdenar(selectedOption, productos) {
             productos.sort(function(a, b) {
                 return b.precio - a.precio;
             });
-            console.log('Ordenado por precio (descendente)');
             break;
 
         case "3":
             // Ordenar por cantidad de compras ascendente
             if (typeof productos[0].cantidadCompras === 'undefined') {
-                console.log('La propiedad cantidadCompras no existe en los productos.');
                 break;
             }
             productos.sort(function(a, b) {
                 return a.cantidadCompras - b.cantidadCompras;
             });
-            console.log('Ordenado por cantidad de compras (ascendente)');
             break;
 
         case "4":
@@ -67,7 +63,6 @@ function reOrdenar(selectedOption, productos) {
             break;
 
         default:
-            console.log('Opción no válida');
             break;
     }
     return productos;
@@ -93,7 +88,6 @@ function agregarCategoria(categoria, boton) {
 
 // Función para filtrar productos por categorías seleccionadas
 function filtrarProductosPorCategoria() {
-    console.log("Categorías seleccionadas:", categoriasSeleccionadas);
 
     // Si no hay categorías seleccionadas, carga todos los productos
     if (categoriasSeleccionadas.length === 0) {
@@ -117,7 +111,6 @@ function filtrarProductosPorCategoria() {
         );
     });
 
-    console.log("Productos filtrados:", productosFiltrados);
     cargarCatalogo(productosFiltrados); // Cargar los productos filtrados
 }
 
@@ -163,6 +156,15 @@ function cargarCategorias(categorias) {
 document.addEventListener("DOMContentLoaded", function() {
     cargarCategorias(categorias);
 });
+
+function verInfoProducto(id) {
+    for(let item of prod) {
+        if(item.id == id){
+            localStorage.setItem("productoSeleccionado", JSON.stringify(item));
+            window.location.href = "infoProducto.html";
+        }
+    }
+}
 
 // Función para cargar el catálogo
 function cargarCatalogo(prod) {
@@ -211,6 +213,9 @@ function cargarCatalogo(prod) {
 
         // Agregar clases o atributos si es necesario
         Rectangulo.classList.add("rectangle-1", "row");
+        Rectangulo.onclick = function() {
+            verInfoProducto(element.id);
+        };
 
         nuevaImagen.classList.add("col-3", "image-1");
         Demas.classList.add("col-9", "row", "todo-lodemas");
@@ -229,7 +234,6 @@ function cargarCatalogo(prod) {
         Carrito.addEventListener('click', function() {
             let array = [element];
             cargarElementosCarrito(array);
-            console.log("se añadio rey");
         });
 
         // Meter los contenedores en el contenedor principal
