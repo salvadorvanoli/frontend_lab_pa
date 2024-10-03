@@ -255,20 +255,16 @@ a.nav-link{
     justify-content: space-between;
 }
 
-.precio-tag{
+.precio{
     width: 35%;
     height: 85%;
-    color: #A45D7F;
+    color: #444444;
     font-family: "DM Sans";
     font-weight: 400;
-    font-size: 50px;
+    font-size: 40px;
     text-align: left;
     padding: 0;
     margin-right: 50%;
-}
-
-.tag{
-    font-size: 30px;
 }
 
 .carrito{
@@ -357,12 +353,21 @@ a.nav-link{
     border-color: #A45D7F; 
 }
 
-@media (max-width: 1207px) {
+.categoria-seleccionada {
+    background-color: #B8635F; /* Fondo verde para categoría seleccionada */
+    color: white; /* Texto en blanco */
+}
+
+
+@media (max-width: 1233px) {
     
     .conjunto_estrellas{
         font-size: 22px;
     }
     
+    .precio{
+        font-size: 30px
+    }
 }
 
 @media (max-width: 941px) {
@@ -383,7 +388,7 @@ a.nav-link{
     }
 
     .precio{
-        font-size: 40px;
+        font-size: 26px;
     }
 
     .carrito{
