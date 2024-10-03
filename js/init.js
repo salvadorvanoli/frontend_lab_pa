@@ -10,7 +10,7 @@ let productos = [
             "Dulce",
             "Cereales"
         ],
-        "especificacion": [
+        "especificaciones": [
             "Cereal dulce de maíz",
             "0 proteína 100% lípidos",
             "Totalmente mortal para el cuerpo"

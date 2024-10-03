@@ -189,6 +189,9 @@ document.querySelector('.registrar').addEventListener('click', function() {
     // Agregar el nuevo producto a la lista de productos
 	productos.unshift({ ...nuevoProducto });
 	localStorage.setItem('productoSeleccionado', JSON.stringify(nuevoProducto));
+
+    localStorage.setItem("productos", JSON.stringify(productos));
+
     // Construir el mensaje de éxito
     let mensajeExito = `<strong>Resumen</strong><br>`;
     mensajeExito += `Nombre: ${nuevoProducto.nombre}<br>`;

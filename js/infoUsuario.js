@@ -1,4 +1,4 @@
-let usuarioActual = JSON.parse(localStorage.getItem("usuarioActual")) || null;
+let usuarioActual = JSON.parse(localStorage.getItem("usuarioActual")) || null; // En un futuro la información se traerá del backend
 
 if(usuarioActual == null) {
     window.location.href = "iniciarSesion.html";
@@ -15,8 +15,8 @@ if(usuarioActual.tipo == "Proveedor") {
                 <div id="info-proveedor-container">
                     <div class="form-group d-flex align-items-center">
                         <div class="mr-2 w-100">
-                            <input type="text" class="form-control" id="inputSitioWeb" placeholder="" disabled>
-                            <input type="text" class="form-control mt-3" id="inputCompañía" placeholder="" disabled>
+                            <input type="text" class="form-control formElement" id="inputSitioWeb" placeholder="" disabled>
+                            <input type="text" class="form-control mt-3 formElement" id="inputCompañía" placeholder="" disabled>
                         </div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@ if(usuarioActual.tipo == "Proveedor") {
                 <div id="boton-agregar-producto">
                     <div class="form-group d-flex align-items-center">
                         <div class="mr-2 w-100">
-                            <button type="button" class="btn btn-primary botonRosado" id="agregar-producto-btn">Agregar producto</button>
+                            <button type="button" class="btn btn-primary botonRosado formElement" id="agregar-producto-btn">Agregar producto</button>
                         </div>
                     </div>
                 </div>
@@ -94,31 +94,31 @@ function cargarDatos() {
     }
 
     if(usuarioActual.tipo == "Proveedor") {
-        document.getElementById("inputSitioWeb").value = usuarioActual.web;
-        document.getElementById("inputCompañía").value = usuarioActual.empresa;
-    }
+        document.getElementById("inputSitioWeb").value = usuarioActual.sitioWeb;
+        document.getElementById("inputCompañía").value = usuarioActual.compania;
 
-    let productos = getProductos(usuarioActual.id);
+        let productos = getProductos(usuarioActual.id);
 
-    for(let producto of usuarioActual.productos){
-        document.getElementById("productos-proveedor-container").innerHTML += `
-            <div class="container-md container-fluid product-card">
-                <div class="row">
-                    <div class="col-md-3 col-12">
-                        <img src="${producto.imagenes[0]}" alt="Imagen producto" class="img-producto">
-                    </div>
-                    <div class="col-md-8 col-12">
-                        <div>
-                            <h4>${producto.nombre}</h4>
-                            <p class="">${producto.descripcion}</p>
-                            <div class="precio-producto">
-                                $${producto.precio}
+        for(let producto of productos){
+            document.getElementById("productos-proveedor-container").innerHTML += `
+                <div class="container-md container-fluid product-card">
+                    <div class="row">
+                        <div class="col-md-3 col-12">
+                            <img src="${producto.imagenes[0]}" alt="Imagen producto" class="img-producto">
+                        </div>
+                        <div class="col-md-8 col-12">
+                            <div>
+                                <h4>${producto.nombre}</h4>
+                                <p class="">${producto.descripcion}</p>
+                                <div class="precio-producto">
+                                    $${producto.precio}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-        </div>
-    `;
+            </div>
+        `;
+        }
     }
 }
 
@@ -127,13 +127,13 @@ cargarDatos();
 // Eventos para los botones de ver orden de compra y agregar producto
 
 document.getElementById("ver-orden-btn").addEventListener("click", () => {
-    localStorage.setItem("ordenParaVisualizar", JSON.stringify(document.getElementById("selectOrdenes").value || 0))
-    window.location.href = ""; // PONER HTML DE VER ORDEN
+    localStorage.setItem("ordenParaVisualizar", JSON.stringify(document.getElementById("selectOrdenes").value || "0"))
+    window.location.href = "infoOrdenCompra.html";
 });
 
-if(usuarioActual.tipo == "proveedor"){
+if(usuarioActual.tipo == "Proveedor"){
     document.getElementById("agregar-producto-btn").addEventListener("click", () => {
-        window.location.href = ""; // PONER HTML DE AGREGAR PRODUCTO
+        window.location.href = "registrarProducto.html";
     });
 }
 

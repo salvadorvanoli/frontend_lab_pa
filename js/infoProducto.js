@@ -36,7 +36,7 @@ function cargarProducto(){
     let htmlToInsert = `
         <ul>
     `;
-    for(let especificacion of productoSeleccionado.especificacion) {
+    for(let especificacion of productoSeleccionado.especificaciones) {
         htmlToInsert += `
             <li>${especificacion}</li>
         `;
@@ -77,10 +77,22 @@ function cargarProducto(){
         contador++;
     }
 
+    if(productoSeleccionado.imagenes.length == 0) {
+        document.getElementById("imgCarousel").style.display = "none";
+        document.getElementById("informacion-producto-container").classList.remove("col-md-6");
+        document.getElementById("informacion-producto-container").classList.add("col-md-12");
+        document.getElementById("numero-producto").style.textAlign = "left";
+    }
+
     // Comentarios
     let comentarios = cargarComentarios() || "";
-    document.getElementById("comentarios-container").innerHTML = comentarios;
-
+    if(comentarios == "") {
+        document.getElementById("comentarios-container").innerHTML = `
+        <div style="text-align:center;color:red;font-weight:bolder;"> Este producto aún no tiene comentarios </div>
+        `;
+    } else {
+        document.getElementById("comentarios-container").innerHTML = comentarios;
+    }
 }
 
 function cargarComentarios() {
