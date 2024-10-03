@@ -129,6 +129,15 @@ let categorias = [
                 ]
             }
         ]
+    },
+    {
+        "nombre": "Bebida",
+        "hijas": [
+            {
+                "nombre": "Alcohólica",
+                "hijas": []
+            }
+        ]
     }
 ];
 
@@ -155,10 +164,7 @@ let productos = [
                         ]
                     }
                 ]
-            },
-            //{
-                //Otra posible categoría
-            //}
+            }
         ],
         "especificacion": [
             "Cereal dulce de maíz",
@@ -239,7 +245,7 @@ let productos = [
                 "fecha": "20/09/2024",
                 "id": 8,
                 "respuestas": []
-            },
+            }
         ]
     },
     {
@@ -249,13 +255,13 @@ let productos = [
                 "Dulce": [
                     "Cereales"
                 ]
-            },
+            }
         },
         "precio": 150,
         "imagenes": [
             "img/cereal1.webp"
         ],
-        "estrellas": 4,
+        "estrellas": 1,
         "tienda": "Tienda A",
         "comentarios": []
     },
@@ -266,11 +272,11 @@ let productos = [
                 "Dulce": [
                     "Galletas"
                 ]
-            },
+            }
         },
         "precio": 200,
         "imagenes": [
-            "img/oreo.webp", 
+            "img/oreo.webp",
             "img/oreo1.webp"
         ],
         "estrellas": 5,
@@ -284,7 +290,7 @@ let productos = [
                 "Saludable": [
                     "Pasta"
                 ]
-            },
+            }
         },
         "precio": 180,
         "imagenes": [
@@ -301,11 +307,11 @@ let productos = [
                 "Dulce": [
                     "Chocolate"
                 ]
-            },
+            }
         },
         "precio": 250,
         "imagenes": [
-            "img/chocolate.webp", 
+            "img/chocolate.webp",
             "img/chocolate1.webp"
         ],
         "estrellas": 5,
@@ -319,7 +325,7 @@ let productos = [
                 "Saludable": [
                     "Cereales"
                 ]
-            },
+            }
         },
         "precio": 220,
         "imagenes": [
@@ -328,9 +334,57 @@ let productos = [
         "estrellas": 4,
         "tienda": "Tienda E",
         "comentarios": []
+    },
+    {
+        "nombre": "Cerveza Artesanal",
+        "estrellas": 4,
+        "precio": 450,
+        "tienda": "Bebidas y Más",
+        "descripcion": "Cerveza artesanal elaborada con ingredientes naturales, sabor intenso y cuerpo robusto.",
+        "id": "888",
+        "categorias": [
+            {
+                "nombre": "Bebida",
+                "hijas": [
+                    {
+                        "nombre": "Alcohólica",
+                        "hijas": []
+                    }
+                ]
+            }
+        ],
+        "especificacion": [
+            "500ml de cerveza artesanal",
+            "5% de alcohol por volumen",
+            "Ideal para disfrutar en reuniones"
+        ],
+        "imagenes": [
+            "img/cerveza_artesanal.webp"
+        ],
+        "comentarios": [
+            {
+                "usuario": "OttoOcta12",
+                "estrellas": 5,
+                "comentario": "¡La mejor cerveza que he probado!",
+                "foto": "/img/cerveza1.webp",
+                "fecha": "15/09/2024",
+                "id": 1,
+                "respuestas": []
+            },
+            {
+                "usuario": "Bellardo",
+                "estrellas": 4,
+                "comentario": "Sabor excelente, aunque un poco caro.",
+                "foto": "/img/cerveza2.webp",
+                "fecha": "16/09/2024",
+                "id": 2,
+                "respuestas": []
+            }
+        ]
     }
 ];
 
+localStorage.setItem("productos", JSON.stringify(productos));
 localStorage.setItem("categorias", JSON.stringify(categorias)); // BORRAR SI SE QUIEREN AGREGAR MÁS
 if(!JSON.parse(localStorage.getItem("productos"))){
     localStorage.setItem("productos", JSON.stringify(productos));

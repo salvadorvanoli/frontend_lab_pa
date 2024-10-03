@@ -354,7 +354,12 @@ a.nav-link{
 }
 
 .categoria-seleccionada {
-    background-color: #B8635F; /* Fondo verde para categoría seleccionada */
+    background-color: #198754; /* Fondo verde para categoría seleccionada */
+    color: white; /* Texto en blanco */
+}
+
+.categoria-seleccionada:hover{
+    background-color: #11643e; /* Fondo verde para categoría seleccionada */
     color: white; /* Texto en blanco */
 }
 
@@ -383,7 +388,7 @@ a.nav-link{
 
 
 .dropdown-content a:hover {
-    background-color: #f1f1f1;
+    background-color: #838282;
 }
 
 
