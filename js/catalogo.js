@@ -171,6 +171,15 @@ function ordenarProductos(orden) {
     cargarCatalogo(productosFiltrados); // Cargar los productos ordenados
 }
 
+function verInfoProducto(id) {
+    for(let item of prod) {
+        if(item.id == id){
+            localStorage.setItem("productoSeleccionado", JSON.stringify(item));
+            window.location.href = "infoProducto.html";
+        }
+    }
+}
+
 // Función para cargar el catálogo
 function cargarCatalogo(prod) {
     const contenedorPadre = document.getElementById("prods");

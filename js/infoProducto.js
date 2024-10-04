@@ -1,7 +1,18 @@
 let productoSeleccionado = JSON.parse(localStorage.getItem("productoSeleccionado")) || productos[0];
 
-// Lógica para cargar el producto en la página
 
+function obtenerCategorias(categoria) {
+    let nombres = categoria.nombre;
+    if (categoria.hijos && categoria.hijos.length > 0) {
+        for (let i = 0; i < categoria.hijos.length; i++) {
+            // Si no es el último hijo, añadir el símbolo '>' entre las categorías
+            nombres += " > " + obtenerCategorias(categoria.hijos[i]);
+        }
+    }
+    return nombres;
+}
+
+// Lógica para cargar el producto en la página
 function cargarProducto(){
     // Nombre del producto
     document.getElementById("nombre-producto").innerHTML = productoSeleccionado.nombre;
@@ -25,18 +36,27 @@ function cargarProducto(){
     document.getElementById("numero-producto").innerHTML = "Identificador del producto: " + productoSeleccionado.id;
 
     // Categorías
+    // Inicializa la cadena de categorías
     let categoriasDelProducto = "Categorías: ";
-    for(let categoria of productoSeleccionado.categorias) {
-        categoriasDelProducto += categoria + ", ";
+
+    // Recorre todas las categorías principales del producto
+    for (let categoria of productoSeleccionado.categorias) {
+        categoriasDelProducto += obtenerCategorias(categoria) + ", ";
     }
-    categoriasDelProducto = categoriasDelProducto.slice(0, -2);
-    document.getElementById("categorias-container").innerHTML = categoriasDelProducto;
+
+    // Elimina la última coma y espacio
+    if (categoriasDelProducto.endsWith(", ")) {
+        categoriasDelProducto = categoriasDelProducto.slice(0, -2);
+    }
+
+    // Actualiza el contenedor en el DOM
+    document.getElementById("categorias-container").innerText = categoriasDelProducto;
 
     // Especificaciones
     let htmlToInsert = `
         <ul>
     `;
-    for(let especificacion of productoSeleccionado.especificaciones) {
+    for(let especificacion of productoSeleccionado.especificacion) {
         htmlToInsert += `
             <li>${especificacion}</li>
         `;

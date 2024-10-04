@@ -159,28 +159,23 @@ let productos = [
         "estrellas": 3,
         "precio": 300,
         "tienda": "DD Market",
-        "descripcion": "Muy ricas, sisi muy muy ricas",
+        "descripcion": "Cereal dulce y crujiente con mucha azúcar, ideal para empezar el día con energía.",
         "id": "777",
         "categorias": [
             {
                 "nombre": "Comida",
-                "hijas": [
+                "hijos": [
                     {
                         "nombre": "Dulce",
-                        "hijas": [
+                        "hijos": [
                             {
                                 "nombre": "Cereales",
-                                "hijas": []
+                                "hijos": []
                             }
                         ]
                     }
                 ]
             }
-        ],
-        "especificacion": [
-            "Cereal dulce de maíz",
-            "0 proteína 100% lípidos",
-            "Totalmente mortal para el cuerpo"
         ],
         "imagenes": [
             "img/Zucaritas.webp"
@@ -219,32 +214,6 @@ let productos = [
                                 ]
                             }
                         ]
-                    },
-                    {
-                        "usuario": "Santurio",
-                        "comentario": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                        "foto": "/img/Flamin-Go.webp",
-                        "fecha": "01/05/2008",
-                        "id": 5,
-                        "respuestas": [
-                            {
-                                "usuario": "kingstolas",
-                                "comentario": "Callate o te tiro un cuchillo",
-                                "foto": "/img/Flamin-Go.webp",
-                                "fecha": "05/05/2004",
-                                "id": 6,
-                                "respuestas": [
-                                    {
-                                        "usuario": "kingstolas",
-                                        "comentario": "Callate o te tiro un cuchillo",
-                                        "foto": "/img/Flamin-Go.webp",
-                                        "id": 7,
-                                        "fecha": "05/05/2004",
-                                        "respuestas": []
-                                    }
-                                ]
-                            }
-                        ]
                     }
                 ]
             },
@@ -257,94 +226,179 @@ let productos = [
                 "id": 8,
                 "respuestas": []
             }
+        ],
+        "especificacion": [
+            "Mucha azúcar",
+            "Para desayunar",
+            "Poco saludable"
         ]
     },
     {
         "nombre": "Cereal Dulce",
-        "categorias": {
-            "Comida": {
-                "Dulce": [
-                    "Cereales"
+        "estrellas": 1,
+        "precio": 150,
+        "tienda": "Tienda A",
+        "descripcion": "Cereal con sabor dulce para los amantes del azúcar. Ideal para el desayuno.",
+        "id": "778",
+        "categorias": [
+            {
+                "nombre": "Comida",
+                "hijos": [
+                    {
+                        "nombre": "Dulce",
+                        "hijos": [
+                            {
+                                "nombre": "Cereales",
+                                "hijos": []
+                            }
+                        ]
+                    }
                 ]
             }
-        },
-        "precio": 150,
+        ],
         "imagenes": [
             "img/cereal1.webp"
         ],
-        "estrellas": 1,
-        "tienda": "Tienda A",
-        "comentarios": []
+        "comentarios": [],
+        "especificacion": [
+            "Dulce al paladar",
+            "Ideal para desayuno",
+            "Contiene gluten"
+        ]
     },
     {
         "nombre": "Oreo",
-        "categorias": {
-            "Comida": {
-                "Dulce": [
-                    "Galletas"
+        "estrellas": 5,
+        "precio": 200,
+        "tienda": "Tienda B",
+        "descripcion": "Galletas de chocolate con un relleno cremoso, perfectas para acompañar con leche.",
+        "id": "779",
+        "categorias": [
+            {
+                "nombre": "Comida",
+                "hijos": [
+                    {
+                        "nombre": "Dulce",
+                        "hijos": [
+                            {
+                                "nombre": "Galletas",
+                                "hijos": []
+                            }
+                        ]
+                    }
                 ]
             }
-        },
-        "precio": 200,
+        ],
         "imagenes": [
             "img/oreo.webp",
             "img/oreo1.webp"
         ],
-        "estrellas": 5,
-        "tienda": "Tienda B",
-        "comentarios": []
+        "comentarios": [],
+        "especificacion": [
+            "Sabor chocolate intenso",
+            "Relleno cremoso",
+            "Perfecto para postre"
+        ]
     },
     {
         "nombre": "Pasta Integral",
-        "categorias": {
-            "Comida": {
-                "Saludable": [
-                    "Pasta"
+        "estrellas": 3,
+        "precio": 180,
+        "tienda": "Tienda C",
+        "descripcion": "Pasta hecha con harina integral, ideal para una alimentación saludable.",
+        "id": "780",
+        "categorias": [
+            {
+                "nombre": "Comida",
+                "hijos": [
+                    {
+                        "nombre": "Saludable",
+                        "hijos": [
+                            {
+                                "nombre": "Pasta",
+                                "hijos": []
+                            }
+                        ]
+                    }
                 ]
             }
-        },
-        "precio": 180,
+        ],
         "imagenes": [
             "img/pasta.webp"
         ],
-        "estrellas": 3,
-        "tienda": "Tienda C",
-        "comentarios": []
+        "comentarios": [],
+        "especificacion": [
+            "Alta en fibra",
+            "Baja en calorías",
+            "Ideal para dietas"
+        ]
     },
     {
         "nombre": "Chocolate Amargo",
-        "categorias": {
-            "Comida": {
-                "Dulce": [
-                    "Chocolate"
+        "estrellas": 5,
+        "precio": 250,
+        "tienda": "Tienda D",
+        "descripcion": "Chocolate con alto contenido de cacao, perfecto para quienes prefieren un sabor intenso.",
+        "id": "781",
+        "categorias": [
+            {
+                "nombre": "Comida",
+                "hijos": [
+                    {
+                        "nombre": "Dulce",
+                        "hijos": [
+                            {
+                                "nombre": "Chocolate",
+                                "hijos": []
+                            }
+                        ]
+                    }
                 ]
             }
-        },
-        "precio": 250,
+        ],
         "imagenes": [
             "img/chocolate.webp",
             "img/chocolate1.webp"
         ],
-        "estrellas": 5,
-        "tienda": "Tienda D",
-        "comentarios": []
+        "comentarios": [],
+        "especificacion": [
+            "Alto en cacao",
+            "Poco azúcar",
+            "Apto para veganos"
+        ]
     },
     {
         "nombre": "Cereal Saludable",
-        "categorias": {
-            "Comida": {
-                "Saludable": [
-                    "Cereales Fitness"
+        "estrellas": 4,
+        "precio": 220,
+        "tienda": "Tienda E",
+        "descripcion": "Cereal bajo en azúcar y alto en fibra, ideal para quienes cuidan su alimentación.",
+        "id": "782",
+        "categorias": [
+            {
+                "nombre": "Comida",
+                "hijos": [
+                    {
+                        "nombre": "Saludable",
+                        "hijos": [
+                            {
+                                "nombre": "Cereales Fitness",
+                                "hijos": []
+                            }
+                        ]
+                    }
                 ]
             }
-        },
-        "precio": 220,
+        ],
         "imagenes": [
             "img/cereal.webp"
         ],
-        "estrellas": 4,
-        "tienda": "Tienda E",
-        "comentarios": []
+        "comentarios": [],
+        "especificacion": [
+            "Bajo en azúcar",
+            "Alto en fibra",
+            "Ideal para dietas"
+        ]
     },
     {
         "nombre": "Cerveza Artesanal",
@@ -356,18 +410,13 @@ let productos = [
         "categorias": [
             {
                 "nombre": "Bebida",
-                "hijas": [
+                "hijos": [
                     {
                         "nombre": "Alcohólica",
-                        "hijas": []
+                        "hijos": []
                     }
                 ]
             }
-        ],
-        "especificacion": [
-            "500ml de cerveza artesanal",
-            "5% de alcohol por volumen",
-            "Ideal para disfrutar en reuniones"
         ],
         "imagenes": [
             "img/cerveza_artesanal.webp"
@@ -391,6 +440,11 @@ let productos = [
                 "id": 2,
                 "respuestas": []
             }
+        ],
+        "especificacion": [
+            "500ml de cerveza artesanal",
+            "5% de alcohol por volumen",
+            "Sabor fuerte y robusto"
         ]
     }
 ];

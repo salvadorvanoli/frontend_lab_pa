@@ -32,4 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
     aRegistrarse.onclick = function() {
         window.location.href = 'registrar.html';
     };
+
+    document.getElementById("cancelarBtn").addEventListener("click", () => {
+        window.location.href = "index.html";
+    });
 });
