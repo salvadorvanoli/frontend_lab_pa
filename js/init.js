@@ -231,7 +231,8 @@ let productos = [
             "Mucha azúcar",
             "Para desayunar",
             "Poco saludable"
-        ]
+        ],
+        "cantCompras": 250
     },
     {
         "nombre": "Cereal Dulce",
@@ -264,7 +265,8 @@ let productos = [
             "Dulce al paladar",
             "Ideal para desayuno",
             "Contiene gluten"
-        ]
+        ],
+        "cantCompras": 100
     },
     {
         "nombre": "Oreo",
@@ -298,7 +300,8 @@ let productos = [
             "Sabor chocolate intenso",
             "Relleno cremoso",
             "Perfecto para postre"
-        ]
+        ],
+        "cantCompras": 500
     },
     {
         "nombre": "Pasta Integral",
@@ -331,7 +334,8 @@ let productos = [
             "Alta en fibra",
             "Baja en calorías",
             "Ideal para dietas"
-        ]
+        ],
+        "cantCompras": 150
     },
     {
         "nombre": "Chocolate Amargo",
@@ -365,7 +369,8 @@ let productos = [
             "Alto en cacao",
             "Poco azúcar",
             "Apto para veganos"
-        ]
+        ],
+        "cantCompras": 300
     },
     {
         "nombre": "Cereal Saludable",
@@ -398,7 +403,8 @@ let productos = [
             "Bajo en azúcar",
             "Alto en fibra",
             "Ideal para dietas"
-        ]
+        ],
+        "cantCompras": 400
     },
     {
         "nombre": "Cerveza Artesanal",
@@ -445,9 +451,11 @@ let productos = [
             "500ml de cerveza artesanal",
             "5% de alcohol por volumen",
             "Sabor fuerte y robusto"
-        ]
+        ],
+        "cantCompras": 50
     }
 ];
+
 
 localStorage.setItem("productos", JSON.stringify(productos));
 localStorage.setItem("categorias", JSON.stringify(categorias)); // BORRAR SI SE QUIEREN AGREGAR MÁS

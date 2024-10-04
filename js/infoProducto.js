@@ -142,7 +142,7 @@ function cargarRespuestas(respuestas, nivel = 1, contador) {
                     <div>
                         <h4>${respuesta.usuario}</h4>
                         <p class="fecha">${respuesta.fecha}</p>
-                        <button class="btn btn-primary mt-2" onclick="mostrarCajaRespuesta(${contador}, ${respuesta.id})">Responder</button>
+                        <button class="btn btn-success mt-2" onclick="mostrarCajaRespuesta(${contador}, ${respuesta.id})">Responder</button>
                     </div>
                 </div>
                 <div class="texto-comentario col-md-8 col-12">
@@ -258,7 +258,7 @@ function cargarComentarios() {
                             <div class="estrellas">
                                 ${estrellas}
                             </div>
-                            <button class="btn btn-primary mt-2" onclick="mostrarCajaRespuesta(${contador}, ${comentario.id})">Responder</button>
+                            <button class="btn btn-success mt-2" onclick="mostrarCajaRespuesta(${contador}, ${comentario.id})">Responder</button>
                         </div>
                     </div>
                     <div class="texto-comentario col-md-8 col-12">

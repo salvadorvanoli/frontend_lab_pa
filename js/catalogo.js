@@ -166,11 +166,14 @@ function ordenarProductos(orden) {
         productosFiltrados.sort((a, b) => a.nombre.localeCompare(b.nombre)); // Ordenar por nombre ascendente
     } else if (orden === "4") {
         productosFiltrados.sort((a, b) => b.nombre.localeCompare(a.nombre)); // Ordenar por nombre descendente
+    } else if (orden === "5") {
+        productosFiltrados.sort((a, b) => a.cantCompras - b.cantCompras); // Ordenar por cantidad de compras ascendente
+    } else if (orden === "6") {
+        productosFiltrados.sort((a, b) => b.cantCompras - a.cantCompras); // Ordenar por cantidad de compras descendente
     }
 
     cargarCatalogo(productosFiltrados); // Cargar los productos ordenados
 }
-
 function verInfoProducto(id) {
     for(let item of prod) {
         if(item.id == id){
