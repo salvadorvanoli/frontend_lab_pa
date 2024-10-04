@@ -18,7 +18,7 @@ const encabezado3 = document.querySelector("#encabezado3");
 const seccion3 = document.querySelector("#seccion3");
 
 
-function modificarTextos(array, text){
+function modificarTextos(array, text) {
     array.forEach(item => {
         item.textContent = text;
     });
@@ -41,7 +41,20 @@ function manejarCarritoVacio() {
     document.querySelector("main").appendChild(texto);
 }
 
-function cargarElementosCarrito(array){
+function cargarProducto(id) {
+    const productos = JSON.parse(localStorage.getItem("productos"));
+    let productoSeleccionado;
+    for (let i = 0; i < productos.length; i++){
+        if (productos[i].id = id){
+            productoSeleccionado = productos[i];
+        }
+    }
+    localStorage.setItem("productoSeleccionado", JSON.stringify(productoSeleccionado));
+    console.log("HOLAA");
+    window.location.href = "infoProducto.html";
+}
+
+function cargarElementosCarrito(array) {
     if (array == undefined || ! array.length > 0){
         manejarCarritoVacio();
     } else {
@@ -50,7 +63,7 @@ function cargarElementosCarrito(array){
             let itemCarrito = document.createElement("div");
             itemCarrito.innerHTML = 
                 `<div class="row my-3 d-flex align-items-center" id="producto${element.id}">
-                    <div class="col-sm-3 col-4 d-flex align-items-center justify-content-center">
+                    <div class="col-sm-3 col-4 d-flex align-items-center justify-content-center" onclick="cargarProducto(${element.id})">
                         <img class="w-75" src="${element.imagenes[0]}" alt="${element.nombre}">
                     </div>
                     <div class="col-sm-6 col-4">
