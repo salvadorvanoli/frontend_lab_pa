@@ -45,13 +45,14 @@ function cargarProducto(id) {
     const productos = JSON.parse(localStorage.getItem("productos"));
     let productoSeleccionado;
     for (let i = 0; i < productos.length; i++){
-        if (productos[i].id = id){
+        if (productos[i].id == id){
             productoSeleccionado = productos[i];
         }
     }
-    localStorage.setItem("productoSeleccionado", JSON.stringify(productoSeleccionado));
-    console.log("HOLAA");
-    window.location.href = "infoProducto.html";
+    if (productoSeleccionado != undefined) {
+        localStorage.setItem("productoSeleccionado", JSON.stringify(productoSeleccionado));
+        window.location.href = "infoProducto.html";
+    }
 }
 
 function cargarElementosCarrito(array) {
