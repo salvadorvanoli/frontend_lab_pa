@@ -54,7 +54,6 @@ function buscarEnSubcategorias(categoria, categoriasSeleccionadas) {
     return false; // Si no se encontró en ninguna subcategoría, devolver false
 }
 
-
 // Función para filtrar productos por categorías seleccionadas
 function filtrarProductosPorCategoria() {
     // Si no hay categorías seleccionadas, carga todos los productos
@@ -138,25 +137,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Función para ordenar productos
 function ordenarProductos(orden) {
-    let productosFiltrados = prod; // Usar todos los productos inicialmente
+    let productosFiltrados = productos; // Usar todos los productos inicialmente
 
     // Filtrar productos por categorías seleccionadas si hay alguna
     if (categoriasSeleccionadas.length > 0) {
-        productosFiltrados = prod.filter(producto => {
-            // Verificar que 'producto.categorias' exista
-            if (!producto.categorias) {
-                console.warn(`El producto ${producto.nombre} no tiene categorías válidas.`);
-                return false; // Excluir productos sin categorías válidas
-            }
-
+        productosFiltrados = productos.filter(producto => {
             // Verificar si el producto pertenece a alguna de las categorías seleccionadas
-            return categoriasSeleccionadas.some(categoriaSeleccionada => {
-                // Comprobar si el producto tiene la categoría seleccionada o alguna subcategoría
-                return producto.categorias.Comida && 
-                       (producto.categorias.Comida[categoriaSeleccionada] || 
-                       Object.keys(producto.categorias.Comida).some(subcat => 
-                           producto.categorias.Comida[subcat].includes(categoriaSeleccionada)
-                       ));
+            return producto.categorias.some(categoria => {
+                // Función recursiva para buscar en todas las subcategorías
+                return buscarEnSubcategorias(categoria, categoriasSeleccionadas);
             });
         });
     }
@@ -178,6 +167,7 @@ function ordenarProductos(orden) {
 
     cargarCatalogo(productosFiltrados); // Cargar los productos ordenados
 }
+
 function verInfoProducto(id) {
     for(let item of prod) {
         if(item.id == id){
