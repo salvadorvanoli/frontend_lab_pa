@@ -36,35 +36,39 @@ function agregarCategoria(categoria, boton) {
         boton.classList.remove('categoria-seleccionada'); // Quitar la clase CSS
     }
 
-    // Reiniciar la opción de ordenamiento a "99"
-    document.querySelector('.select-1').value = "99"; 
-
+    document.querySelector('.select-1').value = "99"; // Reiniciar la opción de ordenamiento a "99"
     filtrarProductosPorCategoria(); // Filtrar productos
 }
+
+
+function buscarEnSubcategorias(categoria, categoriasSeleccionadas) {
+    if (categoriasSeleccionadas.includes(categoria.nombre)) {
+        return true; // Si la categoría actual está seleccionada, devolver true
+    }
+
+    // Recorrer las subcategorías (hijos)
+    if (categoria.hijos && categoria.hijos.length > 0) {
+        return categoria.hijos.some(subcategoria => buscarEnSubcategorias(subcategoria, categoriasSeleccionadas));
+    }
+
+    return false; // Si no se encontró en ninguna subcategoría, devolver false
+}
+
 
 // Función para filtrar productos por categorías seleccionadas
 function filtrarProductosPorCategoria() {
     // Si no hay categorías seleccionadas, carga todos los productos
-    let productosFiltrados = prod;
-    if (categoriasSeleccionadas.length > 0) {
-        productosFiltrados = prod.filter(producto => {
-            // Verificar que 'producto.categorias' exista
-            if (!producto.categorias) {
-                console.warn(`El producto ${producto.nombre} no tiene categorías válidas.`);
-                return false; // Excluir productos sin categorías válidas
-            }
-
-            // Verificar si el producto pertenece a alguna de las categorías seleccionadas
-            return categoriasSeleccionadas.some(categoriaSeleccionada => {
-                // Comprobar si el producto tiene la categoría seleccionada o alguna subcategoría
-                return producto.categorias.Comida && 
-                       (producto.categorias.Comida[categoriaSeleccionada] || 
-                       Object.keys(producto.categorias.Comida).some(subcat => 
-                           producto.categorias.Comida[subcat].includes(categoriaSeleccionada)
-                       ));
-            });
-        });
+    if (categoriasSeleccionadas.length === 0) {
+        cargarCatalogo(productos);
+        return;
     }
+
+    const productosFiltrados = productos.filter(producto => {
+        return producto.categorias.some(categoria => {
+            // Función recursiva para buscar en todas las subcategorías
+            return buscarEnSubcategorias(categoria, categoriasSeleccionadas);
+        });
+    });
 
     cargarCatalogo(productosFiltrados); // Cargar los productos filtrados
 }
